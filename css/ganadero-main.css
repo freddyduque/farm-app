@@ -1,0 +1,9 @@
+@media (min-width: 768px) {
+  body {
+    background: url(../img/background01.jpg) no-repeat right 50px fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+}
