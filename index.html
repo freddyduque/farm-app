@@ -41,83 +41,148 @@
       <div class="col-sm-7">
         <div class="container login-container">
           <div class="login-panel panel panel-default">
-            <div class="panel-body">
-              <p class="text-center"><span class="navbar-brand-custom">Vakuno</span><span class="slogan slogan-custom">.com</span></p>
-              <form method="POST" action="index.html" class="form-horizontal mt0" id="login-form" role="form">
-                <div class="form-group">
-                  <div class="col-md-12">
-                    <label for="inputEmail">Username</label>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="input-group">
-                      <input type="email" class="form-control" name="inputEmail" id="inputEmail" aria-required="true" aria-invalid="true" placeholder="Your username" required>
-                      <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-envelope"></span>
-                      </span>
+            <p class="text-center"><span class="navbar-brand-custom">Vakuno</span><span class="slogan slogan-custom">.com</span></p>
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="custom-tab active"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">Login</a></li>
+              <li role="presentation" class="custom-tab"><a href="#signup" aria-controls="signup" role="tab" data-toggle="tab">Signup</a></li>
+            </ul>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade in active" id="login">
+                <div class="panel-body">
+                  <form method="POST" action="index.html" class="form-horizontal mt0" id="login-form" role="form">
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <label for="input_login_email">Correo</label>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="input-group">
+                          <input type="email" class="form-control" name="input_login_email" id="input_login_email" aria-required="true" aria-invalid="true" placeholder="vacaypollito@vakuno.com" required oninvalid="this.setCustomValidity('Introduzca un correo valido')">
+                          <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-md-12">
-                    <label for="password">Password</label>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="input-group">
-                      <input aria-invalid="false" aria-required="true" name="password" id="password" class="form-control valid" type="password" placeholder="Your password" required>
-                      <span class="input-group-addon">
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <label for="input_login_password">Contraseña</label>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="input-group">
+                          <input aria-invalid="false" aria-required="true" name="input_login_password" id="input_login_password" class="form-control valid" type="password" placeholder="micumpleaños1234" required>
+                          <span class="input-group-addon">
                     <span class="glyphicon glyphicon-lock"></span>
-                      </span>
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                    <div class="form-group">
+                      <!--
+                      <div class="col-md-12">
+                        <div class="checkbox">
+                          <input type="checkbox" id="checkbox-custom-01">
+                          <label for="checkbox-custom-01">Remember me?</label>
+                        </div>
+                      </div>
+                      -->
+                      <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-block" name="btn-login" id="btn-login">Iniciar Sesión <span class="glyphicon glyphicon-user"></span></button>
+                      </div>
+                    </div>
+                  </form>
+                  <span class="help-block text-center"><a data-toggle="collapse" data-target="#panel-footer-01" style="text-decoration: none;cursor: pointer">¿Olvidó su Contraseña?</a></span>
                 </div>
-                <div class="form-group">
-                  <!--
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-8">
-                <div class="checkbox">
-                  <input type="checkbox" id="checkbox-custom-01"><label for="checkbox-custom-01">Remember me?</label>
+                <div class="collapse gray-lighter-bg" id="panel-footer-01">
+                  <div class="panel-footer">
+                    <p class="text-center" style="padding-top: 5px">Introduzca su correo a continución para recuperar su contraseña.</p>
+                    <form role="form" class="form-horizontal mt0" action="index.html" id="retrieve-form">
+                      <div class="form-group">
+                        <div class="col-lg-12">
+                          <div class="input-group">
+                            <input type="email" aria-invalid="false" aria-required="true" name="email-retrieve" id="email-retrieve" class="form-control valid" placeholder="vacaypollito@vakuno.com" required>
+                            <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-envelope"></span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 0px;padding-bottom:15px">
+                        <div class="col-md-12">
+                          <button type="submit" class="btn btn-primary btn-block" name="btn-retrieve" id="btn-retrieve">Recuperar</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4"> pull-right
-              -->
-                  <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary btn-block" name="btn-login" id="btn-login">Login <span class="glyphicon glyphicon-user"></span></button>
-                  </div>
-                </div>
-              </form>
-              <div class="col-xs-12"></div>
-              <span class="help-block text-center"><a data-toggle="collapse" data-target="#panel-footer-01" style="text-decoration: none;cursor: pointer">Forgot your password?</a></span>
-            </div>
-            <div class="panel-footer gray-lighter-bg collapse" id="panel-footer-01">
-              <p class="text-center" style="padding-top: 15px">Enter your username to retrive your password.</p>
-              <form role="form" class="form-horizontal mt0" action="index.html" id="login-form">
-                <div class="form-group">
-                  <div class="col-lg-12">
-                    <div class="input-group">
-                      <input type="email" aria-invalid="false" aria-required="true" name="email-retrive" id="email-retrive" class="form-control valid" placeholder="Your username" required>
-                      <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-envelope"></span>
-                      </span>
+              <div role="tabpanel" class="tab-pane fade" id="signup">
+                <div class="panel-body">
+                  <form method="POST" action="index.html" class="form-horizontal mt0" id="signup-form" role="form">
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <label for="input_email">Correo</label>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="input-group">
+                          <input type="text" class="form-control" name="input_email" id="input_email" aria-required="true" aria-invalid="true" placeholder="Tú correo" required>
+                          <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <label for="input_lgin_pass">Contraseña</label>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="input-group">
+                          <input aria-invalid="false" aria-required="true" name="input_lgin_pass" id="input_lgin_pass" class="form-control valid" type="password" placeholder="Tú contraseña" required>
+                          <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-lock"></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 line-separator"></div>
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <label for="inputFirstName">First Name</label>
+                      </div>
+                      <div class="col-lg-12">
+                        <input type="text" class="form-control" name="inputFirstName" id="inputFirstName" aria-required="true" aria-invalid="true" placeholder="Your first Name" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <label for="inputLastName">Last Name</label>
+                      </div>
+                      <div class="col-lg-12">
+                        <input type="text" class="form-control" name="inputLastName" id="inputLastName" aria-required="true" aria-invalid="true" placeholder="Your last Name" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-block" name="btn-login" id="btn-login">Signup <span class="glyphicon glyphicon-user"></span></button>
+                      </div>
+                    </div>
+                  </form>
                 </div>
-                <div class="form-group" style="margin-bottom: 0px;padding-bottom:15px">
-                  <div class="col-md-12">
-                    <button type="button" class="btn btn-primary btn-block">Retrive</button>
-                  </div>
-                </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!--
   <footer class="footer">
     <div class="container">
       <p class="text-muted">Place Sticky footer content here.</p>
     </div>
   </footer>
-
+  --!>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="js/jquery.min.js"></script>

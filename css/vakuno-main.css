@@ -23,7 +23,8 @@ body .login-container {
 
 body .login-panel {
   margin-top: 80px;
-  position: relative
+  position: relative;
+  padding-top: 20px;
 }
 
 body .login-panel:after,
@@ -56,13 +57,27 @@ body .login-panel:before {
   z-index: -2
 }
 
+.custom-tab {
+  padding: 0px 5px;
+  width: 50%;
+  text-align: center;
+}
+
+.line-separator {
+  height: 1px;
+  overflow: hidden;
+  background-color: #e5e5e5;
+  margin-bottom: 15px;
+}
+
+
+/*
 html {
   position: relative;
   min-height: 100%;
 }
 
 body {
-  /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
 
@@ -70,7 +85,6 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
   max-height: 60px;
   background-color: #ffffff;
-}
+} */
