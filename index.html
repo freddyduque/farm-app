@@ -17,6 +17,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <!-- customs -->
   <link href="css/vakuno-main.css" rel="stylesheet">
+  <link href="css/vakuno-global.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -30,8 +31,11 @@
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="index.html">
-          <img alt="Vakuno.com" src="...">
+        <a class="navbar-brand custom-navbar-brand" href="index.html">
+          <img alt="Vakuno.com" src="img/logo10.png">
+          <p class="text-center custom-brand">
+            <span class="custom-brand-name">Vakuno</span><span class="custom-brand-slogan">.com</span>
+          </p>
         </a>
       </div>
     </div>
@@ -56,7 +60,7 @@
                       </div>
                       <div class="col-lg-12">
                         <div class="input-group">
-                          <input type="email" class="form-control" name="input_login_email" id="input_login_email" aria-required="true" aria-invalid="true" placeholder="vacaypollito@vakuno.com" required oninvalid="this.setCustomValidity('Introduzca un correo valido')">
+                          <input type="email" class="form-control" name="input_login_email" id="input_login_email" aria-required="true" aria-invalid="true" placeholder="tucorreo@vakuno.com" required>
                           <span class="input-group-addon">
                             <span class="glyphicon glyphicon-envelope"></span>
                           </span>
@@ -69,7 +73,7 @@
                       </div>
                       <div class="col-lg-12">
                         <div class="input-group">
-                          <input aria-invalid="false" aria-required="true" name="input_login_password" id="input_login_password" class="form-control valid" type="password" placeholder="micumpleaños1234" required>
+                          <input aria-invalid="false" aria-required="true" name="input_login_password" id="input_login_password" class="form-control valid" type="password" placeholder="tucumpleaños1234" required>
                           <span class="input-group-addon">
                     <span class="glyphicon glyphicon-lock"></span>
                           </span>
@@ -99,7 +103,7 @@
                       <div class="form-group">
                         <div class="col-lg-12">
                           <div class="input-group">
-                            <input type="email" aria-invalid="false" aria-required="true" name="email-retrieve" id="email-retrieve" class="form-control valid" placeholder="vacaypollito@vakuno.com" required>
+                            <input type="email" aria-invalid="false" aria-required="true" name="email-retrieve" id="email-retrieve" class="form-control valid" placeholder="tucorreo@vakuno.com" required>
                             <span class="input-group-addon">
                               <span class="glyphicon glyphicon-envelope"></span>
                             </span>
