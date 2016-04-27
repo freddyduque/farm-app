@@ -15,9 +15,10 @@ body {
 .custom-navbar-brand {
   margin-left: auto !important;
   padding: 10px 15px;
+  height: 60px;
 }
 
-.custom-navbar-brand > img {
+.custom-navbar-brand > svg {
   position: absolute;
 }
 
@@ -31,4 +32,32 @@ body {
 
 .custom-brand-slogan {
   font-size: 15px;
+}
+
+.checkbox {
+  padding-top: 0px !important;
+}
+
+.checkbox > input {
+  margin: 0px 0px !important;
+}
+
+.checkbox > label {
+  margin-top: -5px;
+}
+
+.clear-pad-left {
+  padding-left: 0px;
+}
+
+.clear-pad-right {
+  padding-right: 0px;
+}
+
+.custom-glyphicon {
+  transition: all 0.3s ease 0s;
+}
+
+.custom-glyphicon:hover {
+  opacity: 0.75;
 }
