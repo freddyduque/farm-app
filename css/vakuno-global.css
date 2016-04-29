@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Kazmann;
+  src: url('../fonts/Kazmann Sans.ttf');
+}
+
 @media (min-width: 768px) {
   body {}
   body .login-container {
@@ -12,26 +17,34 @@ body {
   font-size: 13px;
 }
 
+body > .container-fluid {
+  padding-top: 50px;
+}
+
 .custom-navbar-brand {
   margin-left: auto !important;
   padding: 10px 15px;
   height: 60px;
 }
 
-.custom-navbar-brand > svg {
-  position: absolute;
+.custom-brand {
+  font-family: Kazmann;
+  transition: all 0.3s ease 0s;
+  line-height: 30px;
 }
 
-.custom-brand {
-  margin: 12px 0px 0px 45px;
+.custom-brand:hover {
+  opacity: 0.75;
 }
 
 .custom-brand-name {
-  font-size: 25px;
+  font-size: 54px;
+  color: black;
 }
 
 .custom-brand-slogan {
-  font-size: 15px;
+  font-size: 35px;
+  color: #006680;
 }
 
 .checkbox {
@@ -58,6 +71,6 @@ body {
   transition: all 0.3s ease 0s;
 }
 
-.custom-glyphicon:hover {
-  opacity: 0.75;
+.custom-alert {
+  margin: 5px 0px 0px 0px;
 }

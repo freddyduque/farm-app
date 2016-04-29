@@ -28,46 +28,47 @@
 </head>
 
 <body class="login-page">
+  <canvas id="bgCanvas"></canvas>
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand custom-navbar-brand" href="index.html">
-          <svg width="40" height="40">
-            <g id="layer1" inkscape:label="Layer 1" inkscape:groupmode="layer" transform="translate(0,-8)">
-              <g id="g4608" transform="translate(-4.2828221,4.3050867)">
-                <g transform="translate(213.33989,0.1856622)" id="g4484">
-                  <rect style="fill:#006680;fill-opacity:1;fill-rule:evenodd;stroke:none" id="rect4464" width="40" height="40" x="-209.05707" y="3.5092511" ry="3.7596867" />
-                  <path style="opacity:0.15;fill:#1a1a1a;fill-opacity:1;fill-rule:evenodd;stroke:none" d="m -169.64918,5.2197789 c 1.48733,6.2648221 -2.80658,16.3682091 -11.25,25.1973671 -9.32321,9.749154 -20.59124,14.660861 -26.87499,12.138159 0.66449,0.594293 1.53426,0.953946 2.5,0.953946 l 32.4671,0 c 2.08287,0 3.75,-1.667137 3.75,-3.75 l 0,-32.4671051 c 0,-0.764696 -0.20295,-1.480018 -0.59211,-2.072367 z" id="path4466" inkscape:connector-curvature="0" />
-                </g>
-                <path sodipodi:nodetypes="cccc" inkscape:connector-curvature="0" id="rect4480" d="m 11.46087,13.095485 2.56326,7.954953 -5.9220104,3.049398 z" style="fill:#484537;fill-opacity:1;fill-rule:evenodd;stroke:none" />
-                <path sodipodi:nodetypes="cccc" inkscape:connector-curvature="0" id="rect4482" d="M 33.20654,13.714203 36.30013,24.055641 30.51069,21.02834 z" style="fill:#484537;fill-opacity:1;fill-rule:evenodd;stroke:none" />
-                <path style="opacity:0.3;fill:#241e1c;fill-opacity:1;fill-rule:evenodd;stroke:none" d="m 11.06139,13.405705 3.09532,7.82151 -3.88607,-5.835477 z" id="path4567" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc" />
-                <path style="opacity:0.3;fill:#241e1c;fill-opacity:1;fill-rule:evenodd;stroke:none" d="m 33.20654,13.714203 1.10745,1.4777 -3.79939,5.883312 z" id="path4569" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc" />
-                <path sodipodi:nodetypes="ccccccccsccccccccccccccccccccccccccccc" inkscape:connector-curvature="0" id="path4415" d="m 19.30849,36.038698 c 0.18141,0.506289 0.68099,0.836351 1.21875,0.84375 l 3.5,0 c 0.53781,-0.0073 1.03735,-0.33747 1.21875,-0.84375 l 2.71875,-7.4375 7.90625,7.90625 c 0.23782,0.241474 0.56738,0.369322 0.90625,0.375 l 4.21875,0 c 0.52895,-0.01485 0.94782,-0.382213 1.125,-0.8125 0.17718,-0.430287 0.14638,-0.992001 -0.21875,-1.375 -3.94587,-3.960396 -7.85936,-7.953106 -11.8125,-11.90625 l 0.25,-0.6875 7.8125,4.34375 -4.1875,-14.8125 c -0.10287,-0.593689 -0.60771,-1.113467 -1.25,-1.125 -1.08238,0 -2.16989,0 -3.24995,0 -0.20285,0.0092 -0.3561,0.1204 -0.53125,0.21875 -0.009,-0.0052 -0.0224,0.005 -0.0312,0 -0.18866,-0.106454 -0.37459,-0.216351 -0.59375,-0.21875 l -3.1875,0 c -0.53781,0.0073 -1.03735,0.33747 -1.21875,0.84375 -1.26929,3.531935 -2.54146,7.063164 -3.8125,10.59375 l -3.8125,-10.59375 c -0.18141,-0.506289 -0.68099,-0.836351 -1.21875,-0.84375 -1.14799,-1.57e-4 -2.33431,0 -3.46865,0 l -2.5e-4,0 c -0.47377,0.101208 -0.8585,0.471411 -1,0.90625 -1.39434,4.980943 -2.8330104,10.029476 -4.2500004,15.03125 L 14.18344,22.101198 z M 13.76712,20.814967 8.4424796,23.745916 11.24464,13.992822 z m 19.49444,-6.745019 2.71875,9.625 -5.18749,-2.875 z" style="font-size:357.16946411px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#e0e6e6;fill-opacity:1;stroke:none;display:inline;font-family:Sans" />
-                <g transform="translate(223.23938,-39.058766)" id="g4468">
-                  <path inkscape:connector-curvature="0" id="path4440" style="font-size:357.16946411px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#008000;fill-opacity:1;stroke:none;display:inline;font-family:Sans" d="m -200.9177,74.659929 0,-3.75 -7.21875,-20.0625 -3.21875,0 8.6875,23.8125 1.75,0 z m 0,0 1.75,0 8.6875,-23.8125 -3.21875,0 -7.21875,20.0625 0,3.75 z m 7.1875,-11.5625 -1.15625,3.125 8.4375,8.4375 4.21875,0 -11.5,-11.5625 z m -4.34375,-12.25 c 0,0 -2.93485,8.168589 -4.40625,12.25 l 1.5625,4.3125 6.03125,-16.5625 -3.1875,0 z" />
-                  <path style="font-size:357.16946411px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;opacity:0.3;fill:#008033;fill-opacity:1;stroke:none;display:inline;font-family:Sans" d="m -198.06496,50.847429 c 0,0 -2.93485,8.168589 -4.40625,12.25 l 1.5625,4.3125 6.03125,-16.5625 -3.1875,0 z" id="path4442" inkscape:connector-curvature="0" />
-                  <path style="font-size:357.16946411px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;opacity:0.3;fill:#002b11;fill-opacity:1;stroke:none;display:inline;font-family:Sans" d="m -200.9177,74.659929 1.75,0 8.6875,-23.8125 -3.21875,0 -7.21875,20.0625 0,3.75 z m 7.1875,-11.5625 -1.15625,3.125 8.4375,8.4375 4.21875,0 -11.5,-11.5625 z" id="path4444" inkscape:connector-curvature="0" />
+          <p class="text-center custom-brand">
+            <svg width="40" height="40">
+              <g id="layer1" inkscape:label="Layer 1" inkscape:groupmode="layer" transform="translate(5.8900879,11.218843)">
+                <g transform="translate(-10.17291,-14.913756)" id="g4608">
+                  <g id="g4484" transform="translate(213.33989,0.1856622)">
+                    <rect ry="3.7596867" y="3.5092511" x="-209.05707" height="40" width="40" id="rect4464" style="fill:#006680;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+                    <path inkscape:connector-curvature="0" id="path4466" d="m -169.64918,5.2197789 c 1.48733,6.2648221 -2.80658,16.3682091 -11.25,25.1973671 -9.32321,9.749154 -20.59124,14.660861 -26.87499,12.138159 0.66449,0.594293 1.53426,0.953946 2.5,0.953946 l 32.4671,0 c 2.08287,0 3.75,-1.667137 3.75,-3.75 l 0,-32.4671051 c 0,-0.764696 -0.20295,-1.480018 -0.59211,-2.072367 z" style="opacity:0.15;fill:#1a1a1a;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+                  </g>
+                  <path style="fill:#484537;fill-opacity:1;fill-rule:evenodd;stroke:none" d="m 11.46087,13.095485 2.56326,7.954953 -5.9220104,3.049398 z" id="rect4480" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc" />
+                  <path style="fill:#484537;fill-opacity:1;fill-rule:evenodd;stroke:none" d="M 33.20654,13.714203 36.30013,24.055641 30.51069,21.02834 z" id="rect4482" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc" />
+                  <path sodipodi:nodetypes="cccc" inkscape:connector-curvature="0" id="path4567" d="m 11.06139,13.405705 3.09532,7.82151 -3.88607,-5.835477 z" style="opacity:0.3;fill:#241e1c;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+                  <path sodipodi:nodetypes="cccc" inkscape:connector-curvature="0" id="path4569" d="m 33.20654,13.714203 1.10745,1.4777 -3.79939,5.883312 z" style="opacity:0.3;fill:#241e1c;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+                  <path style="font-size:357.16946411px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#e0e6e6;fill-opacity:1;stroke:none;display:inline;font-family:Sans" d="m 19.30849,36.038698 c 0.18141,0.506289 0.68099,0.836351 1.21875,0.84375 l 3.5,0 c 0.53781,-0.0073 1.03735,-0.33747 1.21875,-0.84375 l 2.71875,-7.4375 7.90625,7.90625 c 0.23782,0.241474 0.56738,0.369322 0.90625,0.375 l 4.21875,0 c 0.52895,-0.01485 0.94782,-0.382213 1.125,-0.8125 0.17718,-0.430287 0.14638,-0.992001 -0.21875,-1.375 -3.94587,-3.960396 -7.85936,-7.953106 -11.8125,-11.90625 l 0.25,-0.6875 7.8125,4.34375 -4.1875,-14.8125 c -0.10287,-0.593689 -0.60771,-1.113467 -1.25,-1.125 -1.08238,0 -2.16989,0 -3.24995,0 -0.20285,0.0092 -0.3561,0.1204 -0.53125,0.21875 -0.009,-0.0052 -0.0224,0.005 -0.0312,0 -0.18866,-0.106454 -0.37459,-0.216351 -0.59375,-0.21875 l -3.1875,0 c -0.53781,0.0073 -1.03735,0.33747 -1.21875,0.84375 -1.26929,3.531935 -2.54146,7.063164 -3.8125,10.59375 l -3.8125,-10.59375 c -0.18141,-0.506289 -0.68099,-0.836351 -1.21875,-0.84375 -1.14799,-1.57e-4 -2.33431,0 -3.46865,0 l -2.5e-4,0 c -0.47377,0.101208 -0.8585,0.471411 -1,0.90625 -1.39434,4.980943 -2.8330104,10.029476 -4.2500004,15.03125 L 14.18344,22.101198 z M 13.76712,20.814967 8.4424796,23.745916 11.24464,13.992822 z m 19.49444,-6.745019 2.71875,9.625 -5.18749,-2.875 z" id="path4415" inkscape:connector-curvature="0" sodipodi:nodetypes="ccccccccsccccccccccccccccccccccccccccc" />
+                  <g id="g4468" transform="translate(223.23938,-39.058766)">
+                    <path d="m -200.9177,74.659929 0,-3.75 -7.21875,-20.0625 -3.21875,0 8.6875,23.8125 1.75,0 z m 0,0 1.75,0 8.6875,-23.8125 -3.21875,0 -7.21875,20.0625 0,3.75 z m 7.1875,-11.5625 -1.15625,3.125 8.4375,8.4375 4.21875,0 -11.5,-11.5625 z m -4.34375,-12.25 c 0,0 -2.93485,8.168589 -4.40625,12.25 l 1.5625,4.3125 6.03125,-16.5625 -3.1875,0 z" style="font-size:357.16946411px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#008000;fill-opacity:1;stroke:none;display:inline;font-family:Sans" id="path4440" inkscape:connector-curvature="0" />
+                    <path inkscape:connector-curvature="0" id="path4442" d="m -198.06496,50.847429 c 0,0 -2.93485,8.168589 -4.40625,12.25 l 1.5625,4.3125 6.03125,-16.5625 -3.1875,0 z" style="font-size:357.16946411px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;opacity:0.3;fill:#008033;fill-opacity:1;stroke:none;display:inline;font-family:Sans" />
+                    <path inkscape:connector-curvature="0" id="path4444" d="m -200.9177,74.659929 1.75,0 8.6875,-23.8125 -3.21875,0 -7.21875,20.0625 0,3.75 z m 7.1875,-11.5625 -1.15625,3.125 8.4375,8.4375 4.21875,0 -11.5,-11.5625 z" style="font-size:357.16946411px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;opacity:0.3;fill:#002b11;fill-opacity:1;stroke:none;display:inline;font-family:Sans" />
+                  </g>
                 </g>
               </g>
-            </g>
-          </svg>
-          <p class="text-center custom-brand">
+            </svg>
             <span class="custom-brand-name">Vakuno</span><span class="custom-brand-slogan">.com</span>
           </p>
         </a>
       </div>
     </div>
   </nav>
-  <div class="container-fluid" style="margin-top:50px">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-sm-5">
         <div class="container login-container">
           <div class="login-panel panel panel-default">
-            <p class="text-center"><span class="navbar-brand-custom">Vakuno</span><span class="slogan slogan-custom">.com</span></p>
+            <p class="text-center custom-brand"><span class="custom-brand-name">Vakuno</span><span class="custom-brand-slogan">.com</span></p>
             <ul class="nav nav-tabs" role="tablist">
-              <li role="presentation" class="custom-tab active"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">Acceder</a></li>
-              <li role="presentation" class="custom-tab"><a href="#signup" aria-controls="signup" role="tab" data-toggle="tab">Registrarse</a></li>
+              <li role="presentation" class="custom-tab active"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">Acceso</a></li>
+              <li role="presentation" class="custom-tab"><a href="#signup" aria-controls="signup" role="tab" data-toggle="tab">Registro</a></li>
             </ul>
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane fade in active" id="login">
@@ -79,10 +80,14 @@
                       </div>
                       <div class="col-lg-12">
                         <div class="input-group">
-                          <input type="email" class="form-control" name="input_login_email" id="input_login_email" aria-required="true" aria-invalid="true" placeholder="tucorreo@vakuno.com" required>
-                          <span class="input-group-addon">
+                          <input type="email" class="form-control email" name="input_login_email" id="input_login_email" aria-required="true" aria-invalid="true" placeholder="tucorreo@vakuno.com" required>
+                          <span class="input-group-addon custom-glyphicon">
                             <span class="glyphicon glyphicon-envelope"></span>
                           </span>
+                        </div>
+                        <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert">
+                          <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <span></span>
                         </div>
                       </div>
                     </div>
@@ -94,7 +99,7 @@
                         <div class="input-group">
                           <input aria-invalid="false" aria-required="true" name="input_login_password" id="input_login_password" class="form-control valid" type="password" placeholder="tucontraseña1234" required>
                           <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-lock"></span>
+                            <span class="glyphicon glyphicon-lock"></span>
                           </span>
                         </div>
                       </div>
@@ -124,10 +129,14 @@
                       <div class="form-group">
                         <div class="col-lg-12">
                           <div class="input-group">
-                            <input type="email" aria-invalid="false" aria-required="true" name="email-retrieve" id="email-retrieve" class="form-control valid" placeholder="tucorreo@vakuno.com" required>
-                            <span class="input-group-addon">
+                            <input type="email" aria-invalid="false" aria-required="true" name="email-retrieve" id="email-retrieve" class="form-control valid email" placeholder="tucorreo@vakuno.com" required>
+                            <span class="input-group-addon custom-glyphicon">
                               <span class="glyphicon glyphicon-envelope"></span>
                             </span>
+                          </div>
+                          <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert">
+                            <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <span></span>
                           </div>
                         </div>
                       </div>
@@ -145,37 +154,52 @@
                   <form method="POST" action="index.html" class="form-horizontal mt0" id="signup-form" role="form">
                     <div class="form-group">
                       <div class="col-md-12">
-                        <label for="input_email">Correo</label>
+                        <label for="signup_email">Correo</label>
                       </div>
                       <div class="col-lg-12">
                         <div class="input-group">
-                          <input type="text" class="form-control" name="input_email" id="input_email" aria-required="true" aria-invalid="true" placeholder="tucorreo@vakuno.com" required>
+                          <input type="text" class="form-control email" name="signup_email" id="signup_email" aria-required="true" aria-invalid="true" placeholder="tucorreo@vakuno.com" required>
                           <span class="input-group-addon custom-glyphicon">
                             <span class="glyphicon glyphicon-envelope"></span>
                           </span>
+                        </div>
+                        <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert">
+                          <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <span></span>
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="col-md-12">
-                        <label for="input_lgin_pass">Contraseña</label>
+                        <label for="input_signup_pass01">Contraseña</label>
                       </div>
                       <div class="col-lg-12">
                         <div class="input-group">
-                          <input aria-invalid="false" aria-required="true" name="input_lgin_pass" id="input_lgin_pass" class="form-control valid" type="password" placeholder="tucontraseña1234" required>
-                          <span class="input-group-addon">
+                          <input aria-invalid="false" aria-required="true" name="input_signup_pass01" id="input_signup_pass01" class="form-control valid" type="password" placeholder="tucontraseña1234" required>
+                          <span class="input-group-addon custom-glyphicon">
                             <span class="glyphicon glyphicon-lock"></span>
                           </span>
+                        </div>
+                        <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert">
+                          <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <span></span>
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
+                      <div class="col-md-12">
+                        <label for="input_signup_pass02">Verifique su contraseña</label>
+                      </div>
                       <div class="col-lg-12">
                         <div class="input-group">
-                          <input aria-invalid="false" aria-required="true" name="input_lgin_pass" id="input_lgin_pass" class="form-control valid" type="password" placeholder="tucontraseña1234" required>
-                          <span class="input-group-addon">
+                          <input aria-invalid="false" aria-required="true" name="input_signup_pass02" id="input_signup_pass02" class="form-control valid" type="password" placeholder="tucontraseña1234" required disabled>
+                          <span class="input-group-addon custom-glyphicon">
                             <span class="glyphicon glyphicon-lock"></span>
                           </span>
+                        </div>
+                        <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert">
+                          <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <span></span>
                         </div>
                       </div>
                     </div>
@@ -193,12 +217,12 @@
                         <label for="inputLastName">Apellido</label>
                       </div>
                       <div class="col-lg-12">
-                        <input type="text" class="form-control" name="inputLastName" id="inputLastName" aria-required="true" aria-invalid="true" placeholder="Garcia" required>
+                        <input type="text" class="form-control" name="inputLastName" id="inputLastName" aria-required="true" aria-invalid="true" placeholder="García" required>
                       </div>
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                       <div class="col-md-12">
-                        <label for="inputPhone">Telefono</label>
+                        <label for="inputPhone">Teléfono</label>
                       </div>
                       <div class="col-lg-12">
                         <div class="input-group">
@@ -208,7 +232,7 @@
                           </span>
                         </div>
                       </div>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                       <div class="col-md-12">
                         <button type="submit" class="btn btn-primary btn-block" name="btn-login" id="btn-login">Registrar <span class="glyphicon glyphicon-user"></span></button>
@@ -225,18 +249,156 @@
       </div>
     </div>
   </div>
-  <!--
   <footer class="footer">
     <div class="container">
       <p class="text-muted">Place Sticky footer content here.</p>
     </div>
   </footer>
-  --!>
-
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="js/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="js/bootstrap.min.js"></script>
+  <script src="js/patternizer.js"></script>
+  <script>
+    var bgCanvas = document.getElementById('bgCanvas');
+
+    $(function () {
+      $("#input_login_email").focus();
+      $("[data-hide]").on("click", function () {
+        $(this).parent().hide();
+      });
+      $(".email").focusout(function (event) {
+        ValidateEmail(this);
+      });
+      $("#input_signup_pass01").keyup(function (event) {
+        ValidatePass(this);
+      });
+      $("#input_signup_pass02").focusout(function (event) {
+        ValidateConfirmPass(this);
+      });
+    });
+
+    function AlertManagement(type, Ele, icon = false, message01 = "", message02 = "") {
+      //type = true (show), type = false (hide); icon true (has icon)/false (has no icon)
+      //alert("Type:" + type + " Element:" + $(Ele).val() + " icon:" + icon + " Mensaje 01:" + message01 + " Mensaje 02:" + message02);
+      if (type) {
+        $(Ele).parent().siblings().show();
+        if (icon) {
+          $(Ele).siblings(".custom-glyphicon").css("background-color", "#ebccd1");
+          $(Ele).siblings(".custom-glyphicon").css("color", "#a94442");
+        }
+        $(Ele).parent().siblings().children("span").html("<strong>" + message01 + "</strong><br>" + message02);
+      } else {
+        $(Ele).parent().siblings().hide();
+        if (icon) {
+          $(Ele).siblings(".custom-glyphicon").css("background-color", "#bbddbd");
+          $(Ele).siblings(".custom-glyphicon").css("color", "#3c763d");
+        }
+      }
+    }
+
+    function ValidateEmail(Ele) {
+      var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+      if (mailformat.test($(Ele).val())) {
+        AlertManagement(false, Ele, true);
+        return true;
+      } else {
+        AlertManagement(true, Ele, true, "Correo Invalido!", "Verifique nuevamente su correo.");
+        return false;
+      }
+    }
+
+    function ValidatePass(Ele) {
+      var flag = true,
+        message = "Verifique que la contraseña contenga:";
+      if ($(Ele).val().length < 8) {
+        message = message + "<br> * Al menos 8 caracteres";
+        flag = false;
+      }
+      re = /[0-9]/;
+      if (!re.test($(Ele).val())) {
+        message = message + "<br> * Al menos un número";
+        flag = false;
+      }
+      re = /[a-z]/;
+      if (!re.test($(Ele).val())) {
+        message = message + "<br> * Al menos una letra minúscula";
+        flag = false;
+      }
+      re = /[A-Z]/;
+      if (!re.test($(Ele).val())) {
+        message = message + "<br> * Al menos una letra mayúscula";
+        flag = false;
+      }
+      if (!flag) {
+        $("#input_signup_pass02").attr('disabled', 'disabled');
+        $("#input_signup_pass02").parent().siblings().hide();
+        ResetEle("#input_signup_pass02");
+        AlertManagement(true, Ele, true, "Contraseña Invalida!", message);
+      } else {
+        $("#input_signup_pass02").removeAttr('disabled');
+        AlertManagement(false, Ele, true);
+      }
+    }
+
+    function ResetEle(Ele) {
+      $(Ele).siblings(".custom-glyphicon").css("background-color", "");
+      $(Ele).siblings(".custom-glyphicon").css("color", "");
+      $(Ele).val("");
+    }
+
+    function ValidateConfirmPass(Ele) {
+      //alert("Pass01: " + $(Ele).val() + " Pass02: " + $("#input_signup_pass01").val());
+      if ($(Ele).val() != ($("#input_signup_pass01")).val())
+        AlertManagement(true, Ele, true, "Error en Confirmación!", "Verifique que las contraseñas coincidan.");
+      else
+        AlertManagement(false, Ele, true);
+    }
+
+    function render() {
+      bgCanvas.patternizer({
+        stripes: [{
+          color: '#dbdbdb',
+          rotation: 45,
+          opacity: 50,
+          mode: 'plaid',
+          width: 10,
+          gap: 1,
+          offset: 0
+        }, {
+          color: '#616161',
+          rotation: 90,
+          opacity: 50,
+          mode: 'plaid',
+          width: 10,
+          gap: 1,
+          offset: 0
+        }],
+        bg: '#ffffff'
+      });
+    }
+    // resize the canvas to the window size
+    function onResize() {
+      // number of pixels of extra canvas drawn
+      var buffer = 100;
+      // if extra canvas size is less than the buffer amount
+      if (bgCanvas.width - window.innerWidth < buffer || bgCanvas.height - window.innerHeight < buffer) {
+        // resize the canvas to window plus double the buffer
+        bgCanvas.width = window.innerWidth + (buffer * 2);
+        bgCanvas.height = window.innerHeight + (buffer * 2);
+        render();
+      }
+    }
+
+    function init() {
+      onResize();
+      // create a listener for resize
+      // cowboy's throttle plugin keeps this event from running hog wild
+      window.addEventListener('resize', Cowboy.throttle(200, onResize), false);
+    }
+
+    init();
+  </script>
 </body>
 
 </html>
