@@ -33,6 +33,10 @@ body > .container-fluid {
   line-height: 30px;
 }
 
+.custom-brand > img {
+  vertical-align: inherit;
+}
+
 .custom-brand:hover {
   opacity: 0.75;
 }
