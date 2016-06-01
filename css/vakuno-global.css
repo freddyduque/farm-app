@@ -46,7 +46,7 @@ body > .container-fluid {
   color: black;
 }
 
-.custom-brand-slogan {
+.custom-brand-name > subname {
   font-size: 35px;
   color: #006680;
 }

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Vakuno.com</title>
+  <meta name="author" content="Freddy Duque">
+  <meta name="description" content="Vakuno.com">
+  <meta name="keywords" content="">
+  <meta name="application-name" content="Vakuno.com">
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-social.css" rel="stylesheet">
+  <!-- Plugins -->
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <!-- Customs -->
+  <link href="css/vakuno-main.css" rel="stylesheet">
+  <link href="css/vakuno-global.css" rel="stylesheet">
+
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="login-page">
+  <?php include_once("../../includes/vakuno/analyticstracking.php") ?>
+    <canvas id="bgCanvas"></canvas>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand custom-navbar-brand" href="">
+            <p class="text-center custom-brand">
+              <img src="img/vk_logo40x40.svg" alt="Vakuno 40x40 logo" />
+              <span class="custom-brand-name">Vakuno<subname>.com</subname></span>
+            </p>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="container dev-container">
+            <div class="dev-panel panel panel-default">
+              <p class="text-center custom-brand dev">
+                <img alt="Vakuno 70x70 logo" />
+                <span class="custom-brand-name">Vakuno<subname>.com</subname></span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted"></p>
+        <a class="btn btn-social-icon btn-sm btn-facebook">
+          <span class="fa fa-facebook"></span>
+        </a>
+        <a class="btn btn-social-icon btn-sm btn-instagram" href="https://www.instagram.com/vakuno.oficial/" style="background-color: grey">
+          <span class="fa fa-instagram"></span>
+        </a>
+        <a class="btn btn-social-icon btn-sm btn-twitter">
+          <span class="fa fa-twitter"></span>
+        </a>
+      </div>
+    </footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/patternizer.js"></script>
+    <script>
+      var bgCanvas = document.getElementById('bgCanvas');
+
+      $(function () {
+        $("#input_login_email").focus();
+        $("[data-hide]").on("click", function () {
+          $(this).parent().hide();
+        });
+        $(".email").focusout(function (event) {
+          ValidateEmail(this);
+        });
+        $("#input_signup_pass01").keyup(function (event) {
+          ValidatePass(this);
+        });
+        $("#input_signup_pass02").focusout(function (event) {
+          ValidateConfirmPass(this);
+        });
+      });
+
+      function AlertManagement(type, Ele, icon = false, message01 = "", message02 = "") {
+        //type = true (show), type = false (hide); icon = true (input has icon)/false (input has no icon)
+        //alert("Type:" + type + " Element:" + $(Ele).val() + " icon:" + icon + " Mensaje 01:" + message01 + " Mensaje 02:" + message02);
+        if (type) {
+          $(Ele).parent().siblings().show();
+          if (icon) {
+            $(Ele).siblings(".custom-glyphicon").css("background-color", "#ebccd1");
+            $(Ele).siblings(".custom-glyphicon").css("color", "#a94442");
+          }
+          $(Ele).parent().siblings().children("span").html("<strong>" + message01 + "</strong><br>" + message02);
+        } else {
+          $(Ele).parent().siblings().hide();
+          if (icon) {
+            $(Ele).siblings(".custom-glyphicon").css("background-color", "#bbddbd");
+            $(Ele).siblings(".custom-glyphicon").css("color", "#3c763d");
+          }
+        }
+      }
+
+      function ValidateEmail(Ele) {
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+        if (mailformat.test($(Ele).val())) {
+          AlertManagement(false, Ele, true);
+          return true;
+        } else {
+          AlertManagement(true, Ele, true, "Correo Invalido!", "Verifique nuevamente su correo.");
+          return false;
+        }
+      }
+
+      function ValidatePass(Ele) {
+        var flag = true,
+          message = "Verifique que la contraseña contenga:";
+        if ($(Ele).val().length < 8) {
+          message = message + "<br> * Al menos 8 caracteres";
+          flag = false;
+        }
+        re = /[0-9]/;
+        if (!re.test($(Ele).val())) {
+          message = message + "<br> * Al menos un número";
+          flag = false;
+        }
+        re = /[a-z]/;
+        if (!re.test($(Ele).val())) {
+          message = message + "<br> * Al menos una letra minúscula";
+          flag = false;
+        }
+        re = /[A-Z]/;
+        if (!re.test($(Ele).val())) {
+          message = message + "<br> * Al menos una letra mayúscula";
+          flag = false;
+        }
+        if (!flag) {
+          $("#input_signup_pass02").attr('disabled', 'disabled');
+          $("#input_signup_pass02").parent().siblings().hide();
+          ResetEle("#input_signup_pass02");
+          AlertManagement(true, Ele, true, "Contraseña Invalida!", message);
+        } else {
+          $("#input_signup_pass02").removeAttr('disabled');
+          AlertManagement(false, Ele, true);
+        }
+      }
+
+      function ResetEle(Ele) {
+        $(Ele).siblings(".custom-glyphicon").css("background-color", "");
+        $(Ele).siblings(".custom-glyphicon").css("color", "");
+        $(Ele).val("");
+      }
+
+      function ValidateConfirmPass(Ele) {
+        //alert("Pass01: " + $(Ele).val() + " Pass02: " + $("#input_signup_pass01").val());
+        if ($(Ele).val() != ($("#input_signup_pass01")).val())
+          AlertManagement(true, Ele, true, "Error en Confirmación!", "Verifique que las contraseñas coincidan.");
+        else
+          AlertManagement(false, Ele, true);
+      }
+
+      function render() {
+        bgCanvas.patternizer({
+          stripes: [{
+            color: '#dbdbdb',
+            rotation: 45,
+            opacity: 50,
+            mode: 'plaid',
+            width: 10,
+            gap: 1,
+            offset: 0
+        }, {
+            color: '#616161',
+            rotation: 90,
+            opacity: 50,
+            mode: 'plaid',
+            width: 10,
+            gap: 1,
+            offset: 0
+        }],
+          bg: '#ffffff'
+        });
+      }
+      // resize the canvas to the window size
+      function onResize() {
+        // number of pixels of extra canvas drawn
+        var buffer = 100;
+        // if extra canvas size is less than the buffer amount
+        if (bgCanvas.width - window.innerWidth < buffer || bgCanvas.height - window.innerHeight < buffer) {
+          // resize the canvas to window plus double the buffer
+          bgCanvas.width = window.innerWidth + (buffer * 2);
+          bgCanvas.height = window.innerHeight + (buffer * 2);
+          render();
+        }
+      }
+
+      function init() {
+        onResize();
+        // create a listener for resize
+        // cowboy's throttle plugin keeps this event from running hog wild
+        window.addEventListener('resize', Cowboy.throttle(200, onResize), false);
+      }
+
+      init();
+    </script>
+</body>
+
+</html>

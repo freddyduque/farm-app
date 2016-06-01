@@ -1,3 +1,32 @@
+@media (max-width: 490px) {
+  .dev-container {
+    width: 230px !important;
+  }
+  .dev-panel > .dev > img {
+    text-indent: -9999px;
+    width: 100px;
+    height: 100px;
+    background: url(../img/vk_logo100x100.svg);
+    background-size: 100px 100px;
+    display: inline-block;
+  }
+  .dev-panel > .dev > span {
+    padding-top: 25px;
+    font-size: 80px;
+  }
+  .dev-panel > .dev > span > subname {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: @screen-xs-max) {}
+
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {}
+
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {}
+
+@media (min-width: @screen-lg-min) {}
+
 body {
   line-height: 1.42857;
   color: #333;
@@ -78,4 +107,44 @@ body {
   width: 100%;
   max-height: 120px;
   background-color: black;
+}
+
+body .dev-container {
+  width: 460px;
+}
+
+body .dev-panel {
+  margin-top: 60px;
+  position: relative;
+  padding-top: 20px;
+}
+
+body .dev-panel:after,
+body .dev-panel:before {
+  background-image: linear-gradient(to bottom, #f8f8f8 0, #f9f9f9 100%);
+  background-repeat: repeat-x;
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#fff8f8f8', endColorstr='#fff9f9f9', GradientType=0);
+  border: 1px solid #c4c6ca;
+  content: "";
+  display: block;
+  height: 100%;
+  left: -1px;
+  position: absolute;
+  width: 100%
+}
+
+body .dev-panel:after {
+  -webkit-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+  top: 0;
+  z-index: -1
+}
+
+body .dev-panel:before {
+  -webkit-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+  top: 0;
+  z-index: -2
 }
