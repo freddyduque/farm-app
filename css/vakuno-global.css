@@ -25,16 +25,16 @@ body > .container-fluid {
   margin-left: auto !important;
   padding: 10px 15px;
   height: 60px;
+  font-size: 27px;
 }
 
 .custom-brand {
   font-family: Kazmann;
   transition: all 0.3s ease 0s;
-  line-height: 30px;
 }
 
 .custom-brand > img {
-  vertical-align: inherit;
+  vertical-align: bottom;
 }
 
 .custom-brand:hover {

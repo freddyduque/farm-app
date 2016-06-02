@@ -1,6 +1,6 @@
-@media (max-width: 490px) {
+@media (max-width: 767px) {
   .dev-container {
-    width: 230px !important;
+    width: 90% !important;
   }
   .dev-panel > .dev > img {
     text-indent: -9999px;
@@ -11,7 +11,6 @@
     display: inline-block;
   }
   .dev-panel > .dev > span {
-    padding-top: 25px;
     font-size: 80px;
   }
   .dev-panel > .dev > span > subname {
@@ -19,13 +18,11 @@
   }
 }
 
-@media (max-width: @screen-xs-max) {}
+@media (min-width: 768px) and (max-width: 991px) {}
 
-@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {}
+@media (min-width: 992px) and (max-width: 1199px) {}
 
-@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {}
-
-@media (min-width: @screen-lg-min) {}
+@media (min-width: 1200px) {}
 
 body {
   line-height: 1.42857;
@@ -117,6 +114,49 @@ body .dev-panel {
   margin-top: 60px;
   position: relative;
   padding-top: 20px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+body .dev-panel > p {
+  line-height: 60px;
+}
+body .dev-panel > .dev-icon {
+  position: absolute;
+  font-size: 35px;
+  right: 0px;
+  top: 5px;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  -ms-transform: rotate(7deg); /* IE 9 */
+  -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
+  transform: rotate(-25deg);
+}
+body .dev-panel > div {
+  margin-top: -20px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 20px;
+}
+body .dev-panel > div >p:nth-child(2) {
+  color: gray;
+}
+body .dev-panel > div > p > brandname {
+  font-size: 30px;
+  font-family: Kazmann;
+  color: black;
+}
+body .dev-panel > div > p > brandname > brandsubname {
+  font-size: 20px;
+  color: #006680;
+}
+body .dev-panel > div > p > customadd {
+  font-size: 26px;
+  font-family: Kazmann;
+  color: #006680;
 }
 
 body .dev-panel:after,
