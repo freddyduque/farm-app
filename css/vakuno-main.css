@@ -55,11 +55,6 @@ body .login-panel:before {
   z-index: -2
 }
 
-#bgCanvas {
-  position: fixed;
-  z-index: -5;
-}
-
 .custom-tab {
   padding: 0px 5px;
   width: 50%;
