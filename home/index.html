@@ -4,7 +4,8 @@ session_start();
 $db = new mysql();
 
 if(isset($_SESSION['UserSession'])){
-  header("Location: home/");
+  header("Location: prompt-main/index.html");
+  $mysqli->close();
   exit;
 }
 
@@ -21,7 +22,13 @@ if(isset($_POST['btn-login'])){
     else
       $retval1 = "User NOT Verified";
   }
+
 /*
+
+
+
+
+
 if(strcmp( $upass, $row['PASSWORD']) == 0  ){          //if(password_verify($upass, $row['password'])){
     $_SESSION['UserSession'] = $row['IDUSER'];
     $_SESSION['UserName'] = $row['FIRST_NAME'];

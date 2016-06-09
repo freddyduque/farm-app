@@ -12,7 +12,8 @@ body {
   font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   margin-bottom: 60px;
-  background-image: url(../img/light_embroidery.png);
+  background-image: url(../img/vk_pattern.png);
+  background-color: #FFFFFF;
 }
 
 body .login-container {
@@ -71,14 +72,6 @@ body .login-panel:before {
 html {
   position: relative;
   min-height: 100%;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  max-height: 120px;
-  background-color: black;
 }
 
 body .dev-container {
