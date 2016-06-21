@@ -3,6 +3,11 @@ include_once '../../includes/session_val.php';
 include_once '../../includes/local_functions.php';
 session_start();
 
+if(isset($_POST['signup_email'])) {
+  $data = check_user();
+  exit(json_encode($data));
+}
+
 if(isset($_SESSION['UserID'])){
   redirect_home();
   exit;
@@ -166,8 +171,7 @@ if(isset($_POST['btn-signup'])){
                       <form method="POST" action="index.html" class="form-horizontal mt0" id="signup-form" role="form">
                         <div class="form-group">
                           <div class="col-md-12">
-                            <?php if($signup_error)echo error_alert("Ups! Algo salió mal.","Parece que tu Correo ya está en uso, prueba nuevamente");?>
-                              <label for="input_signup_email">Correo</label>
+                            <label for="input_signup_email">Correo</label>
                           </div>
                           <div class="col-lg-12">
                             <div class="input-group">
@@ -289,7 +293,10 @@ if(isset($_POST['btn-signup'])){
             ResetEle($("#" + $(this).parent().attr("belongs-to")));
           });
           $(".email").focusout(function (event) {
-            ValidateEmail(this);
+            if (/signup/i.test($(this).attr("id")))
+              ValidateEmail(this, true);
+            else
+              ValidateEmail(this, false);
           });
           $("#input_signup_pass01").keyup(function (event) {
             ValidatePass(this);
@@ -321,16 +328,23 @@ if(isset($_POST['btn-signup'])){
           }
         }
 
-        function ValidateEmail(Ele) {
+        function ValidateEmail(Ele, option) {
           if ($(Ele).val() != "") {
             var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
             if (mailformat.test($(Ele).val())) {
-              AlertManagement(false, Ele, true);
-              return true;
-            } else {
+              if (option) {
+                $.post("index.html", {
+                  signup_email: $(Ele).val()
+                }, "json").done(function (data) {
+                  if (data == "true")
+                    AlertManagement(false, Ele, true);
+                  else
+                    AlertManagement(true, Ele, true, "Ups! Algo salió mal.", "Parece que tu Correo ya está en uso, prueba con uno diferente");
+                });
+              } else
+                AlertManagement(false, Ele, true);
+            } else
               AlertManagement(true, Ele, true, "Correo Invalido!", "Verifique nuevamente su correo.");
-              return false;
-            }
           }
         }
 
