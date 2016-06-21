@@ -350,7 +350,7 @@ if(isset($_POST['btn-signup'])){
 
         function ValidatePass(Ele) {
           var flag = true,
-            message = "Verifique que la contraseña contenga:";
+            message = "Esta debe contener:";
           if ($(Ele).val().length < 8) {
             message = message + "<br> * Al menos 8 caracteres";
             flag = false;
@@ -374,7 +374,7 @@ if(isset($_POST['btn-signup'])){
             $("#input_signup_pass02").attr('disabled', 'disabled');
             $("#input_signup_pass02").parent().siblings().hide();
             ResetEle("#input_signup_pass02");
-            AlertManagement(true, Ele, true, "Contraseña Invalida!", message);
+            AlertManagement(true, Ele, true, "Verifica tú Contraseña!", message);
           } else {
             $("#input_signup_pass02").removeAttr('disabled');
             AlertManagement(false, Ele, true);
