@@ -16,8 +16,8 @@ body > .container-fluid {
 
 .custom-navbar-brand {
   margin-left: auto !important;
-  padding: 10px 15px;
-  height: 60px;
+  padding: 7px 15px;
+  height: 50px;
   font-size: 27px;
 }
 
@@ -35,12 +35,12 @@ body > .container-fluid {
 }
 
 .custom-brand-name {
-  font-size: 54px;
+  font-size: 45px;
   color: black;
 }
 
 .custom-brand-name > subname {
-  font-size: 35px;
+  font-size: 25px;
   color: #006680;
 }
 
@@ -71,6 +71,7 @@ body > .container-fluid {
 .custom-alert {
   margin: 5px 0px 0px 0px;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
