@@ -402,6 +402,10 @@ if(isset($_POST['btn-signup'])){
           $(Ele).val("");
         }
 
+        function CheckForm() {
+
+        }
+
         $(function () {
           $("#input_login_email").focus();
           $("[data-hide]").on("click", function () {
@@ -426,6 +430,17 @@ if(isset($_POST['btn-signup'])){
           $("#input_signup_pass01,#input_signup_pass02").on("contextmenu", function () {
             return false;
           });
+
+
+          // Mejorar este llamado para cada funcion de validación en el botón
+
+          $("#btn-signup").click(function (event) {
+            $("#" + $(this).closest('form').attr("id") + " input").each(function () {
+              alert("Value " + $(this).attr("class") + " ID: " + $(this).attr("id"));
+            });
+          });
+
+
         });
       </script>
   </body>

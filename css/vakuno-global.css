@@ -68,6 +68,14 @@ body > .container-fluid {
   transition: all 0.3s ease 0s;
 }
 
+.custom-caret {
+  margin-left: 5px;
+}
+
+.custom-user-glyphicon {
+  margin-right: 5px;
+}
+
 .custom-alert {
   margin: 5px 0px 0px 0px;
 }
