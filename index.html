@@ -133,7 +133,7 @@ if(isset($_POST['btn-signup'])){
                             </div>
                           </div>-->
                           <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-block" name="btn-login" id="btn-login">Iniciar Sesión <span class="glyphicon glyphicon-user"></span></button>
+                            <button type="submit" class="btn btn-primary btn-block vk-btn-validation" name="btn-login" id="btn-login">Iniciar Sesión <span class="glyphicon glyphicon-user"></span></button>
                           </div>
                         </div>
                       </form>
@@ -175,7 +175,7 @@ if(isset($_POST['btn-signup'])){
                           </div>
                           <div class="col-lg-12">
                             <div class="input-group">
-                              <input type="text" class="form-control email" name="input_signup_email" id="input_signup_email" aria-required="true" aria-invalid="true" placeholder="tucorreo@vakuno.com" required>
+                              <input type="email" class="form-control email" name="input_signup_email" id="input_signup_email" aria-required="true" aria-invalid="true" placeholder="tucorreo@vakuno.com" required>
                               <span class="input-group-addon custom-glyphicon">
                                 <span class="glyphicon glyphicon-envelope"></span>
                               </span>
@@ -192,7 +192,7 @@ if(isset($_POST['btn-signup'])){
                           </div>
                           <div class="col-lg-12">
                             <div class="input-group">
-                              <input aria-invalid="false" aria-required="true" name="input_signup_pass01" id="input_signup_pass01" class="form-control valid" type="password" placeholder="tucontraseña1234" required>
+                              <input aria-invalid="false" aria-required="true" name="input_signup_pass01" id="input_signup_pass01" class="form-control valid" type="password" placeholder="tucontraseña1234" linked-element="input_signup_pass02" required>
                               <span class="input-group-addon custom-glyphicon">
                                 <span class="glyphicon glyphicon-lock"></span>
                               </span>
@@ -209,7 +209,7 @@ if(isset($_POST['btn-signup'])){
                           </div>
                           <div class="col-lg-12">
                             <div class="input-group">
-                              <input aria-invalid="false" aria-required="true" name="input_signup_pass02" id="input_signup_pass02" class="form-control valid" type="password" placeholder="tucontraseña1234" required disabled>
+                              <input aria-invalid="false" aria-required="true" name="input_signup_pass02" id="input_signup_pass02" class="form-control valid" type="password" placeholder="tucontraseña1234" linked-element="input_signup_pass01" required disabled>
                               <span class="input-group-addon custom-glyphicon">
                                 <span class="glyphicon glyphicon-lock"></span>
                               </span>
@@ -260,7 +260,7 @@ if(isset($_POST['btn-signup'])){
                         </div>-->
                         <div class="form-group">
                           <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-block" name="btn-signup" id="btn-signup">Registrar <span class="glyphicon glyphicon-user"></span></button>
+                            <button type="submit" class="btn btn-primary btn-block vk-btn-validation" name="btn-signup" id="btn-signup">Registrar <span class="glyphicon glyphicon-user"></span></button>
                           </div>
                         </div>
                       </form>
@@ -305,34 +305,34 @@ if(isset($_POST['btn-signup'])){
               $(Ele).siblings(".custom-glyphicon").css("color", "#a94442");
             }
             $(AlertEle).children("span").html("<strong>" + message01 + "</strong><br>" + message02);
+            return true;
           } else {
             $(AlertEle).hide();
             if (icon) {
               $(Ele).siblings(".custom-glyphicon").css("background-color", "#bbddbd");
               $(Ele).siblings(".custom-glyphicon").css("color", "#3c763d");
             }
+            return false;
           }
         }
 
         function ValidateEmail(Ele, option) {
-          if ($(Ele).val() != "") {
-            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/,
-              AlertEle = $(Ele).parent().siblings(".alert");
-            if (mailformat.test($(Ele).val())) {
-              if (option) {
-                $.post("index.html", {
-                  signup_email: $(Ele).val()
-                }, "json").done(function (data) {
-                  if (data == "true")
-                    AlertManagement(false, Ele, AlertEle, true);
-                  else
-                    AlertManagement(true, Ele, AlertEle, true, "Ups! Algo salió mal.", "Parece que este Correo ya se encuentra en uso, prueba con otro.");
-                });
-              } else
-                AlertManagement(false, Ele, AlertEle, true);
+          var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/,
+            AlertEle = $(Ele).parent().siblings(".alert");
+          if (mailformat.test($(Ele).val())) {
+            if (option) {
+              $.post("index.html", {
+                signup_email: $(Ele).val()
+              }, "json").done(function (data) {
+                if (data == "true")
+                  return AlertManagement(false, Ele, AlertEle, true);
+                else
+                  return AlertManagement(true, Ele, AlertEle, true, "Ups! Algo salió mal.", "Parece que este Correo ya se encuentra en uso, prueba con otro.");
+              });
             } else
-              AlertManagement(true, Ele, AlertEle, true, "Correo Invalido!", "Verifica nuevamente tu correo.");
-          }
+              return AlertManagement(false, Ele, AlertEle, true);
+          } else
+            return AlertManagement(true, Ele, AlertEle, true, "Correo Invalido!", "Verifica nuevamente tu correo.");
         }
 
         function ValidateInput(Ele, lvl = "") {
@@ -340,17 +340,15 @@ if(isset($_POST['btn-signup'])){
           var flag = true,
             AlertEle = $(Ele).siblings(".alert"),
             FieldTitle = $("#" + $(Ele).attr("linked-label")).text();
-          if ($(Ele).val() != "") {
-            if (lvl.indexOf("1") != -1) { //validates letters only
-              var just_letters = /^[a-zA-Z]+$/;
-              if (!just_letters.test($(Ele).val()))
-                flag = false;
-            }
-            if (flag)
-              AlertManagement(false, Ele, AlertEle);
-            else
-              AlertManagement(true, Ele, AlertEle, false, "Error en el Campo \"" + FieldTitle + "\"", "Verifica que el campo no contenga números ni caracteres especiales");
+          if (lvl.indexOf("1") != -1) { //validates letters only
+            var just_letters = /^[a-zA-Z]+$/;
+            if (!just_letters.test($(Ele).val()))
+              flag = false;
           }
+          if (flag)
+            return AlertManagement(false, Ele, AlertEle);
+          else
+            return AlertManagement(true, Ele, AlertEle, false, "Error en el Campo \"" + FieldTitle + "\"", "Verifica que el campo no contenga números ni caracteres especiales");
         }
 
         function ValidatePass(Ele) {
@@ -377,29 +375,36 @@ if(isset($_POST['btn-signup'])){
             flag = false;
           }
           if (!flag) {
-            $("#input_signup_pass02").attr('disabled', 'disabled');
-            $("#input_signup_pass02").parent().siblings().hide();
-            ResetEle("#input_signup_pass02");
-            AlertManagement(true, Ele, AlertEle, true, "Verifica tú Contraseña!", message);
+            $("#" + $(Ele).attr("linked-element")).attr('disabled', 'disabled');
+            $("#" + $(Ele).attr("linked-element")).parent().siblings().hide();
+            ResetEle("#" + $(Ele).attr("linked-element"));
+            return AlertManagement(true, Ele, AlertEle, true, "Verifica tú Contraseña!", message);
           } else {
-            $("#input_signup_pass02").removeAttr('disabled');
-            AlertManagement(false, Ele, AlertEle, true);
+            $("#" + $(Ele).attr("linked-element")).removeAttr('disabled');
+            return AlertManagement(false, Ele, AlertEle, true);
           }
         }
 
         function ValidateConfirmPass(Ele) {
           var AlertEle = $(Ele).parent().siblings(".alert");
           //alert("Pass01: " + $(Ele).val() + " Pass02: " + $("#input_signup_pass01").val());
-          if ($(Ele).val() != ($("#input_signup_pass01")).val())
-            AlertManagement(true, Ele, AlertEle, true, "Error en Confirmación!", "Verifique que las contraseñas coincidan.");
+          if ($(Ele).val() != $("#" + $(Ele).attr("linked-element")).val())
+            return AlertManagement(true, Ele, AlertEle, true, "Error en Confirmación!", "Verifique que las contraseñas coincidan.");
           else
-            AlertManagement(false, Ele, AlertEle, true);
+            return AlertManagement(false, Ele, AlertEle, true);
         }
 
         function ResetEle(Ele) {
           $(Ele).siblings(".custom-glyphicon").css("background-color", "");
           $(Ele).siblings(".custom-glyphicon").css("color", "");
           $(Ele).val("");
+        }
+
+        function isEmpty(Ele) {
+          if ($(Ele).val() == "")
+            return true;
+          else
+            return false;
         }
 
         function CheckForm() {
@@ -412,35 +417,70 @@ if(isset($_POST['btn-signup'])){
             $(this).parent().hide();
             ResetEle($("#" + $(this).parent().attr("belongs-to")));
           });
-          $(".email").focusout(function (event) {
-            if (/signup/i.test($(this).attr("id")))
-              ValidateEmail(this, true);
-            else
-              ValidateEmail(this, false);
+          $(".email").blur(function (event) {
+            if (!isEmpty(this))
+              if (/signup/i.test($(this).attr("id")))
+                ValidateEmail(this, true);
+              else
+                ValidateEmail(this, false);
+            return true;
           });
-          $(".input_val").focusout(function (event) {
-            ValidateInput(this, $(this).attr("val-lvl"));
+          $(".input_val").blur(function (event) {
+            if (!isEmpty(this))
+              ValidateInput(this, $(this).attr("val-lvl"));
+            return true;
           });
-          $("#input_signup_pass01").keyup(function (event) {
-            ValidatePass(this);
+          $("#input_signup_pass01").bind("keyup blur", function (event) {
+            if (!isEmpty(this))
+              ValidatePass(this);
+            return true;
           });
-          $("#input_signup_pass02").focusout(function (event) {
+          $("#input_signup_pass02").blur(function (event) {
             ValidateConfirmPass(this);
+            return true;
           });
           $("#input_signup_pass01,#input_signup_pass02").on("contextmenu", function () {
             return false;
           });
 
 
-          // Mejorar este llamado para cada funcion de validación en el botón
 
-          $("#btn-signup").click(function (event) {
+
+
+
+          $(".vk-btn-validation").click(function (event) {
+            var flag = true,
+              val_flag = true;
             $("#" + $(this).closest('form').attr("id") + " input").each(function () {
-              alert("Value " + $(this).attr("class") + " ID: " + $(this).attr("id"));
+              if (!isEmpty(this)) {
+                var Ele = $(this).attr("id");
+                if ($(this).attr("type") == "email")
+                  if (/signup/i.test(Ele))
+                    flag = ValidateEmail(this, true);
+                  else
+                    flag = ValidateEmail(this, false);
+                else if ($(this).attr("type") == "password")
+                  if (/signup/i.test(Ele))
+                    if (/pass01/i.test(Ele))
+                      flag = ValidatePass(this);
+                    else
+                      flag = ValidateConfirmPass(this);
+                else if ($(this).attr("type") == "text")
+                  flag = ValidateInput(this, $(this).attr("val-lvl"));
+                $(this).css({
+                  'border-left': '',
+                  'border-color': ''
+                });
+              } else {
+                $(this).css({
+                  'border-left': '6px solid #ccc',
+                  'border-color': '#a94442'
+                });
+              }
+              if (!flag) val_flag = false;
             });
+            return val_flag;
           });
-
-
         });
       </script>
   </body>
