@@ -1,6 +1,6 @@
 <?php
-include_once '../../includes/session_val.php';
-include_once '../../includes/local_functions.php';
+include_once '../../includes/vakuno/session_val.php';
+include_once '../../includes/vakuno/local_functions.php';
 session_start();
 
 if(isset($_POST['signup_email'])) {
@@ -101,7 +101,7 @@ if(isset($_POST['btn-signup'])){
                           </div>
                           <div class="col-lg-12">
                             <div class="input-group">
-                              <input type="email" class="form-control email" name="input_login_email" id="input_login_email" aria-required="true" aria-invalid="true" placeholder="tucorreo@vakuno.com" required>
+                              <input type="email" class="form-control email" name="input_login_email" id="input_login_email" aria-required="true" aria-invalid="true" placeholder="tucorreo@vakuno.com" maxlength="255" required>
                               <span class="input-group-addon custom-glyphicon">
                                 <span class="glyphicon glyphicon-envelope"></span>
                               </span>
@@ -119,7 +119,7 @@ if(isset($_POST['btn-signup'])){
                           <div class="col-lg-12">
                             <div class="input-group">
                               <input aria-invalid="false" aria-required="true" name="input_login_password" id="input_login_password" class="form-control valid" type="password" placeholder="tucontraseña1234" required>
-                              <span class="input-group-addon">
+                              <span class="input-group-addon custom-glyphicon">
                                 <span class="glyphicon glyphicon-lock"></span>
                               </span>
                             </div>
@@ -146,7 +146,7 @@ if(isset($_POST['btn-signup'])){
                           <div class="form-group">
                             <div class="col-lg-12">
                               <div class="input-group">
-                                <input type="email" aria-invalid="false" aria-required="true" name="email_retrieve_pass" id="email_retrieve_pass" class="form-control valid email" placeholder="tucorreo@vakuno.com" required>
+                                <input type="email" aria-invalid="false" aria-required="true" name="email_retrieve_pass" id="email_retrieve_pass" class="form-control valid email" placeholder="tucorreo@vakuno.com" maxlength="255" required>
                                 <span class="input-group-addon custom-glyphicon">
                                   <span class="glyphicon glyphicon-envelope"></span>
                                 </span>
@@ -175,7 +175,7 @@ if(isset($_POST['btn-signup'])){
                           </div>
                           <div class="col-lg-12">
                             <div class="input-group">
-                              <input type="email" class="form-control email" name="input_signup_email" id="input_signup_email" aria-required="true" aria-invalid="true" placeholder="tucorreo@vakuno.com" required>
+                              <input type="email" class="form-control email" name="input_signup_email" id="input_signup_email" aria-required="true" aria-invalid="true" placeholder="tucorreo@vakuno.com" validated="" maxlength="255" required>
                               <span class="input-group-addon custom-glyphicon">
                                 <span class="glyphicon glyphicon-envelope"></span>
                               </span>
@@ -209,7 +209,7 @@ if(isset($_POST['btn-signup'])){
                           </div>
                           <div class="col-lg-12">
                             <div class="input-group">
-                              <input aria-invalid="false" aria-required="true" name="input_signup_pass02" id="input_signup_pass02" class="form-control valid" type="password" placeholder="tucontraseña1234" linked-element="input_signup_pass01" required disabled>
+                              <input aria-invalid="false" aria-required="true" name="input_signup_pass02" id="input_signup_pass02" class="form-control valid" type="password" placeholder="tucontraseña1234" linked-element="input_signup_pass01" required>
                               <span class="input-group-addon custom-glyphicon">
                                 <span class="glyphicon glyphicon-lock"></span>
                               </span>
@@ -226,7 +226,7 @@ if(isset($_POST['btn-signup'])){
                             <label for="input_firstname" id="firstname_label">Nombre</label>
                           </div>
                           <div class="col-lg-12">
-                            <input type="text" class="form-control input_val" name="input_firstname" id="input_firstname" aria-required="true" aria-invalid="true" placeholder="José" linked-label="firstname_label" val-lvl="1" required>
+                            <input type="text" class="form-control input_val" name="input_firstname" id="input_firstname" aria-required="true" aria-invalid="true" placeholder="José" linked-label="firstname_label" val-lvl="1" maxlength="60" required>
                             <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert" belongs-to="input_firstname">
                               <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                               <span></span>
@@ -238,7 +238,7 @@ if(isset($_POST['btn-signup'])){
                             <label for="input_lastname" id="lastname_label">Apellido</label>
                           </div>
                           <div class="col-lg-12">
-                            <input type="text" class="form-control input_val" name="input_lastname" id="input_lastname" aria-required="true" aria-invalid="true" placeholder="García" linked-label="lastname_label" val-lvl="1" required>
+                            <input type="text" class="form-control input_val" name="input_lastname" id="input_lastname" aria-required="true" aria-invalid="true" placeholder="García" linked-label="lastname_label" val-lvl="1" maxlength="60" required>
                             <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert" belongs-to="input_lastname">
                               <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                               <span></span>
@@ -295,38 +295,68 @@ if(isset($_POST['btn-signup'])){
       <script src="js/bootstrap.min.js"></script>
       <script>
         //src="js/vk_functions.js">
-        function AlertManagement(condition, Ele, AlertEle, icon = false, message01 = "", message02 = "") {
+        function AlertManagement(condition, Ele, AlertEle = "", icon = false, message01 = "", message02 = "") {
           //condition = true (show), condition = false (hide); icon = true (input has icon)/false (input has no icon)
           //alert("condition:" + condition + " Element:" + $(Ele).val() + " icon:" + icon + " Mensaje 01:" + message01 + " Mensaje 02:" + message02);
           if (condition) {
-            $(AlertEle).show();
+            if (AlertEle != "") {
+              $(AlertEle).show();
+              $(AlertEle).children("span").html("<strong>" + message01 + "</strong><br>" + message02);
+            }
             if (icon) {
               $(Ele).siblings(".custom-glyphicon").css("background-color", "#ebccd1");
               $(Ele).siblings(".custom-glyphicon").css("color", "#a94442");
             }
-            $(AlertEle).children("span").html("<strong>" + message01 + "</strong><br>" + message02);
-            return true;
+            $(Ele).css({
+              'border-left': '4px solid',
+              'border-color': '#ce7e8b'
+            });
+            ManageFocus(Ele, "error-input");
+            return false;
           } else {
-            $(AlertEle).hide();
+            if (AlertEle != "")
+              $(AlertEle).hide();
             if (icon) {
               $(Ele).siblings(".custom-glyphicon").css("background-color", "#bbddbd");
               $(Ele).siblings(".custom-glyphicon").css("color", "#3c763d");
             }
-            return false;
+            $(Ele).css({
+              'border-left': '',
+              'border-color': ''
+            });
+            ManageFocus(Ele, "success-input");
+            return true;
+          }
+        }
+
+        function ManageFocus(Ele, selector = "") {
+          if (selector == "error-input") {
+            $(Ele).addClass(selector);
+            $(Ele).removeClass("success-input");
+          } else if (selector == "success-input") {
+            $(Ele).addClass(selector);
+            $(Ele).removeClass("error-input");
+          } else {
+            $(Ele).removeClass("success-input");
+            $(Ele).removeClass("error-input");
           }
         }
 
         function ValidateEmail(Ele, option) {
           var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/,
-            AlertEle = $(Ele).parent().siblings(".alert");
-          if (mailformat.test($(Ele).val())) {
+            AlertEle = $(Ele).parent().siblings(".alert"),
+            RetData = "",
+            signup_email = ($(Ele).val()).toLowerCase();
+          if (mailformat.test(signup_email)) {
             if (option) {
-              $.post("index.html", {
-                signup_email: $(Ele).val()
-              }, "json").done(function (data) {
-                if (data == "true")
+              var posting = $.post("index.html", {
+                signup_email: signup_email
+              }, "json");
+              posting.done(function (data) {
+                $(Ele).attr("validated", data);
+                if (data == "true") {
                   return AlertManagement(false, Ele, AlertEle, true);
-                else
+                } else
                   return AlertManagement(true, Ele, AlertEle, true, "Ups! Algo salió mal.", "Parece que este Correo ya se encuentra en uso, prueba con otro.");
               });
             } else
@@ -339,19 +369,19 @@ if(isset($_POST['btn-signup'])){
           //alert("Element: " + $(Ele).attr('id') + " Nivel de Validación: " + lvl);
           var flag = true,
             AlertEle = $(Ele).siblings(".alert"),
-            FieldTitle = $("#" + $(Ele).attr("linked-label")).text();
-          if (lvl.indexOf("1") != -1) { //validates letters only
-            var just_letters = /^[a-zA-Z]+$/;
+            FieldTitle = $("#" + $(Ele).attr("linked-label")).text(),
+            just_letters = /^[a-zA-ZÁáÉéÍíÓóÚúÑñ ]+$/;
+          if (lvl.indexOf("1") != -1) //validates letters only
             if (!just_letters.test($(Ele).val()))
               flag = false;
-          }
+            //alert("Element: " + $(Ele).attr("id") + ", flag value: " + flag);
           if (flag)
             return AlertManagement(false, Ele, AlertEle);
           else
             return AlertManagement(true, Ele, AlertEle, false, "Error en el Campo \"" + FieldTitle + "\"", "Verifica que el campo no contenga números ni caracteres especiales");
         }
 
-        function ValidatePass(Ele) {
+        function PassValidation(Ele) {
           var flag = true,
             message = "Esta debe contener:",
             AlertEle = $(Ele).parent().siblings(".alert");
@@ -375,17 +405,15 @@ if(isset($_POST['btn-signup'])){
             flag = false;
           }
           if (!flag) {
-            $("#" + $(Ele).attr("linked-element")).attr('disabled', 'disabled');
-            $("#" + $(Ele).attr("linked-element")).parent().siblings().hide();
-            ResetEle("#" + $(Ele).attr("linked-element"));
+            //$("#" + $(Ele).attr("linked-element")).parent().siblings().hide();
+            //ResetEle("#" + $(Ele).attr("linked-element"));
             return AlertManagement(true, Ele, AlertEle, true, "Verifica tú Contraseña!", message);
           } else {
-            $("#" + $(Ele).attr("linked-element")).removeAttr('disabled');
             return AlertManagement(false, Ele, AlertEle, true);
           }
         }
 
-        function ValidateConfirmPass(Ele) {
+        function ConfirmPassValidation(Ele) {
           var AlertEle = $(Ele).parent().siblings(".alert");
           //alert("Pass01: " + $(Ele).val() + " Pass02: " + $("#input_signup_pass01").val());
           if ($(Ele).val() != $("#" + $(Ele).attr("linked-element")).val())
@@ -394,17 +422,25 @@ if(isset($_POST['btn-signup'])){
             return AlertManagement(false, Ele, AlertEle, true);
         }
 
-        function ResetEle(Ele) {
+        function ResetEle(Ele, AlertEle = "") {
           $(Ele).siblings(".custom-glyphicon").css("background-color", "");
           $(Ele).siblings(".custom-glyphicon").css("color", "");
+          $(Ele).css({
+            'border-left': '',
+            'border-color': ''
+          });
+          ManageFocus(Ele);
           $(Ele).val("");
+          if (AlertEle != "")
+            $(AlertEle).hide();
         }
 
         function isEmpty(Ele) {
-          if ($(Ele).val() == "")
-            return true;
-          else
-            return false;
+          return ($(Ele).val() == "") ? true : false;
+        }
+
+        function SimplePassValidation(Ele) {
+          return AlertManagement(false, Ele, "", true);
         }
 
         function CheckForm() {
@@ -417,65 +453,87 @@ if(isset($_POST['btn-signup'])){
             $(this).parent().hide();
             ResetEle($("#" + $(this).parent().attr("belongs-to")));
           });
+          $("#input_signup_pass01,#input_signup_pass02").on("contextmenu", function () {
+            return false;
+          });
+
           $(".email").blur(function (event) {
             if (!isEmpty(this))
               if (/signup/i.test($(this).attr("id")))
                 ValidateEmail(this, true);
               else
                 ValidateEmail(this, false);
+            else
+              ResetEle(this, $(this).parent().siblings(".alert"));
             return true;
           });
+
+          $("#input_login_password").blur(function (event) {
+            if (!isEmpty(this))
+              SimplePassValidation(this);
+            else
+              ResetEle(this);
+            return true;
+          });
+
           $(".input_val").blur(function (event) {
             if (!isEmpty(this))
               ValidateInput(this, $(this).attr("val-lvl"));
+            else
+              ResetEle(this, $(this).siblings(".alert"));
             return true;
           });
+
           $("#input_signup_pass01").bind("keyup blur", function (event) {
             if (!isEmpty(this))
-              ValidatePass(this);
+              PassValidation(this);
+            else
+              ResetEle(this, $(this).parent().siblings(".alert"));
             return true;
           });
+
           $("#input_signup_pass02").blur(function (event) {
-            ValidateConfirmPass(this);
+            if (!isEmpty(this))
+              ConfirmPassValidation(this);
+            else
+              ResetEle(this, $(this).parent().siblings(".alert"));
             return true;
           });
-          $("#input_signup_pass01,#input_signup_pass02").on("contextmenu", function () {
-            return false;
-          });
-
-
-
-
 
 
           $(".vk-btn-validation").click(function (event) {
             var flag = true,
-              val_flag = true;
+              val_flag = true,
+              EleType = "",
+              Ele = "";
             $("#" + $(this).closest('form').attr("id") + " input").each(function () {
               if (!isEmpty(this)) {
-                var Ele = $(this).attr("id");
-                if ($(this).attr("type") == "email")
+                EleType = $(this).attr("type");
+                Ele = $(this).attr("id");
+                if (EleType == "email")
                   if (/signup/i.test(Ele))
-                    flag = ValidateEmail(this, true);
+                    flag = ($(this).attr("validated") == "true") ? true : false;
                   else
                     flag = ValidateEmail(this, false);
-                else if ($(this).attr("type") == "password")
-                  if (/signup/i.test(Ele))
+                else if (EleType == "password")
+                  if (/signup/i.test(Ele)) {
                     if (/pass01/i.test(Ele))
-                      flag = ValidatePass(this);
+                      flag = PassValidation(this);
                     else
-                      flag = ValidateConfirmPass(this);
-                else if ($(this).attr("type") == "text")
+                      flag = ConfirmPassValidation(this);
+                  } else
+                    flag = true;
+                else if (EleType == "text")
                   flag = ValidateInput(this, $(this).attr("val-lvl"));
-                $(this).css({
-                  'border-left': '',
-                  'border-color': ''
-                });
+
               } else {
-                $(this).css({
-                  'border-left': '6px solid #ccc',
-                  'border-color': '#a94442'
-                });
+                AlertManagement(true, this, "", true)
+                  /*$(this).css({
+                    'border-left': '4px solid',
+                    'border-color': '#ce7e8b'
+                  });
+                  ManageFocus(this, "error-input");*/
+                flag = false;
               }
               if (!flag) val_flag = false;
             });
