@@ -12,8 +12,8 @@ body {
   font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   margin-bottom: 60px;
-  background-image: url(../img/vk_pattern.png);
-  background-color: #FFFFFF;
+  /*background-image: url(../img/vk_pattern.png);*/
+  background-color: #F2F2F2;
 }
 
 body .login-container {
@@ -28,7 +28,7 @@ body .login-panel {
 
 body .login-panel:after,
 body .login-panel:before {
-  background-image: linear-gradient(to bottom, #f8f8f8 0, #f9f9f9 100%);
+  background-image: linear-gradient(to bottom, #E6E6E6 0, #f9f9f9 100%);
   background-repeat: repeat-x;
   filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#fff8f8f8', endColorstr='#fff9f9f9', GradientType=0);
   border: 1px solid #c4c6ca;
