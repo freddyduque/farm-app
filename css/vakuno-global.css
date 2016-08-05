@@ -1,6 +1,6 @@
 @font-face {
-  font-family: Kazmann;
-  src: url('../fonts/Kazmann Sans.ttf');
+  font-family: Decalotype;
+  src: url('../fonts/Decalotype-Regular.otf');
 }
 
 @media (min-width: 768px) {
@@ -22,7 +22,7 @@ body > .container-fluid {
 }
 
 .custom-brand {
-  font-family: Kazmann;
+  font-family: Decalotype;
   transition: all 0.3s ease 0s;
 }
 
@@ -36,9 +36,10 @@ body > .container-fluid {
 }
 
 .custom-brand-name {
-  font-size: 40px;
+  font-size: 38px;
   color: black;
-  vertical-align: middle
+  vertical-align: middle;
+  letter-spacing: -2px;
 }
 
 .custom-brand-name > subname {
