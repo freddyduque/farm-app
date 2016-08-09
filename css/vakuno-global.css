@@ -47,6 +47,11 @@ body > .container-fluid {
   color: #006680;
 }
 
+brand-font {
+  font-family: Decalotype;
+  letter-spacing: -1px;
+}
+
 .checkbox {
   padding-top: 0px !important;
 }
@@ -110,4 +115,15 @@ body > .container-fluid {
   height: 100%;
   z-index: 9999;
   background: url(../img/preloader.gif) center no-repeat #fff;
+}
+
+.custom-modal-header {
+  background-image: linear-gradient(to bottom, #fff 0, #f8f8f8 100%);
+  background-color: #f8f8f8;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 5px rgba(0, 0, 0, .075);
+  border-color: #e7e7e7;
+}
+
+.custom-modal-footer {
+  background-color: #f8f8f8;
 }
