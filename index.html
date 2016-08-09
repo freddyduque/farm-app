@@ -21,7 +21,7 @@ if(isset($_SESSION['UserID'])){
 
 if(isset($_POST['btn-login'])){
   $retval = get_user();
-  if($retval==0)
+  if($retval===true)
     redirect_home();
   else
     $login_error = true;
@@ -67,12 +67,11 @@ if(isset($_POST['btn-login'])){
           <div class="modal-content">
             <div class="modal-header custom-modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="gridSystemModalLabel">Tú cuenta ha sido creada!</h4>
+              <h4 class="modal-title" id="gridSystemModalLabel">Prueba</h4>
             </div>
             <div class="modal-body">
               <div class="row">
-                <div class="col-xs-12"><p class="text-center"><strong>Perfecto!</strong> hemos creado tú cuenta, ahora solo debes ir a tu correo <?php echo '<a>'.strtolower($_POST['input_signup_email']).'</a>';?> y completar los pasos que allí te indicamos para finalizar tu registro. Una vez te hayas validado podrás hacer uso de todas las extraordinarias ventajas que te ofrece <brand-font><strong>Vakuno!</strong></brand-font></p><p class="text-center"></p>
-                </div>
+                <div class="col-xs-12"><p class="text-center" id="gridSystemModalBody"></p></div>
               </div>
             </div>
             <div class="modal-footer custom-modal-footer">
@@ -458,8 +457,11 @@ if(isset($_POST['btn-login'])){
           return AlertManagement(false, Ele, "", true);
         }
 
-        function call_modal() {
-          $('#confirmation-modal').modal('show');
+        function call_modal(Ele,Title,Message) {
+          $(Ele).modal('show');
+          $(Ele).find("h4#gridSystemModalLabel").html(Title);
+          $(Ele).find("p#gridSystemModalBody").html(Message);
+
         }
 
         $(window).load(function () {
@@ -468,7 +470,6 @@ if(isset($_POST['btn-login'])){
         });
 
         $(function () {
-          call_modal();
           $("#input_login_email").focus();
 
           $("[data-hide]").on("click", function () {
@@ -560,10 +561,25 @@ if(isset($_POST['btn-login'])){
       </script>
       <?php
       if(isset($_POST['btn-signup'])){
+        $email=strtolower($_POST['input_signup_email']);
+        $firstname=ucwords(strtolower(trim($_POST['input_firstname'])));
+        $lastname=ucwords(strtolower(trim($_POST['input_lastname'])));
+
         $retval = set_user();
-        $new_var=send_email($_POST['input_signup_email'],$_POST['input_firstname'],$_POST['input_lastname']);
-        d($new_var);
-        echo "<script> call_modal();</script>";
+        //d($retval);
+        if($retval){
+          if(send_email($email,$firstname,$lastname))
+            $flag=true;
+          else
+            $flag=false;
+        }else{
+          $flag=false;
+        }
+        //d($flag);
+        if($flag)
+          echo "<script> call_modal($('#confirmation-modal'),'Tú cuenta ha sido creada!','<strong>Perfecto!</strong> hemos creado tú cuenta. Ahora solo debes ir a tu correo <a>".strtolower($_POST['input_signup_email'])."</a> y completar los pasos que allí te indicamos para finalizar tu registro. Una vez te hayas validado podrás hacer uso de todas las extraordinarias ventajas que te ofrece <brand-font><strong>Vakuno!</strong></brand-font>');</script>";
+        else
+          echo "<script> call_modal($('#confirmation-modal'),'Ups! algo salió mal','Se nos presentaron algunos inconvenientes intentando crear tu cuenta de correo, por favor verifica la información suministrada y vuelve a intentarlo! <strong><br>No te preocupes, nosotros te estaremos esperando!</strong>');</script>";
       }
     ?>
   </body>
