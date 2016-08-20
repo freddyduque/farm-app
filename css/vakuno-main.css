@@ -199,3 +199,30 @@ input:focus,
 .uneditable-input:focus {
   /*box-shadow: none !important;*/
 }
+
+.custom-message {
+  max-width: 460px;
+}
+
+.custom-message > .panel {
+  margin-top:15px;
+}
+
+.custom-message > .panel > .panel-heading > .custom-brand {
+  margin: 0px 10%;
+}
+
+.custom-message > .panel > .panel-heading > .custom-panel-success {
+  border-bottom: 2px solid #d0e9c6;
+}
+.custom-message > .panel > .panel-heading > .custom-panel-warning {
+  border-bottom: 2px solid rgb(250, 235, 204);
+}
+.custom-message > .panel > .panel-heading > .custom-panel-danger {
+  border-bottom: 2px solid #ebcccc;
+}
+
+.custom-message > .panel > .panel-heading > .custom-title {
+  vertical-align: bottom;
+  margin-top: 10px;
+}

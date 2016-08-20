@@ -150,7 +150,6 @@ function call_modal(Ele, Title, Message) {
   $(Ele).modal('show');
   $(Ele).find("h4#gridSystemModalLabel").html(Title);
   $(Ele).find("p#gridSystemModalBody").html(Message);
-
 }
 
 $(window).load(function () {

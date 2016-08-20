@@ -8,7 +8,11 @@ session_start();
 ##########################################################
 
 if(isset($_POST['signup_email'])) {
-  exit(json_encode(check_user()));
+  if(check_user($_POST['signup_email'])){
+    exit(json_encode(false));
+  }else{
+    exit(json_encode(true));
+  }
 }
 
 ##########################################################
@@ -19,11 +23,28 @@ if(isset($_SESSION['UserID'])){
 }
 
 if(isset($_POST['btn-login'])){
-  $retval = login_user();
-  if($retval===true)
+  $ret_login_user = login_user();
+  if($ret_login_user[0])
     redirect_home();
-  else
-    $login_error = true;
+}
+
+if(isset($_POST['btn-retrieve'])){
+  $ret_check_user = check_user($_POST['email_retrieve_pass']);
+  if($ret_check_user){
+    $ret_gen_token=generate_user_token($_POST['email_retrieve_pass'],2);
+    if($ret_gen_token[0]){
+      $ret_send_email=send_email($_POST['email_retrieve_pass'],2);
+      if($ret_send_email[0]){
+        echo "<script> call_modal($('#confirmation-modal'),'¡Te hemos enviado un correo!','Para poder reiniciar tu contraseña, debes primero verificar el correo que te hemos enviado y seguir los pasos que allí te indicamos.');</script>";
+      }else{
+        echo "<script> call_modal($('#confirmation-modal'),'Ups! algo salió mal','Parece que tú correo <a>".strtolower($_POST['input_signup_email'])."</a> no es valido o no se encuentra registrado en el sistema y por eso no podemos enviarte el enlace de cambio de contraseña, por favor verifica la información suministrada y vuelve a intentarlo.');</script>";
+      }
+    }else{
+      $retrieve_error = true;
+    }
+  }else{
+    $retrieve_error = true;
+  }
 }?>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,8 +131,13 @@ if(isset($_POST['btn-login'])){
                   <form method="POST" action="index.html" class="form-horizontal mt0" id="login-form" role="form">
                     <div class="form-group">
                       <div class="col-md-12">
-                        <?php if($login_error)echo error_alert("Ups! Algo salió mal.","Verifica que tu Correo y/o Contraseña sean correctos");?>
-                          <label for="input_login_email">Correo</label>
+                        <?php if(isset($ret_login_user[0]) && !$ret_login_user[0]){
+                          if($ret_login_user[1]==2)
+                            echo error_alert("Ups! Algo salió mal.","Aún no te haz validado en el sistema, por favor verifica tu correo nuevamente.");
+                          else
+                            echo error_alert("Ups! Algo salió mal.","Verifica que tu Correo y/o Contraseña sean correctos");
+                        }?>
+                        <label for="input_login_email">Correo</label>
                       </div>
                       <div class="col-lg-12">
                         <div class="input-group">
@@ -155,6 +181,7 @@ if(isset($_POST['btn-login'])){
                 </div>
                 <div class="collapse gray-lighter-bg" id="panel-footer-01">
                   <div class="panel-footer">
+                    <!--<?php if($retrieve_error)echo error_alert("Ups! Algo salió mal.","Verifica que tu Correo y/o Contraseña sean correctos");?>-->
                     <p class="text-center" style="padding-top: 5px">Introduce tú correo a continución para recuperar tú contraseña.</p>
                     <form method="POST" action="index.html" class="form-horizontal mt0" id="retrieve-form" role="form">
                       <div class="form-group">
@@ -313,15 +340,13 @@ if(isset($_POST['btn-login'])){
     $email=strtolower($_POST['input_signup_email']);
 
     $user_creation = set_user();
-    //d($user_creation);
     if($user_creation[0]){
-      $ret_val=send_email($email);
-      d($ret_val);
+      $ret_val=send_email($email,1);
       if($ret_val[0]){
-        echo "<script> call_modal($('#confirmation-modal'),'Tú cuenta ha sido creada!','<strong>Perfecto!</strong> hemos creado tú cuenta. Ahora solo debes ir a tu correo <a>".strtolower($_POST['input_signup_email'])."</a> y completar los pasos que allí te indicamos para finalizar tu registro. Una vez te hayas validado podrás hacer uso de todas las extraordinarias ventajas que te ofrece <brand-font><strong>Vakuno!</strong></brand-font>');</script>";
+        echo "<script> call_modal($('#confirmation-modal'),'Tú cuenta ha sido creada!','<strong>Perfecto!</strong> hemos creado tú cuenta. Ahora solo debes ir a tu correo <a>".strtolower($_POST['input_signup_email'])."</a> y completar los pasos que allí te indicamos para finalizar tu registro. Una vez te hayas validado podrás hacer uso de todas las extraordinarias ventajas que te ofrece <strong><a href=".'http://www.vakuno.com'.">Vakuno</a></strong>');</script>";
       }else{
-          echo "<script> call_modal($('#confirmation-modal'),'Ups! algo salió mal','Parece que tú correo <a>".strtolower($_POST['input_signup_email'])."</a> no es valido y no podemos enviarte el link de validación, por favor verifica la información suministrada y vuelve a intentarlo!<br>No te preocupes, nosotros te estaremos esperando!');</script>";
-          delete_user();
+        echo "<script> call_modal($('#confirmation-modal'),'Ups! algo salió mal','Parece que tú correo <a>".strtolower($_POST['input_signup_email'])."</a> no es valido y no podemos enviarte el link de validación, por favor verifica la información suministrada y vuelve a intentarlo!<br>No te preocupes, nosotros te estaremos esperando!');</script>";
+        delete_user();
       }
     }else{
       echo "<script> call_modal($('#confirmation-modal'),'Ups! algo salió mal','Estamos teniendo algunas dificultades al momento de  registrarte en nuestro sistema. Por favor verifica tu información y vuelve a intentarlo.<br>No te preocupes, nosotros te estaremos esperando!');</script>";
