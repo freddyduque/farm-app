@@ -1,1 +1,248 @@
-function AlertManagement(t,e,n,s,i,a){return t?(""!=n&&($(n).show(),$(n).children("span").html("<strong>"+i+"</strong><br>"+a)),s&&($(e).siblings(".custom-glyphicon").css("background-color","#ebccd1"),$(e).siblings(".custom-glyphicon").css("color","#a94442")),$(e).css({"border-left":"4px solid","border-color":"#ce7e8b"}),ManageFocus(e,"error-input"),!1):(""!=n&&$(n).hide(),s&&($(e).siblings(".custom-glyphicon").css("background-color","#bbddbd"),$(e).siblings(".custom-glyphicon").css("color","#3c763d")),$(e).css({"border-left":"","border-color":""}),ManageFocus(e,"success-input"),!0)}function ManageFocus(t,e){"error-input"==e?($(t).addClass(e),$(t).removeClass("success-input")):"success-input"==e?($(t).addClass(e),$(t).removeClass("error-input")):($(t).removeClass("success-input"),$(t).removeClass("error-input"))}function ValidateEmail(t,e){var n=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/,s=$(t).parent().siblings(".alert"),i=$(t).val().toLowerCase();if(!n.test(i))return AlertManagement(!0,t,s,!0,"Correo Invalido!","Verifica nuevamente tu correo.");if(!e)return AlertManagement(!1,t,s,!0);var a=$.post("index.html",{signup_email:i},"json");a.done(function(e){return $(t).attr("validated",e),"true"==e?AlertManagement(!1,t,s,!0):AlertManagement(!0,t,s,!0,"Ups! Algo salió mal.","Parece que este Correo ya se encuentra en uso, prueba con otro.")})}function ValidateInput(t,e){var n=!0,s=$(t).siblings(".alert"),i=$("#"+$(t).attr("linked-label")).text(),a=/^[a-zA-ZÁáÉéÍíÓóÚúÑñ ]+$/;return-1!=e.indexOf("1")&&(a.test($(t).val())||(n=!1)),n?AlertManagement(!1,t,s):AlertManagement(!0,t,s,!1,'Error en el Campo "'+i+'"',"Verifica que el campo no contenga números ni caracteres especiales")}function PassValidation(t){var e=!0,n="Esta debe contener:",s=$(t).parent().siblings(".alert");return $(t).val().length<8&&(n+="<br> * Al menos 8 caracteres",e=!1),re=/[0-9]/,re.test($(t).val())||(n+="<br> * Al menos un número",e=!1),re=/[a-z]/,re.test($(t).val())||(n+="<br> * Al menos una letra minúscula",e=!1),re=/[A-Z]/,re.test($(t).val())||(n+="<br> * Al menos una letra mayúscula",e=!1),e?AlertManagement(!1,t,s,!0):AlertManagement(!0,t,s,!0,"Verifica tú Contraseña!",n)}function ConfirmPassValidation(t){var e=$(t).parent().siblings(".alert");return $(t).val()!=$("#"+$(t).attr("linked-element")).val()?AlertManagement(!0,t,e,!0,"Error en Confirmación!","Verifique que las contraseñas coincidan."):AlertManagement(!1,t,e,!0)}function ResetEle(t,e){$(t).siblings(".custom-glyphicon").css("background-color",""),$(t).siblings(".custom-glyphicon").css("color",""),$(t).css({"border-left":"","border-color":""}),ManageFocus(t),$(t).val(""),""!=e&&$(e).hide()}function isEmpty(t){return""==$(t).val()?!0:!1}function SimplePassValidation(t){return AlertManagement(!1,t,"",!0)}function call_modal(t,e,n){$(t).modal("show"),$(t).find("h4#gridSystemModalLabel").html(e),$(t).find("p#gridSystemModalBody").html(n)}$(window).load(function(){$(".loading").fadeOut("slow")}),$(function(){$("#input_login_email").focus(),$("[data-hide]").on("click",function(){$(this).parent().hide(),ResetEle($("#"+$(this).parent().attr("belongs-to")))}),$("#input_signup_pass01,#input_signup_pass02").on("contextmenu",function(){return!1}),$(".email").blur(function(t){return isEmpty(this)?ResetEle(this,$(this).parent().siblings(".alert")):/signup/i.test($(this).attr("id"))?ValidateEmail(this,!0):ValidateEmail(this,!1),!0}),$("#input_login_password").blur(function(t){return isEmpty(this)?ResetEle(this):SimplePassValidation(this),!0}),$(".input_val").blur(function(t){return isEmpty(this)?ResetEle(this,$(this).siblings(".alert")):ValidateInput(this,$(this).attr("val-lvl")),!0}),$("#input_signup_pass01").bind("keyup blur",function(t){return isEmpty(this)?ResetEle(this,$(this).parent().siblings(".alert")):PassValidation(this),!0}),$("#input_signup_pass02").blur(function(t){return isEmpty(this)?ResetEle(this,$(this).parent().siblings(".alert")):ConfirmPassValidation(this),!0}),$(".vk-btn-validation").click(function(t){var e=!0,n=!0,s="",i="";return $("#"+$(this).closest("form").attr("id")+" input").each(function(){isEmpty(this)?(AlertManagement(!0,this,"",!0),e=!1):(s=$(this).attr("type"),i=$(this).attr("id"),"email"==s?e=/signup/i.test(i)?"true"==$(this).attr("validated")?!0:!1:ValidateEmail(this,!1):"password"==s?e=/signup/i.test(i)?/1/i.test(i)?PassValidation(this):ConfirmPassValidation(this):!0:"text"==s&&(e=ValidateInput(this,$(this).attr("val-lvl")))),e||(n=!1)}),n})});
+function AlertManagement(condition, Ele, AlertEle, icon, message01, message02) {
+  //condition = true (show), condition = false (hide); icon = true (input has icon)/false (input has no icon)
+  //alert("condition:" + condition + " Element:" + $(Ele).val() + " icon:" + icon + " Mensaje 01:" + message01 + " Mensaje 02:" + message02);
+  if (condition) {
+    if (AlertEle != "") {
+      $(AlertEle).show();
+      $(AlertEle).children("span").html("<strong>" + message01 + "</strong><br>" + message02);
+    }
+    if (icon) {
+      $(Ele).siblings(".custom-glyphicon").css("background-color", "#ebccd1");
+      $(Ele).siblings(".custom-glyphicon").css("color", "#a94442");
+    }
+    $(Ele).css({
+      'border-left': '4px solid',
+      'border-color': '#ce7e8b'
+    });
+    ManageFocus(Ele, "error-input");
+    return false;
+  } else {
+    if (AlertEle != "")
+      $(AlertEle).hide();
+    if (icon) {
+      $(Ele).siblings(".custom-glyphicon").css("background-color", "#bbddbd");
+      $(Ele).siblings(".custom-glyphicon").css("color", "#3c763d");
+    }
+    $(Ele).css({
+      'border-left': '',
+      'border-color': ''
+    });
+    ManageFocus(Ele, "success-input");
+    return true;
+  }
+}
+
+function ManageFocus(Ele, selector) {
+  if (selector == "error-input") {
+    $(Ele).addClass(selector);
+    $(Ele).removeClass("success-input");
+  } else if (selector == "success-input") {
+    $(Ele).addClass(selector);
+    $(Ele).removeClass("error-input");
+  } else {
+    $(Ele).removeClass("success-input");
+    $(Ele).removeClass("error-input");
+  }
+}
+
+function ValidateEmail(Ele, option) {
+  var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/,
+    AlertEle = $(Ele).parent().siblings(".alert"),
+    RetData = "",
+    signup_email = ($(Ele).val()).toLowerCase();
+  if (mailformat.test(signup_email)) {
+    if (option) {
+      var posting = $.post("index.html", {
+        signup_email: signup_email
+      }, "json");
+      posting.done(function (data) {
+        $(Ele).attr("validated", data);
+        if (data == "true") {
+          return AlertManagement(false, Ele, AlertEle, true);
+        } else
+          return AlertManagement(true, Ele, AlertEle, true, "Ups! Algo salió mal.", "Parece que este Correo ya se encuentra en uso, prueba con otro.");
+      });
+    } else
+      return AlertManagement(false, Ele, AlertEle, true);
+  } else
+    return AlertManagement(true, Ele, AlertEle, true, "Correo Invalido!", "Verifica nuevamente tu correo.");
+}
+
+function ValidateInput(Ele, lvl) {
+  //alert("Element: " + $(Ele).attr('id') + " Nivel de Validación: " + lvl);
+  var flag = true,
+    AlertEle = $(Ele).siblings(".alert"),
+    FieldTitle = $("#" + $(Ele).attr("linked-label")).text(),
+    just_letters = /^[a-zA-ZÁáÉéÍíÓóÚúÑñ ]+$/;
+  if (lvl.indexOf("1") != -1) //validates letters only
+    if (!just_letters.test($(Ele).val()))
+      flag = false;
+    //alert("Element: " + $(Ele).attr("id") + ", flag value: " + flag);
+  if (flag)
+    return AlertManagement(false, Ele, AlertEle);
+  else
+    return AlertManagement(true, Ele, AlertEle, false, "Error en el Campo \"" + FieldTitle + "\"", "Verifica que el campo no contenga números ni caracteres especiales");
+}
+
+function PassValidation(Ele) {
+  var flag = true,
+    message = "Esta debe contener:",
+    AlertEle = $(Ele).parent().siblings(".alert");
+  if ($(Ele).val().length < 8) {
+    message = message + "<br> * Al menos 8 caracteres";
+    flag = false;
+  }
+  re = /[0-9]/;
+  if (!re.test($(Ele).val())) {
+    message = message + "<br> * Al menos un número";
+    flag = false;
+  }
+  re = /[a-z]/;
+  if (!re.test($(Ele).val())) {
+    message = message + "<br> * Al menos una letra minúscula";
+    flag = false;
+  }
+  re = /[A-Z]/;
+  if (!re.test($(Ele).val())) {
+    message = message + "<br> * Al menos una letra mayúscula";
+    flag = false;
+  }
+  if (!flag) {
+    //$("#" + $(Ele).attr("linked-element")).parent().siblings().hide();
+    //ResetEle("#" + $(Ele).attr("linked-element"));
+    return AlertManagement(true, Ele, AlertEle, true, "Verifica tú Contraseña!", message);
+  } else {
+    return AlertManagement(false, Ele, AlertEle, true);
+  }
+}
+
+function ConfirmPassValidation(Ele) {
+  var AlertEle = $(Ele).parent().siblings(".alert");
+  //alert("Pass01: " + $(Ele).val() + " Pass02: " + $("#input_signup_pass01").val());
+  if ($(Ele).val() != $("#" + $(Ele).attr("linked-element")).val())
+    return AlertManagement(true, Ele, AlertEle, true, "Error en Confirmación!", "Verifique que las contraseñas coincidan.");
+  else
+    return AlertManagement(false, Ele, AlertEle, true);
+}
+
+function ResetEle(Ele, AlertEle) {
+  $(Ele).siblings(".custom-glyphicon").css("background-color", "");
+  $(Ele).siblings(".custom-glyphicon").css("color", "");
+  $(Ele).css({
+    'border-left': '',
+    'border-color': ''
+  });
+  ManageFocus(Ele);
+  $(Ele).val("");
+  if (AlertEle != "")
+    $(AlertEle).hide();
+}
+
+function isEmpty(Ele) {
+  return ($(Ele).val() == "") ? true : false;
+}
+
+function SimplePassValidation(Ele) {
+  return AlertManagement(false, Ele, "", true);
+}
+
+function call_modal(Ele, Title, Message) {
+  $(Ele).modal('show');
+  $(Ele).find("h4#gridSystemModalLabel").html(Title);
+  $(Ele).find("p#gridSystemModalBody").html(Message);
+}
+
+$(window).load(function () {
+  // Animate loader off screen
+  $(".loading").fadeOut("slow");
+});
+
+$(function () {
+  $("#input_login_email").focus();
+
+  $("[data-hide]").on("click", function () {
+    $(this).parent().hide();
+    ResetEle($("#" + $(this).parent().attr("belongs-to")));
+  });
+
+  $("#input_signup_pass01,#input_signup_pass02").on("contextmenu", function () {
+    return false;
+  });
+
+  $(".email").blur(function (event) {
+    if (!isEmpty(this))
+      if (/signup/i.test($(this).attr("id")))
+        ValidateEmail(this, true);
+      else
+        ValidateEmail(this, false);
+    else
+      ResetEle(this, $(this).parent().siblings(".alert"));
+    return true;
+  });
+
+  $("#input_login_password").blur(function (event) {
+    if (!isEmpty(this))
+      SimplePassValidation(this);
+    else
+      ResetEle(this);
+    return true;
+  });
+
+  $(".input_val").blur(function (event) {
+    if (!isEmpty(this))
+      ValidateInput(this, $(this).attr("val-lvl"));
+    else
+      ResetEle(this, $(this).siblings(".alert"));
+    return true;
+  });
+
+  $("#input_signup_pass01").bind("keyup blur", function (event) {
+    if (!isEmpty(this))
+      PassValidation(this);
+    else
+      ResetEle(this, $(this).parent().siblings(".alert"));
+    return true;
+  });
+
+  $("#input_signup_pass02").blur(function (event) {
+    if (!isEmpty(this))
+      ConfirmPassValidation(this);
+    else
+      ResetEle(this, $(this).parent().siblings(".alert"));
+    return true;
+  });
+
+  $(".vk-btn-validation").click(function (event) {
+    var flag = true,
+      val_flag = true,
+      EleType = "",
+      Ele = "";
+    $("#" + $(this).closest('form').attr("id") + " input").each(function () {
+      if (!isEmpty(this)) {
+        EleType = $(this).attr("type");
+        Ele = $(this).attr("id");
+        if (EleType == "email")
+          if (/signup/i.test(Ele))
+            flag = ($(this).attr("validated") == "true") ? true : false;
+          else
+            flag = ValidateEmail(this, false);
+        else if (EleType == "password")
+          if (/signup/i.test(Ele)) {
+            if (/1/i.test(Ele))
+              flag = PassValidation(this);
+            else
+              flag = ConfirmPassValidation(this);
+          } else
+            flag = true;
+        else if (EleType == "text")
+          flag = ValidateInput(this, $(this).attr("val-lvl"));
+
+      } else {
+        AlertManagement(true, this, "", true);
+        flag = false;
+      }
+      if (!flag) val_flag = false;
+    });
+    return val_flag;
+  });
+});

@@ -23,29 +23,15 @@ if(isset($_SESSION['UserID'])){
 }
 
 if(isset($_POST['btn-login'])){
-  $ret_login_user = login_user();
+  $ret_login_user = login_user($_POST['input_login_email'],$_POST['input_login_password']);
   if($ret_login_user[0])
     redirect_home();
 }
 
 if(isset($_POST['btn-retrieve'])){
   $ret_check_user = check_user($_POST['email_retrieve_pass']);
-  if($ret_check_user){
-    $ret_gen_token=generate_user_token($_POST['email_retrieve_pass'],2);
-    if($ret_gen_token[0]){
-      $ret_send_email=send_email($_POST['email_retrieve_pass'],2);
-      if($ret_send_email[0]){
-        echo "<script> call_modal($('#confirmation-modal'),'¡Te hemos enviado un correo!','Para poder reiniciar tu contraseña, debes primero verificar el correo que te hemos enviado y seguir los pasos que allí te indicamos.');</script>";
-      }else{
-        echo "<script> call_modal($('#confirmation-modal'),'Ups! algo salió mal','Parece que tú correo <a>".strtolower($_POST['input_signup_email'])."</a> no es valido o no se encuentra registrado en el sistema y por eso no podemos enviarte el enlace de cambio de contraseña, por favor verifica la información suministrada y vuelve a intentarlo.');</script>";
-      }
-    }else{
-      $retrieve_error = true;
-    }
-  }else{
-    $retrieve_error = true;
-  }
-}?>
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -181,7 +167,7 @@ if(isset($_POST['btn-retrieve'])){
                 </div>
                 <div class="collapse gray-lighter-bg" id="panel-footer-01">
                   <div class="panel-footer">
-                    <!--<?php if($retrieve_error)echo error_alert("Ups! Algo salió mal.","Verifica que tu Correo y/o Contraseña sean correctos");?>-->
+                    <?php if(isset($ret_check_user) && !$ret_check_user)echo error_alert("Ups! Algo salió mal.","Verifica que tu correo sea  correcto");?>
                     <p class="text-center" style="padding-top: 5px">Introduce tú correo a continución para recuperar tú contraseña.</p>
                     <form method="POST" action="index.html" class="form-horizontal mt0" id="retrieve-form" role="form">
                       <div class="form-group">
@@ -337,19 +323,30 @@ if(isset($_POST['btn-retrieve'])){
   <script src="js/vk_functions.js"></script>
   <?php
   if(isset($_POST['btn-signup'])){
-    $email=strtolower($_POST['input_signup_email']);
-
-    $user_creation = set_user();
+    $user_creation =  set_user($_POST['input_signup_email'],$_POST['input_signup_pass01'],$_POST['input_signup_pass02'],$_POST['input_firstname'],$_POST['input_lastname']);
     if($user_creation[0]){
-      $ret_val=send_email($email,1);
+      $ret_val=send_email($_POST['input_signup_email'],1);
       if($ret_val[0]){
         echo "<script> call_modal($('#confirmation-modal'),'Tú cuenta ha sido creada!','<strong>Perfecto!</strong> hemos creado tú cuenta. Ahora solo debes ir a tu correo <a>".strtolower($_POST['input_signup_email'])."</a> y completar los pasos que allí te indicamos para finalizar tu registro. Una vez te hayas validado podrás hacer uso de todas las extraordinarias ventajas que te ofrece <strong><a href=".'http://www.vakuno.com'.">Vakuno</a></strong>');</script>";
       }else{
-        echo "<script> call_modal($('#confirmation-modal'),'Ups! algo salió mal','Parece que tú correo <a>".strtolower($_POST['input_signup_email'])."</a> no es valido y no podemos enviarte el link de validación, por favor verifica la información suministrada y vuelve a intentarlo!<br>No te preocupes, nosotros te estaremos esperando!');</script>";
-        delete_user();
+        echo "<script> call_modal($('#confirmation-modal'),'Ups! algo salió mal','Parece que tú correo <a>".strtolower($_POST['input_signup_email'])."</a> no es valido y no podemos enviarte el enlace de validación, por favor verifica la información suministrada y vuelve a intentarlo!<br>No te preocupes, nosotros te estaremos esperando!');</script>";
+        delete_user($_POST['input_signup_email']);
       }
     }else{
       echo "<script> call_modal($('#confirmation-modal'),'Ups! algo salió mal','Estamos teniendo algunas dificultades al momento de  registrarte en nuestro sistema. Por favor verifica tu información y vuelve a intentarlo.<br>No te preocupes, nosotros te estaremos esperando!');</script>";
+    }
+  }
+  if(isset($_POST['btn-retrieve'])){
+    $ret_check_user = check_user($_POST['email_retrieve_pass']);
+    if($ret_check_user){
+      $ret_send_email=send_email($_POST['email_retrieve_pass'],2);
+      if($ret_send_email[0]){
+        echo "<script> call_modal($('#confirmation-modal'),'¡Te hemos enviado un correo!','Para poder reiniciar tu contraseña, debes primero verificar el correo que te hemos enviado y seguir los pasos que allí te indicamos.');</script>";
+      }else{
+        echo "<script> call_modal($('#confirmation-modal'),'Ups! algo salió mal','Parece que hubo un error al intentar generar un token de reinicio de contraseña para tu correo <a>".strtolower($_POST['input_signup_email'])."</a>. Por favor verifica la información suministrada y vuelve a intentarlo.');</script>";
+      }
+    }else{
+      echo "<script> $('#panel-footer-01').collapse('show');$('#email_retrieve_pass').focus();</script>";
     }
   }?>
 </body>
