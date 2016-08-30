@@ -7,37 +7,42 @@ if(isset($_GET['e']) && isset($_GET['t'])){
   $custom_title="";
   $custom_body="";
   $custom_title_class="";
-
-  if($ret_val[1]==0){
-    $custom_class="panel-success";
-    $custom_title="¡Tú Correo ha sido Validado!";
-    $custom_title_class="custom-panel-success";
-    $custom_body="<strong>¡Excelente!</strong> Hemos Validado tu correo, de esta forma nos aseguramos que la información suministrada es correcta y confiable. Inicia Sesión en <strong><a href='http://www.vakuno.com'>Vakuno</a></strong> y empieza a descubrir las bondades que allí te esperan.";
-  }else if($ret_val[1]==1){
-    $custom_class="panel-warning";
-    $custom_title="¡Ups, algo salió mal!";
-    $custom_title_class="custom-panel-warning";
-    $custom_body="<strong>Disculpa</strong>, estamos teniendo algunas dificultades para validar este correo, por favor intentalo nuevamente. Si aún no logras validar tu correo, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
-  }else if($ret_val[1]==2){
-    $custom_class="panel-warning";
-    $custom_title="El enlace de validación no es correcto";
-    $custom_title_class="custom-panel-warning";
-    $custom_body="<strong>Disculpa</strong>, estamos teniendo algunas dificultades para validar el enlace que estás usando. Ve a tu correo y copia el enlace, luego pegalo en tu explorador y verifica si la falla persiste. Si aún no logras validar tu correo, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
-  }else if($ret_val[1]==3){
-    $custom_class="panel-warning";
-    $custom_title="¡Tú Correo ya fué Validado!";
-    $custom_title_class="custom-panel-warning";
-    $custom_body="<strong>Disculpa</strong>, este correo ya fue validado anteriormente. Inicia Sesión en <strong><a href='http://www.vakuno.com'>Vakuno</a></strong> y empieza a descubrir las bondades que allí te esperan.";
-  }else if($ret_val[1]==4){
-    $custom_class="panel-warning";
-    $custom_title="El Enlace de Validación no es Correcto";
-    $custom_title_class="custom-panel-warning";
-    $custom_body="<strong>Disculpa</strong>, estamos teniendo algunas dificultades para validar el enlace que estás usando. Ve a tu correo y copia el enlace, luego pegalo en tu explorador y verifica si la falla persiste. Si aún no logras validar tu correo, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
-  }else{
-    $custom_class="panel-danger";
-    $custom_title="¡Ups, algo salió mal!";
-    $custom_title_class="custom-panel-daner";
-    $custom_body="<strong>Disculpa</strong>, estamos teniendo algunas dificultades para validar este correo, por favor intentalo nuevamente. Si aún no logras validar tu correo, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
+  switch ($ret_val[1]) {
+    case 0:
+      $custom_class="panel-success";
+      $custom_title="¡Tú Correo ha sido Validado!";
+      $custom_title_class="custom-panel-success";
+      $custom_body="<strong>¡Excelente!</strong> Hemos Validado tu correo, de esta forma nos aseguramos que la información suministrada es correcta y confiable. Inicia Sesión en <strong><a href='http://www.vakuno.com'>Vakuno</a></strong> y empieza a descubrir las bondades que allí te esperan.";
+      break;
+    case 1:
+      $custom_class="panel-warning";
+      $custom_title="¡Ups, algo salió mal!";
+      $custom_title_class="custom-panel-warning";
+      $custom_body="<strong>Disculpa</strong>, estamos teniendo algunas dificultades para validar este correo, por favor intentalo nuevamente. Si aún no logras validar tu correo, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
+      break;
+    case 2:
+      $custom_class="panel-warning";
+      $custom_title="El enlace de validación no es correcto";
+      $custom_title_class="custom-panel-warning";
+      $custom_body="<strong>Disculpa</strong>, estamos teniendo algunas dificultades para validar el enlace que estás usando. Ve a tu correo y copia el enlace, luego pegalo en tu explorador y verifica si la falla persiste. Si aún no logras validar tu correo, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
+      break;
+    case 3:
+      $custom_class="panel-warning";
+      $custom_title="¡Tú Correo ya fué Validado!";
+      $custom_title_class="custom-panel-warning";
+      $custom_body="<strong>Disculpa</strong>, este correo ya fue validado anteriormente. Inicia Sesión en <strong><a href='http://www.vakuno.com'>Vakuno</a></strong> y empieza a descubrir las bondades que allí te esperan.";
+      break;
+    case 4:
+      $custom_class="panel-warning";
+      $custom_title="El Enlace de Validación no es Correcto";
+      $custom_title_class="custom-panel-warning";
+      $custom_body="<strong>Disculpa</strong>, estamos teniendo algunas dificultades para validar el enlace que estás usando. Ve a tu correo y copia el enlace, luego pegalo en tu explorador y verifica si la falla persiste. Si aún no logras validar tu correo, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
+      break;
+    default:
+      $custom_class="panel-danger";
+      $custom_title="¡Ups, algo salió mal!";
+      $custom_title_class="custom-panel-daner";
+      $custom_body="<strong>Disculpa</strong>, estamos teniendo algunas dificultades para validar este correo, por favor intentalo nuevamente. Si aún no logras validar tu correo, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
   }
 }else{
   redirect_main();

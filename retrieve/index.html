@@ -2,42 +2,26 @@
 include_once '../../../includes/vakuno/session_val.php';
 
 if(isset($_GET['e']) && isset($_GET['t'])){
-  $ret_val=resetpass_user($_GET['e'],$_GET['t']);
-  $custom_class="";
-  $custom_title="";
-  $custom_body="";
-  $custom_title_class="";
+  $ret_val=check_user_token($_GET['e'],$_GET['t'],2);
 
-  if($ret_val[1]==0){
-    $custom_class="panel-success";
-    $custom_title="¡Tú Correo ha sido Validado!";
-    $custom_title_class="custom-panel-success";
-    $custom_body="<strong>¡Excelente!</strong> Hemos Validado tu correo, de esta forma nos aseguramos que la información suministrada es correcta y confiable. Inicia Sesión en <strong><a href='http://www.vakuno.com'>Vakuno</a></strong> y empieza a descubrir las bondades que allí te esperan.";
-  }else if($ret_val[1]==1){
-    $custom_class="panel-warning";
-    $custom_title="¡Ups, algo salió mal!";
-    $custom_title_class="custom-panel-warning";
-    $custom_body="<strong>Disculpa</strong>, estamos teniendo algunas dificultades para validar este correo, por favor intentalo nuevamente. Si aún no logras validar tu correo, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
-  }else if($ret_val[1]==2){
-    $custom_class="panel-warning";
-    $custom_title="El enlace de validación no es correcto";
-    $custom_title_class="custom-panel-warning";
-    $custom_body="<strong>Disculpa</strong>, estamos teniendo algunas dificultades para validar el enlace que estás usando. Ve a tu correo y copia el enlace, luego pegalo en tu explorador y verifica si la falla persiste. Si aún no logras validar tu correo, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
-  }else if($ret_val[1]==3){
-    $custom_class="panel-warning";
-    $custom_title="¡Tú Correo ya fué Validado!";
-    $custom_title_class="custom-panel-warning";
-    $custom_body="<strong>Disculpa</strong>, este correo ya fue validado anteriormente. Inicia Sesión en <strong><a href='http://www.vakuno.com'>Vakuno</a></strong> y empieza a descubrir las bondades que allí te esperan.";
-  }else if($ret_val[1]==4){
-    $custom_class="panel-warning";
-    $custom_title="El Enlace de Validación no es Correcto";
-    $custom_title_class="custom-panel-warning";
-    $custom_body="<strong>Disculpa</strong>, estamos teniendo algunas dificultades para validar el enlace que estás usando. Ve a tu correo y copia el enlace, luego pegalo en tu explorador y verifica si la falla persiste. Si aún no logras validar tu correo, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
-  }else{
-    $custom_class="panel-danger";
-    $custom_title="¡Ups, algo salió mal!";
-    $custom_title_class="custom-panel-daner";
-    $custom_body="<strong>Disculpa</strong>, estamos teniendo algunas dificultades para validar este correo, por favor intentalo nuevamente. Si aún no logras validar tu correo, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
+  switch ($ret_val[1]) {
+    case 2:
+      $custom_class="panel-warning";
+      $custom_title="El enlace no es correcto";
+      $custom_title_class="custom-panel-warning";
+      $custom_body="<strong>Disculpa</strong>, estamos teniendo algunas dificultades para validar el enlace que estás usando. Ve a tu correo y copia el enlace, luego pegalo en tu explorador y verifica si la falla persiste. Si aún no logras reiniciar tu contraseña, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
+      break;
+    case 3:
+      $custom_class="panel-warning";
+      $custom_title="El enlace ha expirado";
+      $custom_title_class="custom-panel-warning";
+      $custom_body="<strong>Disculpa</strong>, el enlace de reinicio de contraseña que estás intentando usar ha expirado. Solicita nuevamente el reinicio de tu contraseña desde la pagina inicial. Si aún no logras reiniciar tu contraseña, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
+      break;
+    default:
+      $custom_class="panel-danger";
+      $custom_title="¡Ups, algo salió mal!";
+      $custom_title_class="custom-panel-daner";
+      $custom_body="<strong>Disculpa</strong>, estamos teniendo algunas dificultades para reiniciar la contraseña de este correo, por favor intentalo nuevamente. Si aún no logras reiniciar tu contraseña, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
   }
 }else{
   redirect_main();
@@ -92,6 +76,75 @@ if(isset($_GET['e']) && isset($_GET['t'])){
       </nav>
       <div class="container-fluid">
         <div class="row">
+          <?php if($ret_val[0]){?>
+          <div class="col-sm-12">
+            <div class="container login-container">
+              <div class="login-panel panel panel-default">
+                <p class="text-center custom-brand">
+                  <span class="custom-brand-name">Vakuno</span>
+                </p>
+                <div class="panel-body">
+                  <form method="POST" action="index.html" class="form-horizontal mt0" id="retrieve-form" role="form">
+                    <div class="col-sm-12 line-separator"></div>
+                    <div class="form-group">
+                      <div class="col-lg-12">
+                        <label for="input_retrieve_email">Correo</label>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="input-group">
+                          <input type="email" class="form-control email" name="input_retrieve_email" id="input_retrieve_email" aria-required="true" aria-invalid="true" validated="" required disabled value="freddy.duque@gmail.com">
+                          <span class="input-group-addon custom-glyphicon">
+                          <span class="glyphicon glyphicon-envelope"></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 line-separator"></div>
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <label for="input_retrieve_pass01">Nueva contraseña</label>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="input-group">
+                          <input aria-invalid="false" aria-required="true" name="input_retrieve_pass01" id="input_retrieve_pass01" class="form-control valid" type="password" placeholder="tucontraseña1234" linked-element="input_retrieve_pass02" required>
+                          <span class="input-group-addon custom-glyphicon">
+                          <span class="glyphicon glyphicon-lock"></span>
+                          </span>
+                        </div>
+                        <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert" belongs-to="input_retrieve_pass01">
+                          <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <label for="input_retrieve_pass02">Verifique su contraseña</label>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="input-group">
+                          <input aria-invalid="false" aria-required="true" name="input_retrieve_pass02" id="input_retrieve_pass02" class="form-control valid" type="password" placeholder="tucontraseña1234" linked-element="input_retrieve_pass01" required>
+                          <span class="input-group-addon custom-glyphicon">
+                          <span class="glyphicon glyphicon-lock"></span>
+                          </span>
+                        </div>
+                        <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert" belongs-to="input_retrieve_pass02">
+                          <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-block vk-btn-validation" name="btn-retrieve" id="btn-retrieve">Modificar <span class="glyphicon glyphicon-user"></span></button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <?php }else{ ?>
           <div class="col-xl-5">
             <div class="container custom-message">
               <div class="panel <?php echo $custom_class?>">
@@ -104,11 +157,13 @@ if(isset($_GET['e']) && isset($_GET['t'])){
                     <p class="panel-title"><?php echo $custom_title;?></p>
                   </div>
                 </div>
-                <div class="panel-body"><?php echo $custom_body;?><br><div class="text-center">Serás redireccionado a la pagína inicial despues de <strong><delay></delay></strong></div></div>
+                <div class="panel-body"><?php echo $custom_body;?><br>
+                  <div class="text-center">Serás redireccionado a la pagína inicial despues de <strong><delay></delay></strong></div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-sm-7"></div>
+          <?php }?>
         </div>
       </div>
       <footer class="footer">
@@ -132,18 +187,19 @@ if(isset($_GET['e']) && isset($_GET['t'])){
       <script src="../js/bootstrap.min.js"></script>
       <script>
         $(function () {
+          $("#input_retrieve_pass01").focus();
           var delay = 1000,
             URL = "http://localhost/farm-app/",
             //URL = "http://www.vakuno.com",
             secs = 10;
-          $("delay").html(secs+ " segundos");
+          $("delay").html(secs + " segundos");
           setInterval(function () {
             secs--;
-            if(secs==1)
-              $("delay").html(secs+ " segundo");
+            if (secs == 1)
+              $("delay").html(secs + " segundo");
             else
-              $("delay").html(secs+ " segundos");
-            0==secs&&(window.location=URL);
+              $("delay").html(secs + " segundos");
+            0 == secs && (window.location = URL);
           }, delay);
         });
       </script>
