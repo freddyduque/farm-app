@@ -77,7 +77,7 @@ if(isset($_GET['e']) && isset($_GET['t'])){
       <div class="container-fluid">
         <div class="row">
           <?php if($ret_val[0]){?>
-          <div class="col-sm-12">
+          <div id="ret_correct" class="col-lg-12">
             <div class="container login-container">
               <div class="login-panel panel panel-default">
                 <p class="text-center custom-brand">
@@ -145,7 +145,7 @@ if(isset($_GET['e']) && isset($_GET['t'])){
             </div>
           </div>
           <?php }else{ ?>
-          <div class="col-xl-5">
+          <div id="ret_error" class="col-xl-5">
             <div class="container custom-message">
               <div class="panel <?php echo $custom_class?>">
                 <div class="panel-heading text-center">
@@ -188,19 +188,23 @@ if(isset($_GET['e']) && isset($_GET['t'])){
       <script>
         $(function () {
           $("#input_retrieve_pass01").focus();
+
           var delay = 1000,
             URL = "http://localhost/farm-app/",
             //URL = "http://www.vakuno.com",
             secs = 10;
-          $("delay").html(secs + " segundos");
-          setInterval(function () {
-            secs--;
-            if (secs == 1)
-              $("delay").html(secs + " segundo");
-            else
-              $("delay").html(secs + " segundos");
-            0 == secs && (window.location = URL);
-          }, delay);
+
+          if ( $( "#ret_error" ).length ) {
+            $("delay").html(secs + " segundos");
+            setInterval(function () {
+              secs--;
+              if (secs == 1)
+                $("delay").html(secs + " segundo");
+              else
+                $("delay").html(secs + " segundos");
+              0 == secs && (window.location = URL);
+            }, delay);
+          }
         });
       </script>
   </body>
