@@ -165,7 +165,7 @@ $(function () {
     ResetEle($("#" + $(this).parent().attr("belongs-to")));
   });
 
-  $("#input_signup_pass01,#input_signup_pass02").on("contextmenu", function () {
+  $("#input_signup_pass01,#input_signup_pass02,#input_ret_signup_pass01,#input_ret_signup_pass02").on("contextmenu", function () {
     return false;
   });
 
@@ -196,7 +196,7 @@ $(function () {
     return true;
   });
 
-  $("#input_signup_pass01").bind("keyup blur", function (event) {
+  $("#input_signup_pass01,#input_ret_signup_pass01").bind("keyup blur", function (event) {
     if (!isEmpty(this))
       PassValidation(this);
     else
@@ -204,7 +204,7 @@ $(function () {
     return true;
   });
 
-  $("#input_signup_pass02").blur(function (event) {
+  $("#input_signup_pass02,#input_ret_signup_pass02").blur(function (event) {
     if (!isEmpty(this))
       ConfirmPassValidation(this);
     else

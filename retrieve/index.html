@@ -17,6 +17,12 @@ if(isset($_GET['e']) && isset($_GET['t'])){
       $custom_title_class="custom-panel-warning";
       $custom_body="<strong>Disculpa</strong>, el enlace de reinicio de contraseña que estás intentando usar ha expirado. Solicita nuevamente el reinicio de tu contraseña desde la pagina inicial. Si aún no logras reiniciar tu contraseña, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
       break;
+    case 4:
+      $custom_class="panel-warning";
+      $custom_title="¡Ups, algo salió mal!";
+      $custom_title_class="custom-panel-warning";
+      $custom_body="<strong>Disculpa</strong>, estamos teniendo algunas dificultades para verificar tu correo, por favor intentalo nuevamente. Si aún no logras reiniciar tu contraseña, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href='mailto:support@vakuno.com'>support@vakuno.com</a>.";
+      break;
     default:
       $custom_class="panel-danger";
       $custom_title="¡Ups, algo salió mal!";
@@ -92,9 +98,9 @@ if(isset($_GET['e']) && isset($_GET['t'])){
                       </div>
                       <div class="col-lg-12">
                         <div class="input-group">
-                          <input type="email" class="form-control email" name="input_retrieve_email" id="input_retrieve_email" aria-required="true" aria-invalid="true" validated="" required disabled value="freddy.duque@gmail.com">
-                          <span class="input-group-addon custom-glyphicon">
-                          <span class="glyphicon glyphicon-envelope"></span>
+                          <input type="email" class="form-control email" name="input_retrieve_email" id="input_retrieve_email" disabled value="<?php echo $_GET['e']?>">
+                          <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-envelope"></span>
                           </span>
                         </div>
                       </div>
@@ -102,16 +108,16 @@ if(isset($_GET['e']) && isset($_GET['t'])){
                     <div class="col-sm-12 line-separator"></div>
                     <div class="form-group">
                       <div class="col-md-12">
-                        <label for="input_retrieve_pass01">Nueva contraseña</label>
+                        <label for="input_ret_signup_pass01">Nueva contraseña</label>
                       </div>
                       <div class="col-lg-12">
                         <div class="input-group">
-                          <input aria-invalid="false" aria-required="true" name="input_retrieve_pass01" id="input_retrieve_pass01" class="form-control valid" type="password" placeholder="tucontraseña1234" linked-element="input_retrieve_pass02" required>
+                          <input aria-invalid="false" aria-required="true" name="input_ret_signup_pass01" id="input_ret_signup_pass01" class="form-control valid" type="password" placeholder="tucontraseña1234" linked-element="input_ret_signup_pass02" required>
                           <span class="input-group-addon custom-glyphicon">
                           <span class="glyphicon glyphicon-lock"></span>
                           </span>
                         </div>
-                        <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert" belongs-to="input_retrieve_pass01">
+                        <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert" belongs-to="input_ret_signup_pass01">
                           <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                           <span></span>
                         </div>
@@ -119,16 +125,16 @@ if(isset($_GET['e']) && isset($_GET['t'])){
                     </div>
                     <div class="form-group">
                       <div class="col-md-12">
-                        <label for="input_retrieve_pass02">Verifique su contraseña</label>
+                        <label for="input_ret_signup_pass02">Verifique su contraseña</label>
                       </div>
                       <div class="col-lg-12">
                         <div class="input-group">
-                          <input aria-invalid="false" aria-required="true" name="input_retrieve_pass02" id="input_retrieve_pass02" class="form-control valid" type="password" placeholder="tucontraseña1234" linked-element="input_retrieve_pass01" required>
+                          <input aria-invalid="false" aria-required="true" name="input_ret_signup_pass02" id="input_ret_signup_pass02" class="form-control valid" type="password" placeholder="tucontraseña1234" linked-element="input_ret_signup_pass01" required>
                           <span class="input-group-addon custom-glyphicon">
                           <span class="glyphicon glyphicon-lock"></span>
                           </span>
                         </div>
-                        <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert" belongs-to="input_retrieve_pass02">
+                        <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert" belongs-to="input_ret_signup_pass02">
                           <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                           <span></span>
                         </div>
@@ -136,7 +142,9 @@ if(isset($_GET['e']) && isset($_GET['t'])){
                     </div>
                     <div class="form-group">
                       <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary btn-block vk-btn-validation" name="btn-retrieve" id="btn-retrieve">Modificar <span class="glyphicon glyphicon-user"></span></button>
+                        <input type="hidden" name="email" value="<?php echo $_GET['e']?>">
+                        <input type="hidden" name="token" value="<?php echo $_GET['t']?>">
+                        <button type="submit" class="btn btn-primary btn-block vk-btn-validation" name="btn-retrieve" id="btn-retrieve">Modificar<!--<span class="glyphicon glyphicon-user"></span>--></button>
                       </div>
                     </div>
                   </form>
@@ -185,9 +193,10 @@ if(isset($_GET['e']) && isset($_GET['t'])){
       <script src="../js/jquery.min.js"></script>
       <!-- Include all compiled plugins (below), or include individual files as needed -->
       <script src="../js/bootstrap.min.js"></script>
+      <script src="../js/vk_functions.js"></script>
       <script>
         $(function () {
-          $("#input_retrieve_pass01").focus();
+          $("#input_ret_signup_pass01").focus();
 
           var delay = 1000,
             URL = "http://localhost/farm-app/",
