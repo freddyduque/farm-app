@@ -96,7 +96,7 @@ body .dev-container {
 }
 
 .dev-panel > .dev > span {
-  font-size: 80px;
+  font-size: 60px;
 }
 
 .dev-panel > .dev > span > subname {
@@ -104,7 +104,7 @@ body .dev-container {
 }
 
 body .dev-panel {
-  margin-top: 100px;
+  margin-top: 70px;
   position: relative;
   padding-top: 20px;
   padding-right: 15px;
@@ -115,12 +115,14 @@ body .dev-panel {
 
 body .dev-panel > p {
   line-height: 60px;
+  margin-top: -10px;
+  margin-bottom: 30px;
 }
 
 body .dev-panel > .dev-icon {
   position: absolute;
   right: -20px;
-  top: -60px;
+  top: -45px;
   padding: 10px;
 }
 
@@ -136,7 +138,7 @@ body .dev-panel > div {
 }
 
 body .dev-panel > div > p > brandname {
-  font-size: 30px;
+  font-size: 20px;
   font-family: Decalotype;
   color: black;
 }
