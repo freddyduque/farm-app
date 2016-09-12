@@ -96,7 +96,7 @@ body .dev-container {
 }
 
 .dev-panel > .dev > span {
-  font-size: 60px;
+  font-size: 55px;
 }
 
 .dev-panel > .dev > span > subname {
@@ -129,16 +129,16 @@ body .dev-panel > .dev-icon {
 body .dev-panel > div {
   margin-top: -20px;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 20px;
 }
 
 body .dev-panel > div {
-  color: gray;
+  color: #555;
 }
 
 body .dev-panel > div > p > brandname {
-  font-size: 20px;
+  font-size: 16px;
   font-family: Decalotype;
   color: black;
 }
@@ -149,7 +149,7 @@ body .dev-panel > div > p > brandname > brandsubname {
 }
 
 body .dev-panel > div > p > customadd {
-  font-size: 26px;
+  font-size: 22px;
   font-family: Decalotype;
   color: #006680;
 }

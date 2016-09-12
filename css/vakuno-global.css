@@ -24,6 +24,7 @@ body > .container-fluid, body > .container {
 .custom-brand {
   font-family: Decalotype;
   transition: all 0.3s ease 0s;
+  margin: 0px;
 }
 
 .custom-brand > img {
