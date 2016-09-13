@@ -1,5 +1,6 @@
 <?php
 include_once '../../../includes/vakuno/session_val.php';
+include_once '../../../includes/vakuno/mailer.php';
 
 if(isset($_GET['e']) && isset($_GET['t'])){
   $ret_val=check_user_token($_GET['e'],$_GET['t'],2);
@@ -31,12 +32,6 @@ if(isset($_GET['e']) && isset($_GET['t'])){
 }else{
   redirect_main();
   exit;
-}
-
-if(isset($_POST['btn-change-pass'])){
-  $ret_change_pass = change_password($_POST['input_login_email'],$_POST['input_login_password']);
-  if($ret_change_pass[0])
-    redirect_home();
 }
 ?>
   <!DOCTYPE html>
@@ -73,159 +68,165 @@ if(isset($_POST['btn-change-pass'])){
 
   <body>
     <?php include_once("../../../includes/vakuno/analyticstracking.php") ?>
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand custom-navbar-brand" href="http://www.vakuno.com">
-              <div class="text-center custom-brand">
-                <img src="../img/new/vk_logo35x35.svg" alt="Vakuno 35x35 logo" />
-                <span class="custom-brand-name">Vakuno</span>
-              </div>
-            </a>
-          </div>
-        </div>
-      </nav>
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
-        <div class="row">
-          <?php if($ret_val[0]){?>
-            <div id="ret_correct" class="col-lg-12">
-              <div class="container login-container">
-                <div class="login-panel panel panel-default">
-                  <p class="text-center custom-brand">
-                    <span class="custom-brand-name">Vakuno</span>
-                  </p>
+        <div class="navbar-header">
+          <a class="navbar-brand custom-navbar-brand" href="http://www.vakuno.com">
+            <div class="text-center custom-brand">
+              <img src="../img/new/vk_logo35x35.svg" alt="Vakuno 35x35 logo" />
+              <span class="custom-brand-name">Vakuno</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <?php if($ret_val[0]){?>
+          <div id="ret_correct" class="col-lg-12">
+            <div class="container login-container">
+              <div class="login-panel panel panel-default">
+                <p class="text-center custom-brand">
+                  <span class="custom-brand-name">Vakuno</span>
+                </p>
+                <div class="panel-body">
+                  <form method="POST" action="?e=<?php echo $_GET['e']?>&t=<?php echo $_GET['t']?>" class="form-horizontal mt0" id="retrieve-form" role="form">
+                    <div class="col-sm-12 line-separator"></div>
+                    <div class="form-group">
+                      <div class="col-lg-12">
+                        <label for="input_retrieve_email">Correo</label>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="input-group">
+                          <input type="email" class="form-control email" name="input_retrieve_email" id="input_retrieve_email" disabled value="<?php echo $_GET['e']?>">
+                          <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-envelope"></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 line-separator"></div>
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <label for="input_ret_signup_pass01">Nueva contraseña</label>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="input-group">
+                          <input aria-invalid="false" aria-required="true" name="input_ret_signup_pass01" id="input_ret_signup_pass01" class="form-control valid" type="password" placeholder="tucontraseña1234" linked-element="input_ret_signup_pass02" required>
+                          <span class="input-group-addon custom-glyphicon">
+                        <span class="glyphicon glyphicon-lock"></span>
+                          </span>
+                        </div>
+                        <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert" belongs-to="input_ret_signup_pass01">
+                          <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <label for="input_ret_signup_pass02">Verifique su contraseña</label>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="input-group">
+                          <input aria-invalid="false" aria-required="true" name="input_ret_signup_pass02" id="input_ret_signup_pass02" class="form-control valid" type="password" placeholder="tucontraseña1234" linked-element="input_ret_signup_pass01" required>
+                          <span class="input-group-addon custom-glyphicon">
+                        <span class="glyphicon glyphicon-lock"></span>
+                          </span>
+                        </div>
+                        <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert" belongs-to="input_ret_signup_pass02">
+                          <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <input type="hidden" name="email" value="<?php echo $_GET['e']?>">
+                        <input type="hidden" name="token" value="<?php echo $_GET['t']?>">
+                        <button type="submit" class="btn btn-primary btn-block vk-btn-validation" name="btn-change-pass" id="btn-change-pass">Modificar
+                          <!--<span class="glyphicon glyphicon-user"></span>--></button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <?php }else{ ?>
+            <div id="ret_error" class="col-xl-5">
+              <div class="container custom-message">
+                <div class="panel <?php echo $custom_class?>">
+                  <div class="panel-heading text-center">
+                    <div class="custom-brand <?php echo $custom_title_class?>">
+                      <img src="../img/new/vk_logo35x35.svg" alt="Vakuno 35x35 logo">
+                      <span class="custom-brand-name">Vakuno</span>
+                    </div>
+                    <div class="custom-title">
+                      <p class="panel-title">
+                        <?php echo $custom_title;?>
+                      </p>
+                    </div>
+                  </div>
                   <div class="panel-body">
-                    <form method="POST" action="index.html" class="form-horizontal mt0" id="retrieve-form" role="form">
-                      <div class="col-sm-12 line-separator"></div>
-                      <div class="form-group">
-                        <div class="col-lg-12">
-                          <label for="input_retrieve_email">Correo</label>
-                        </div>
-                        <div class="col-lg-12">
-                          <div class="input-group">
-                            <input type="email" class="form-control email" name="input_retrieve_email" id="input_retrieve_email" disabled value="<?php echo $_GET['e']?>">
-                            <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-envelope"></span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-12 line-separator"></div>
-                      <div class="form-group">
-                        <div class="col-md-12">
-                          <label for="input_ret_signup_pass01">Nueva contraseña</label>
-                        </div>
-                        <div class="col-lg-12">
-                          <div class="input-group">
-                            <input aria-invalid="false" aria-required="true" name="input_ret_signup_pass01" id="input_ret_signup_pass01" class="form-control valid" type="password" placeholder="tucontraseña1234" linked-element="input_ret_signup_pass02" required>
-                            <span class="input-group-addon custom-glyphicon">
-                          <span class="glyphicon glyphicon-lock"></span>
-                            </span>
-                          </div>
-                          <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert" belongs-to="input_ret_signup_pass01">
-                            <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <span></span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-md-12">
-                          <label for="input_ret_signup_pass02">Verifique su contraseña</label>
-                        </div>
-                        <div class="col-lg-12">
-                          <div class="input-group">
-                            <input aria-invalid="false" aria-required="true" name="input_ret_signup_pass02" id="input_ret_signup_pass02" class="form-control valid" type="password" placeholder="tucontraseña1234" linked-element="input_ret_signup_pass01" required>
-                            <span class="input-group-addon custom-glyphicon">
-                          <span class="glyphicon glyphicon-lock"></span>
-                            </span>
-                          </div>
-                          <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert" belongs-to="input_ret_signup_pass02">
-                            <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <span></span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-md-12">
-                          <input type="hidden" name="email" value="<?php echo $_GET['e']?>">
-                          <input type="hidden" name="token" value="<?php echo $_GET['t']?>">
-                          <button type="submit" class="btn btn-primary btn-block vk-btn-validation" name="btn-change-pass" id="btn-change-pass">Modificar
-                            <!--<span class="glyphicon glyphicon-user"></span>--></button>
-                        </div>
-                      </div>
-                    </form>
+                    <?php echo $custom_body;?>
+                      <br>
+                      <div class="text-center">Serás redireccionado a la pagína inicial despues de <strong><delay></delay></strong></div>
                   </div>
                 </div>
               </div>
             </div>
-            <?php }else{ ?>
-              <div id="ret_error" class="col-xl-5">
-                <div class="container custom-message">
-                  <div class="panel <?php echo $custom_class?>">
-                    <div class="panel-heading text-center">
-                      <div class="custom-brand <?php echo $custom_title_class?>">
-                        <img src="../img/new/vk_logo35x35.svg" alt="Vakuno 35x35 logo">
-                        <span class="custom-brand-name">Vakuno</span>
-                      </div>
-                      <div class="custom-title">
-                        <p class="panel-title">
-                          <?php echo $custom_title;?>
-                        </p>
-                      </div>
-                    </div>
-                    <div class="panel-body">
-                      <?php echo $custom_body;?>
-                        <br>
-                        <div class="text-center">Serás redireccionado a la pagína inicial despues de <strong><delay></delay></strong></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <?php }?>
-        </div>
+            <?php }?>
       </div>
-      <footer class="footer">
-        <div class="container">
-          <p class="text-muted">
-          </p>
-          <a class="btn btn-social-icon btn-sm btn-facebook" href="https://www.facebook.com/vakunoweb">
-            <span class="fa fa-facebook"></span>
-          </a>
-          <a class="btn btn-social-icon btn-sm btn-instagram" href="https://www.instagram.com/vakunoweb/">
-            <span class="fa fa-instagram"></span>
-          </a>
-          <a class="btn btn-social-icon btn-sm btn-twitter" href="https://twitter.com/vakunoweb">
-            <span class="fa fa-twitter"></span>
-          </a>
-        </div>
-      </footer>
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-      <script src="../js/jquery.min.js"></script>
-      <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src="../js/bootstrap.min.js"></script>
-      <script src="../js/vk_functions.js"></script>
-      <script>
-        $(function () {
-          $("#input_ret_signup_pass01").focus();
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">
+        </p>
+        <a class="btn btn-social-icon btn-sm btn-facebook" href="https://www.facebook.com/vakunoweb">
+          <span class="fa fa-facebook"></span>
+        </a>
+        <a class="btn btn-social-icon btn-sm btn-instagram" href="https://www.instagram.com/vakunoweb/">
+          <span class="fa fa-instagram"></span>
+        </a>
+        <a class="btn btn-social-icon btn-sm btn-twitter" href="https://twitter.com/vakunoweb">
+          <span class="fa fa-twitter"></span>
+        </a>
+      </div>
+    </footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/vk_functions.js"></script>
+    <script>
+      $(function () {
+        $("#input_ret_signup_pass01").focus();
 
-          var delay = 1000,
-            URL = "http://localhost/farm-app/",
-            //URL = "http://www.vakuno.com",
-            secs = 10;
+        var delay = 1000,
+          URL = "http://localhost/farm-app/",
+          //URL = "http://www.vakuno.com",
+          secs = 10;
 
-          if ($("#ret_error").length) {
-            $("delay").html(secs + " segundos");
-            setInterval(function () {
-              secs--;
-              if (secs == 1)
-                $("delay").html(secs + " segundo");
-              else
-                $("delay").html(secs + " segundos");
-              0 == secs && (window.location = URL);
-            }, delay);
-          }
-        });
-      </script>
-  </body>
+        if ($("#ret_error").length) {
+          $("delay").html(secs + " segundos");
+          setInterval(function () {
+            secs--;
+            if (secs == 1)
+              $("delay").html(secs + " segundo");
+            else
+              $("delay").html(secs + " segundos");
+            0 == secs && (window.location = URL);
+          }, delay);
+        }
+      });
+    </script>
+    <?php
+      if(isset($_POST['btn-change-pass'])){
+        $ret_change_pass = change_password($_POST['email'],$_POST['input_ret_signup_pass01'],$_POST['input_ret_signup_pass02']);
+        d($ret_change_pass);
+      }
+    ?>
+</body>
 
-  </html>
+</html>

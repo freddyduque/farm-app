@@ -347,7 +347,7 @@ if(isset($_POST['btn-retrieve'])){
     if($ret_check_user){
       $ret_send_email=send_email($_POST['email_retrieve_pass'],2);
       if($ret_send_email[0]){
-        echo "<script> call_modal($('#confirmation-modal'),'¡Te hemos enviado un correo!','Para poder reiniciar tu contraseña, debes primero verificar el correo que te hemos enviado y seguir los pasos que allí te indicamos.');</script>";
+        echo "<script> call_modal($('#confirmation-modal'),'¡Correo enviado!','Para poder reiniciar tu contraseña, debes primero verificar el correo que te hemos enviado a <a>".strtolower($_POST['email_retrieve_pass'])."</a> y seguir los pasos que allí te indicamos.');</script>";
       }else{
         echo "<script> call_modal($('#confirmation-modal'),'Ups! algo salió mal','Parece que hubo un error al intentar generar un token de reinicio de contraseña para tu correo <a>".strtolower($_POST['input_signup_email'])."</a>. Por favor verifica la información suministrada y vuelve a intentarlo.');</script>";
       }
@@ -358,7 +358,7 @@ if(isset($_POST['btn-retrieve'])){
   if(isset($_POST['btn-request-new'])){
     $ret_val=send_email($_POST['input_hidden_email'],1);
     if($ret_val[0]){
-      echo "<script> call_modal($('#confirmation-modal'),'Correo de Validación Enviado!','<strong>Excelente!</strong> Te hemos enviado nuevamente un correo de validación a tú cuenta. Ahora solo debes ir a tu correo <a>".strtolower($_POST['input_hidden_email'])."</a> y completar los pasos que allí te indicamos para finalizar tu registro. Una vez te hayas validado podrás hacer uso de todas las extraordinarias ventajas que te ofrece <strong><a href=".'http://www.vakuno.com'.">Vakuno</a></strong>');</script>";
+      echo "<script> call_modal($('#confirmation-modal'),'Correo enviado!','<strong>Excelente!</strong> Te hemos enviado nuevamente un correo de validación a tú cuenta. Ahora solo debes ir a tu correo <a>".strtolower($_POST['input_hidden_email'])."</a> y completar los pasos que allí te indicamos para finalizar tu registro. Una vez te hayas validado podrás hacer uso de todas las extraordinarias ventajas que te ofrece <strong><a href=".'http://www.vakuno.com'.">Vakuno</a></strong>');</script>";
     }else{
       echo "<script> call_modal($('#confirmation-modal'),'Ups! algo salió mal','Parece que no hemos podido enviarte el correo de validación a <a>".strtolower($_POST['input_hidden_email'])."</a>, por favor verifica la información suministrada y vuelve a intentarlo!<br>No te preocupes, nosotros te estaremos esperando!');</script>";
     }
