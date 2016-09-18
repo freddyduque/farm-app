@@ -119,7 +119,7 @@ if(isset($_POST['btn-retrieve'])){
                       <div class="col-md-12">
                         <?php if(isset($ret_login_user[0]) && !$ret_login_user[0]){
                           if($ret_login_user[1]==2)
-                            echo error_alert("Ups! Algo salió mal.","Aún no te haz validado en el sistema, por favor verifica tu correo nuevamente o solicita un nuevo enlace de validación a través del siguiente botón.");
+                            echo error_alert("Ups! Algo salió mal.","Aún no te haz validado en el sistema, verifica tu correo nuevamente o solicita un nuevo enlace de validación.",1);
                           else
                             echo error_alert("Ups! Algo salió mal.","Verifica que tu Correo y/o Contraseña sean correctos");
                         }?>

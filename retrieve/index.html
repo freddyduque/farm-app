@@ -6,6 +6,8 @@ include_once '../../../includes/vakuno/local_functions.php';
 if(isset($_GET['e']) && isset($_GET['t'])){
   $ret_val=check_user_token($_GET['e'],$_GET['t'],2);
   switch ($ret_val[1]) {
+    case 1:
+      break;
     case 2:
       $custom_class="panel-warning";
       $custom_title="El enlace no es correcto";
@@ -45,7 +47,7 @@ if(isset($_GET['e']) && isset($_GET['t'])){
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Vakuno</title>
   <meta name="author" content="Freddy Duque">
-  <meta name="description" content="Sistema de Gestion Ganadera Online - Vakuno">
+  <meta name="description" content="Sistema de Gestión Ganadera Online - Vakuno">
   <meta name="keywords" content="">
   <meta name="application-name" content="Vakuno">
 
@@ -190,8 +192,8 @@ if(isset($_GET['e']) && isset($_GET['t'])){
             </div>
             <div class="panel-body">
               <?php echo $custom_body;?>
-                <br>
-                <div class="text-center">Serás redireccionado a la pagína inicial despues de <strong><delay></delay></strong></div>
+              <br>
+              <div class="text-center">Serás redireccionado a la pagína inicial despues de <strong><delay></delay></strong></div>
             </div>
           </div>
         </div>
@@ -252,7 +254,6 @@ if(isset($_GET['e']) && isset($_GET['t'])){
     }else{
       echo "<script> call_modal($('#confirmation-modal'),'¡Ups, algo salió mal!','<strong>Disculpa</strong>, estamos teniendo algunas dificultades para reiniciar tu contraseña, por favor intentalo nuevamente. Si aún no logras reiniciar tu contraseña, ponte en contacto con nuestro personal de soporte enviandonos un correo a <a href=".'mailto:support@vakuno.com'.">support@vakuno.com</a>.');</script>";
     }
-    d($ret_change_pass);
   }
   ?>
 </body>
