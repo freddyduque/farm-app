@@ -81,6 +81,11 @@ brand-font {
   margin-left: 5px;
 }
 
+.no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
+}
+
 .custom-user-glyphicon {
   margin-right: 5px;
 }
