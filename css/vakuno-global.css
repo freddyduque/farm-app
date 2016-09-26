@@ -133,3 +133,17 @@ brand-font {
 .custom-modal-footer {
   background-color: #f8f8f8;
 }
+
+/*.scrollable-menu {
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden;
+}
+
+.dropdown-menu {
+  width: 100%;
+}
+
+.custom-dropdown-menu li a {
+  cursor: pointer;
+}*/

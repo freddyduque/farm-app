@@ -32,6 +32,7 @@ if(!isset($_SESSION['UserID'])){
   <link href="../css/bootstrap-theme.min.css" rel="stylesheet">
   <link href="../css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/bootstrap-social.css" rel="stylesheet">
+  <link href="../css/bootstrap-select.min.css" rel="stylesheet">
   <!-- Plugins -->
   <link href="../css/font-awesome.min.css" rel="stylesheet">
   <!-- Customs -->
@@ -82,12 +83,84 @@ if(!isset($_SESSION['UserID'])){
     </div>
   </nav>
   <div class="container-fluid">
-    <div class="row" style="background-color: #006680;color:#FFFFFF;padding-bottom: 25px; padding-top: 15px;">
-      <div class="col-xl-12">
-        <div class="container">
-          <h1>Hola, <?php echo $_SESSION['UserName']?>!</h1>
-          <p>Te damos la Bienvenida a Vakuno, tú Sistema de Gestión Ganadera Online de fácil uso!  para .</p>
-          <?php echo_session_val();?>
+    <div class="row" style="background-color: #2a5697;color:#FFFFFF;padding-bottom: 25px; padding-top: 15px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <h2>Hola, <?php echo $_SESSION['UserName']?>!</h2>
+            <p style="font-size:15px;">Te damos la Bienvenida a Vakuno, tú Sistema de Gestión Ganadera Online de fácil uso!.<br>Para empezar debes crear tu <strong>Unidad de Producción</strong>, para ello completa los siguientes campos:</p>
+            <!--<?php echo_session_val();?>-->
+          </div>
+        </div>
+        <div class="row">
+          <form method="POST" action="index.html" class="form-horizontal mt0" id="reg-farm-form" role="form">
+            <div class="col-sm-4 col-xs-12">
+              <div class="form-group">
+                <div class="col-lg-12">
+                  <label for="input_farm_name" id="farm_name_label">Nombre</label>
+                </div>
+                <div class="col-lg-12">
+                  <input type="text" class="form-control input_val" name="input_farm_name" id="input_farm_name" aria-required="true" aria-invalid="true" placeholder="La Finca" linked-label="farm_name_label" val-lvl="1" maxlength="60" required>
+                  <div class="alert alert-danger alert-dismissible custom-alert" hidden="hidden" role="alert" belongs-to="input_farm_name">
+                    <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-lg-12">
+                  <label for="country_selector" id="country_name_label">Localidad</label>
+                </div>
+                <div class="col-lg-12">
+                  <select class="selectpicker show-menu-arrow" data-width="100%" data-size="6" data-live-search="true" title="País" id="country_selector" name="country_selector"></select>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-lg-12">
+                  <select class="selectpicker show-menu-arrow" data-width="100%" data-size="6" data-live-search="true" title="Estado" id="state_selector" name="state_selector"></select>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-lg-12">
+                  <div class="input-group">
+                    <input type="text" class="form-control" name="input_timezone" id="input_timezone" readonly>
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-globe"></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <div class="form-group">
+                <div class="col-lg-12">
+                  <label for="input_farm_name" id="farm_name_label">Mapa</label>
+                </div>
+                <div class="col-lg-12">
+                  <div class="thumbnail" style="margin-bottom:0px">
+                    <div id="map" style="height: 195px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <div class="form-group">
+                <div class="col-lg-12">
+                  <label for="input_farm_name" id="farm_name_label">Comentarios</label>
+                </div>
+                <div class="col-lg-12">
+                  <div class="thumbnail" style="margin-bottom:0px">
+                    <div style="height: 195px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" style="margin-bottom: 0px">
+                <div class="col-lg-12">
+                  <button type="submit" class="btn btn-primary btn-block vk-btn-validation" name="btn-retrieve" id="btn-retrieve">Siguiente</button>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -112,7 +185,7 @@ if(!isset($_SESSION['UserID'])){
             <!--<span style="float:right"class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>-->
             <div class="thumbnail" style="margin-bottom:0px">
               <a style="cursor: pointer;text-decoration:none">
-                <img src="../img/new/animals/vk_cow.svg" alt="Bovino" style="height: 110px; width: 100%; background-color: gray;">
+                <img src="../img/new/icons/vk_cow.svg" alt="Bovino" style="height: 110px; width: 100%; background-color: #d14726;">
               </a>
               <div class="caption" style="text-align:center">
                 <a class="show-more" style="cursor: pointer;text-decoration:none">Ganado Bovino</a>
@@ -123,7 +196,7 @@ if(!isset($_SESSION['UserID'])){
             <!--<span style="float:right"class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>-->
             <div class="thumbnail" style="margin-bottom:0px">
               <a style="cursor: pointer;text-decoration:none">
-                <img src="../img/new/animals/vk_goat.svg" alt="Caprine" style="height: 110px; width: 100%; background-color: gray;">
+                <img src="../img/new/icons/vk_goat.svg" alt="Caprine" style="height: 110px; width: 100%; background-color: #28618c;">
               </a>
               <div class="caption" style="text-align:center">
                 <a class="show-more" style="cursor: pointer;text-decoration:none">Ganado Caprino</a>
@@ -134,7 +207,7 @@ if(!isset($_SESSION['UserID'])){
             <!-- <span style="float:right"class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> -->
             <div class="thumbnail" style="margin-bottom:0px">
               <a style="cursor: pointer;text-decoration:none">
-                <img src="../img/new/animals/vk_sheep.svg" alt="..." style="height: 110px; width: 100%; background-color: gray;">
+                <img src="../img/new/icons/vk_sheep.svg" alt="..." style="height: 110px; width: 100%; background-color: #28618c;">
               </a>
               <div class="caption" style="text-align:center">
                 <a class="show-more" style="cursor: pointer;text-decoration:none">Ganado Ovino</a>
@@ -145,7 +218,7 @@ if(!isset($_SESSION['UserID'])){
             <!-- <span style="float:right"class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> -->
             <div class="thumbnail" style="margin-bottom:0px">
               <a style="cursor: pointer;text-decoration:none">
-                <img src="../img/new/animals/vk_pig.svg" alt="..." style="height: 110px; width: 100%; background-color: gray;">
+                <img src="../img/new/icons/vk_pig.svg" alt="..." style="height: 110px; width: 100%; background-color: #28618c;">
               </a>
               <div class="caption" style="text-align:center">
                 <a class="show-more" style="cursor: pointer;text-decoration:none">Ganado Porcino</a>
@@ -156,7 +229,7 @@ if(!isset($_SESSION['UserID'])){
             <!-- <span style="float:right"class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> -->
             <div class="thumbnail" style="margin-bottom:0px">
               <a style="cursor: pointer;text-decoration:none">
-                <img src="../img/new/animals/vk_horse.svg" alt="..." style="height: 110px; width: 100%; background-color: gray;">
+                <img src="../img/new/icons/vk_horse.svg" alt="..." style="height: 110px; width: 100%; background-color: #28618c;">
               </a>
               <div class="caption" style="text-align:center">
                 <a class="show-more" style="cursor: pointer;text-decoration:none">Ganado Equino</a>
@@ -167,7 +240,7 @@ if(!isset($_SESSION['UserID'])){
             <!-- <span style="float:right"class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> -->
             <div class="thumbnail" style="margin-bottom:0px">
               <a style="cursor: pointer;text-decoration:none">
-                <img src="../img/new/animals/vk_roster.svg" alt="..." style="height: 110px; width: 100%; background-color: gray;">
+                <img src="../img/new/icons/vk_roster.svg" alt="..." style="height: 110px; width: 100%; background-color: #30742e;">
               </a>
               <div class="caption" style="text-align:center">
                 <a class="show-more" style="cursor: pointer;text-decoration:none">Prod. Avicola</a>
@@ -178,7 +251,7 @@ if(!isset($_SESSION['UserID'])){
             <!-- <span style="float:right"class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> -->
             <div class="thumbnail" style="margin-bottom:0px">
               <a style="cursor: pointer;text-decoration:none">
-                <img src="../img/new/animals/vk_fish.svg" alt="..." style="height: 110px; width: 100%; background-color: gray;">
+                <img src="../img/new/icons/vk_fish_02.svg" alt="..." style="height: 110px; width: 100%; background-color: #30742e;">
               </a>
               <div class="caption" style="text-align:center;font-size:-2px">
                 <a class="show-more" style="cursor: pointer;text-decoration:none">Prod. Piscicola</a>
@@ -189,7 +262,7 @@ if(!isset($_SESSION['UserID'])){
             <!-- <span style="float:right"class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> -->
             <div class="thumbnail" style="margin-bottom:0px">
               <a style="cursor: pointer;text-decoration:none">
-                <img src="../img/new/animals/vk_rabbit.svg" alt="..." style="height: 110px; width: 100%; background-color: gray;">
+                <img src="../img/new/icons/vk_rabbit.svg" alt="..." style="height: 110px; width: 100%; background-color: #30742e;">
               </a>
               <div class="caption" style="text-align:center">
                 <a class="show-more" style="cursor: pointer;text-decoration:none">Prod. Cunicola</a>
@@ -200,7 +273,7 @@ if(!isset($_SESSION['UserID'])){
             <!-- <span style="float:right"class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> -->
             <div class="thumbnail" style="margin-bottom:0px">
               <a style="cursor: pointer;text-decoration:none">
-                <img src="../img/new/animals/vk_rabbit.svg" alt="..." style="height: 110px; width: 100%; background-color: gray;">
+                <img src="../img/new/icons/vk_settings.svg" alt="..." style="height: 110px; width: 100%; background-color: #535353;">
               </a>
               <div class="caption" style="text-align:center">
                 <a class="show-more" style="cursor: pointer;text-decoration:none">Administración</a>
@@ -230,21 +303,76 @@ if(!isset($_SESSION['UserID'])){
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="../js/bootstrap.min.js"></script>
   <script src="../js/vk_functions.js"></script>
+  <script src="../js/vk_locations.js"></script>
+  <script src="../js/bootstrap-select.min.js"></script>
+  <!--<script src="../js/vk_geolocation.js"></script>-->
+  <!-- Google maps API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5oF3OYLqtvauGt9syhf29RHJJyls7KxE&callback=initMap" async defer></script>
   <script>
-    $(function(){
-      $(".show-more").on("click", function () {
-        $(".show-more").siblings("div").not($(this).siblings("div")).slideUp();
-        $(this).siblings("div").slideToggle();
-        //$(".show-more").siblings("div").is(':visible')
-        //$(".show-more").siblings("div").is(':hidden').
+    function getTimezone(location,milliseconds){
+      var link = "https://maps.googleapis.com/maps/api/timezone/json?location="+location.lat()+","+location.lng()+"&timestamp="+milliseconds+"&key=AIzaSyB5oF3OYLqtvauGt9syhf29RHJJyls7KxE";
+      $.get(link, function( data ) {
+        $( "#input_timezone" ).val(data.timeZoneId+" - "+data.timeZoneName);
       });
+    }
+    function initMap() {
+      var myLatLng = {lat: 6.42375, lng: -66.58973000000003},
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: myLatLng,
+            disableDefaultUI: true
+          }),
+          marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+          }),
+          geocoder = new google.maps.Geocoder(),
+          currCenter = map.getCenter();
+      $(window).resize(function(){
+        currCenter = map.getCenter();
+        google.maps.event.trigger(map, 'resize');
+        map.setCenter(currCenter);
+      });
+      $("#state_selector").change(function() {
+        var selectedCountryID = $("#country_selector").siblings("button").attr("country-id"),
+          selectedCountry= $("#country_selector").siblings("button").attr("country-name"),
+          selectedStateID = $(this).val(),
+          selectedState = stateJsonList[selectedCountryID][selectedStateID-1].state;
+        geocodeAddress(marker,geocoder, map,selectedCountry+","+selectedState,7);
 
-      //$('.caret').parent().on('click', function(){
-
-        /*$(this).parent().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
-        }).on('hidden.bs.collapse', function(){
-        $(this).parent().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
-      });*/
+      });
+      $("#country_selector").change(function() {
+        var selectedCountryID = $(this).val(),
+            selectedCountry = countryJsonList.countryTable[selectedCountryID-1].country,
+            StateListItems= "";
+        $(this).siblings("button").attr({"country-id":selectedCountryID,"country-name": selectedCountry});
+        for (var i = 0; i < stateJsonList[selectedCountryID].length; i++){
+          StateListItems+= "<option value='" + stateJsonList[selectedCountryID][i].stateID + "'>" + stateJsonList[selectedCountryID][i].state + "</option>";
+        }
+        $("#state_selector").html(StateListItems);
+        $("#state_selector").selectpicker('refresh');
+        geocodeAddress(marker,geocoder, map, selectedCountry,4);
+      });
+    }
+    function geocodeAddress(marker, geocoder, resultsMap, address, zooming) {
+      geocoder.geocode({'address': address}, function(results, status) {
+        if (status === 'OK') {
+          resultsMap.setCenter(results[0].geometry.location);
+          resultsMap.setZoom(zooming);
+          marker.setMap(resultsMap);
+          marker.setPosition(results[0].geometry.location);
+          getTimezone(results[0].geometry.location,Math.floor((new Date).getTime()/1000));
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }
+    $(function() {
+      var CountryListItems= "";
+      for (var i = 0; i < countryJsonList.countryTable.length; i++){
+        CountryListItems+= "<option value='" + countryJsonList.countryTable[i].countryID + "'>" + countryJsonList.countryTable[i].country + "</option>";
+      }
+      $("#country_selector").html(CountryListItems);
     });
   </script>
 </body>
