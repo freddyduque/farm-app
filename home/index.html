@@ -312,7 +312,15 @@ if(!isset($_SESSION['UserID'])){
     function getTimezone(location,milliseconds){
       var link = "https://maps.googleapis.com/maps/api/timezone/json?location="+location.lat()+","+location.lng()+"&timestamp="+milliseconds+"&key=AIzaSyB5oF3OYLqtvauGt9syhf29RHJJyls7KxE";
       $.get(link, function( data ) {
-        $( "#input_timezone" ).val(data.timeZoneId+" - "+data.timeZoneName);
+        var sec_num = parseInt(data.rawOffset+data.dstOffset, 10),
+            hours   = Math.floor(sec_num / 3600),
+            minutes = Math.floor((sec_num - (hours * 3600)) / 60),
+            symbol = "";
+
+        if (hours < 0) {hours*=-1;symbol="-";}else if(hours==0){symbol="±";}else{symbol="+";}
+        if (hours   < 10) {hours   = "0"+hours;}
+        if (minutes < 10) {minutes = "0"+minutes;}
+        $( "#input_timezone" ).val("["+symbol+""+hours+':'+minutes+"] "+data.timeZoneId+" - "+data.timeZoneName);
       });
     }
     function initMap() {
