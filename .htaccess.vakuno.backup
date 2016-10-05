@@ -1,0 +1,21 @@
+
+RewriteEngine on
+#AddHandler application/x-httpd-php5 .html .htm
+<IfModule mod_suphp.c>
+    suPHP_ConfigPath /opt/php56/lib
+</IfModule>
+
+RewriteCond %{HTTP_HOST} ^vakuno\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.vakuno\.com$
+RewriteRule ^/?$ "http\:\/\/www\.vakuno\.com\/dev\.html" [R=302,L]
+
+RewriteCond %{HTTP_HOST} ^vakuno\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.vakuno\.com$
+RewriteRule ^index\.html$ "http\:\/\/www\.vakuno\.com\/dev\.html" [R=302,L]
+
+# Use PHP55 as default
+AddHandler application/x-httpd-php55 .php .php5 .php4 .php3 .html .htm
+
+# Prevent a Directory Listing
+Options -Indexes
+

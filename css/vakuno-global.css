@@ -123,6 +123,35 @@ brand-font {
   background: url(../img/preloader.gif) center no-repeat #fff;
 }
 
+/*#left-img {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url(../img/new/landscape/vk_landscape_yes.svg) left no-repeat;
+}
+
+#right-img {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url(../img/new/landscape/vk_landscape_no.svg) right no-repeat;
+}*/
+
+#farm_banner{
+  background-color: #2a5697;
+  color: #FFFFFF;
+  background: #459bbc;
+  background: -webkit-linear-gradient(#459bbc, #ebbc00);
+  background: -o-linear-gradient(#459bbc, #ebbc00);
+  background: -moz-linear-gradient(#459bbc, #ebbc00);
+  background: linear-gradient(#459bbc, #ebbc00);
+}
 .custom-modal-header {
   background-image: linear-gradient(to bottom, #fff 0, #f8f8f8 100%);
   background-color: #f8f8f8;
@@ -132,6 +161,24 @@ brand-font {
 
 .custom-modal-footer {
   background-color: #f8f8f8;
+}
+
+.custom-watermark span{
+  position: absolute;
+  right: 25px;
+  top: 11px;
+  font-size: 20px;
+  color: lightgrey;
+}
+.custom-watermark:hover span{
+  color: grey;
+}
+.custom-watermark:hover{
+  opacity: 0.90;
+}
+
+.bootstrap-select.show-menu-arrow.open > .dropdown-toggle {
+    z-index: 999 !important;
 }
 
 /*.scrollable-menu {
