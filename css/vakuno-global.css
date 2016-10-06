@@ -123,6 +123,39 @@ brand-font {
   background: url(../img/preloader.gif) center no-repeat #fff;
 }
 
+#custom_nav_farm > li:not(.active) > a{
+  background-color: #28618c;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+#custom_nav_farm > li:not(.active) > a:hover{
+  background-color: #356E99;
+}
+#custom_nav_farm > li.active > a{
+  background-color: transparent;
+  pointer-events: none;
+  cursor: default;
+  outline: none;
+  color: transparent;
+}
+
+.custom-dropdown-sm,.custom-dropdown-sm .form-control{
+  height: auto;
+}
+.custom-dropdown-sm > button,.custom-dropdown-sm .form-control{
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.custom-dropdown-sm .dropdown-menu {
+  font-size: 12px;
+}
+.custom-dropdown-sm .dropdown-menu > li > a{
+  padding: 3px 15px;
+}
+
+
 /*#left-img {
   position: fixed;
   left: 0px;
