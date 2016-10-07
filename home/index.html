@@ -88,7 +88,7 @@ if(!isset($_SESSION['UserID'])){
     </div>
   </nav>
   <div class="container-fluid">
-    <div class="row" style="background-color: #2a5697;color:#FFFFFF;padding: 15px 0">
+    <div class="row" id="farm_banner" style="background-color: #2a5697;color:#FFFFFF;border-bottom: 10px solid #714430">
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
@@ -97,119 +97,177 @@ if(!isset($_SESSION['UserID'])){
             <!--<?php echo_session_val();?>-->
           </div>
         </div>
-        <div class="row" style="margin-top: 10px;">
-          <form method="POST" action="index.html" class="form-horizontal mt0" id="reg-farm-form" role="form">
-            <div class="col-xs-12 col-sm-4 col-md-3">
-              <div class="form-group">
-                <div class="col-lg-12">
-                  <div class="thumbnail" style="margin-bottom:0px;">
-                    <div style="height: 192.7px;background-color:#f2f2f2">
-                      <a style="cursor: pointer;text-decoration:none" class="custom-watermark" id="file_selector">
-                        <img src="../img/new/profile/vk_default.svg" alt="Default Profile" style="padding: 20px;height: 100%" class="img-responsive center-block">
-                        <span class="glyphicon glyphicon-edit"></span>
-                      </a>
-                      <input type="file" id="file_selector_input" class="hidden" accept="image/*">
+      </div>
+      <div class="container-fluid">
+        <div class="row text-center" style="margin-top:10px">
+          <div class="col-xs-12 col-sm-6">
+            <h4>¡Ya tengo una <strong>Unidad de Producción</strong> en Vakuno!</h4>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <h4>¡Quiero crear una <strong>Unidad de Producción</strong> en Vakuno!</h4>
+          </div>
+        </div>
+        <div class="row">
+          <ul id="custom_nav_farm" class="nav nav-pills nav-justified" role="tablist">
+            <li role="presentation" class="custom-tab active"><a style="width:200px" class="center-block" href="#vakuno_yes" aria-controls="vakuno_yes" role="tab" data-toggle="tab">Buscar</a></li>
+            <li role="presentation" class="custom-tab"><a style="width:200px" class="center-block" href="#vakuno_no" aria-controls="vakuno_no" role="tab" data-toggle="tab">Crear</a></li>
+          </ul>
+          <div class="tab-content" style="border:0px">
+            <div role="tabpanel" class="tab-pane fade in active" id="vakuno_yes">
+              <div class="panel-body" style="padding: 0px">
+
+                <div class="page-wraps">
+                  <div class="col-xs-12 col-sm-6 left-cont">
+                    <div class="row">
+                      <form method='POST' action='index.html' class='form-horizontal mt0' id='vakuno_yes_form' role='form'>
+                        <div class="input-group center-block" style="width: 60%;margin-top:10px;display:table">
+                          <input type="text" class="form-control" placeholder="Buscar...">
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="input"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                          </span>
+                        </div>
+                      </form>
                     </div>
                   </div>
+                  <div class="col-xs-12 col-sm-6 right-cont" style="margin-top:15px">
+                    <img id="landscape_no" src="../img/new/landscape/vk_landscape_yes.svg" alt="left_farm_img" class="center-block">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="vakuno_no">
+              <div class="panel-body" style="padding: 0px">
+
+                <div class="page-wrap">
+                  <div class="col-xs-12 col-sm-6 left-cont">
+                    <img id="landscape_no" src="../img/new/landscape/vk_landscape_no.svg" alt="right_farm_img" class="center-block">
+                  </div>
+                  <div class="col-xs-12 col-sm-6 right-cont">
+                    <form method="POST" action="index.html" class="form-horizontal mt0 custom-form-sm" id="vakuno_no_form" role="form">
+
+                      <div class="row">
+
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                          <div class="form-group">
+                            <div class="col-lg-12">
+                              <div class="thumbnail" style="margin-bottom:0px;">
+                                <div style="height: 157.7px;background-color:#f2f2f2">
+                                  <a style="cursor: pointer;text-decoration:none" class="custom-watermark" id="file_selector">
+                                    <img src="../img/new/profile/vk_default.svg" alt="Default Profile" style="padding: 20px;height: 100%" class="img-responsive center-block">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                  </a>
+                                  <input type="file" id="file_selector_input" class="hidden" accept="image/*">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                          <div class="form-group">
+                            <div class="col-lg-12">
+                              <label for="input_farm_name" id="farm_name_label">Nombre</label>
+                            </div>
+                            <div class="col-lg-12">
+                              <div class="input-group input-group-sm">
+                                <input type="text" class="form-control input_val" name="input_farm_name" id="input_farm_name" aria-required="true" aria-invalid="true" placeholder="Tu Finca" linked-label="farm_name_label" val-lvl="1" maxlength="60" required>
+                                <span class="input-group-addon custom-glyphicon">
+                                  <span class="glyphicon glyphicon-home"></span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-lg-12">
+                              <label for="farm_estdate_input">Establecida en</label>
+                            </div>
+                            <div class="col-lg-12">
+                              <div class="input-group input-append date input-group-sm" id="farm_estdate" data-date="10/01/1987">
+                                <input type="text" class="form-control" id="farm_estdate_input" name="farm_estdate_input">
+                                <span class="input-group-addon custom-glyphicon">
+                                  <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-lg-12">
+                              <label for="farm_type_selector">Propositos</label>
+                            </div>
+                            <div class="col-lg-12">
+                              <select class="selectpicker form-control custom-dropdown-sm" data-size="6" data-live-search="true" title="Tipo" id="farm_type_selector" name="farm_type_selector" multiple>
+                                <option value="1">Lechera</option>
+                                <option value="2">Ganadera</option>
+                                <option value="3">Piscicola</option>
+                                <option value="4">Equina</option>
+                                <option value="5">Apicola</option>
+                                <option value="6">Avicola</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                          <div class="form-group">
+                            <div class="col-lg-12">
+                              <label for="country_selector" id="country_name_label">Localidad</label>
+                            </div>
+                            <div class="col-lg-12">
+                              <select class="selectpicker form-control custom-dropdown-sm" data-size="6" data-live-search="true" title="País" id="country_selector" name="country_selector"></select>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-lg-12">
+                              <select class="selectpicker form-control custom-dropdown-sm" data-size="6" data-live-search="true" title="Estado" id="state_selector" name="state_selector"></select>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-lg-12">
+                              <label for="textarea_farm_comment" id="farm_name_label">Comentarios</label>
+                            </div>
+                            <div class="col-lg-12">
+                              <textarea id="textarea_farm_comment" class="form-control" rows="3" style="height: 50.567px;font-size: 10px;resize: none" placeholder="Hablanos de tu Unidad de Producción"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-sm-offset-8 col-md-4">
+                          <!-- <div class="form-group">
+                            <div class="col-lg-12">
+                              <label for="input_timezone" id="farm_name_label">Mapa</label>
+                            </div>
+                            <div class="col-lg-12">
+                              <div class="thumbnail" style="margin-bottom:0px;display:none">
+                                <div id="map" style="height: 169.133px;"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-12">
+                              <div class="input-group">
+                                <input type="text" class="form-control" name="input_timezone" id="input_timezone" readonly>
+                                <span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-globe"></span>
+                                </span>
+                              </div>
+                            </div>
+                          </div> -->
+                          <div class="form-group">
+                            <div class="col-lg-12">
+                              <button type="submit" class="btn btn-primary btn-block vk-btn-validation" style="margin: 10px 0px" name="btn-submit-farminfo" id="btn-submit-farminfo">Siguiente</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-xs-12 col-sm-4 col-md-3">
-              <div class="form-group">
-                <div class="col-lg-12">
-                  <label for="input_farm_name" id="farm_name_label">Nombre</label>
-                </div>
-                <div class="col-lg-12">
-                  <div class="input-group">
-                    <input type="text" class="form-control input_val" name="input_farm_name" id="input_farm_name" aria-required="true" aria-invalid="true" placeholder="Tu Finca" linked-label="farm_name_label" val-lvl="1" maxlength="60" required>
-                    <span class="input-group-addon custom-glyphicon">
-                      <span class="glyphicon glyphicon-home"></span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-lg-12">
-                  <label for="farm_estdate_input">Establecida en</label>
-                </div>
-                <div class="col-lg-12">
-                  <div class="input-group input-append date" id="farm_estdate" data-date="10/01/1987">
-                    <input type="text" class="form-control" id="farm_estdate_input" name="farm_estdate_input">
-                    <span class="input-group-addon custom-glyphicon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-lg-12">
-                  <label for="farm_type_selector">Propositos</label>
-                </div>
-                <div class="col-lg-12">
-                  <select class="selectpicker form-control" data-size="6" data-live-search="true" title="Tipo" id="farm_type_selector" name="farm_type_selector" multiple>
-                    <option value="1">Lechera</option>
-                    <option value="2">Ganadera</option>
-                    <option value="3">Piscicola</option>
-                    <option value="4">Equina</option>
-                    <option value="5">Apicola</option>
-                    <option value="6">Avicola</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-3">
-              <div class="form-group">
-                <div class="col-lg-12">
-                  <label for="country_selector" id="country_name_label">Localidad</label>
-                </div>
-                <div class="col-lg-12">
-                  <select class="selectpicker form-control" data-size="6" data-live-search="true" title="País" id="country_selector" name="country_selector"></select>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-lg-12">
-                  <select class="selectpicker form-control" data-size="6" data-live-search="true" title="Estado" id="state_selector" name="state_selector"></select>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-lg-12">
-                  <label for="textarea_farm_comment" id="farm_name_label">Comentarios</label>
-                </div>
-                <div class="col-lg-12">
-                  <div class="thumbnail" style="margin-bottom:0px">
-                    <textarea id="textarea_farm_comment" class="form-control" rows="3" style="height: 47.567px;font-size: 10px;resize: none" placeholder="Hablanos de tu Unidad de Producción"></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-3">
-              <div class="form-group">
-                <div class="col-lg-12">
-                  <label for="input_timezone" id="farm_name_label">Mapa</label>
-                </div>
-                <div class="col-lg-12">
-                  <div class="thumbnail" style="margin-bottom:0px">
-                    <div id="map" style="height: 169.133px;"></div>
-                  </div>
-                </div>
-                <!-- <div class="col-lg-12">
-                  <div class="input-group">
-                    <input type="text" class="form-control" name="input_timezone" id="input_timezone" readonly>
-                    <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-globe"></span>
-                    </span>
-                  </div>
-                </div> -->
-              </div>
-              <div class="form-group">
-                <div class="col-lg-12">
-                  <button type="submit" class="btn btn-primary btn-block vk-btn-validation" name="btn-submit-farminfo" id="btn-submit-farminfo">Siguiente</button>
-                </div>
-              </div>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
+
     </div>
     <div class="row">
       <div class="container no-gutter">
