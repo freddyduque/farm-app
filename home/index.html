@@ -88,7 +88,7 @@ if(!isset($_SESSION['UserID'])){
     </div>
   </nav>
   <div class="container-fluid">
-    <div class="row" id="farm_banner" style="background-color: #2a5697;color:#FFFFFF;border-bottom: 10px solid #714430">
+    <div class="row" style="background-color:#FFFFFF">
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
@@ -98,27 +98,20 @@ if(!isset($_SESSION['UserID'])){
           </div>
         </div>
       </div>
-      <div class="container-fluid">
-        <div class="row text-center" style="margin-top:10px">
-          <div class="col-xs-12 col-sm-6">
-            <h4>¡Ya tengo una <strong>Unidad de Producción</strong> en Vakuno!</h4>
-          </div>
-          <div class="col-xs-12 col-sm-6">
-            <h4>¡Quiero crear una <strong>Unidad de Producción</strong> en Vakuno!</h4>
-          </div>
-        </div>
-        <div class="row">
-          <ul id="custom_nav_farm" class="nav nav-pills nav-justified" role="tablist">
-            <li role="presentation" class="custom-tab active"><a style="width:200px" class="center-block" href="#vakuno_yes" aria-controls="vakuno_yes" role="tab" data-toggle="tab">Buscar</a></li>
-            <li role="presentation" class="custom-tab"><a style="width:200px" class="center-block" href="#vakuno_no" aria-controls="vakuno_no" role="tab" data-toggle="tab">Crear</a></li>
-          </ul>
-          <div class="tab-content" style="border:0px">
-            <div role="tabpanel" class="tab-pane fade in active" id="vakuno_yes">
-              <div class="panel-body" style="padding: 0px">
 
-                <div class="page-wraps">
-                  <div class="col-xs-12 col-sm-6 left-cont">
-                    <div class="row">
+      <div class="container">
+        <div class="panel-group" id="farm-seleccion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <button type="button" class="btn btn-primary btn-lg btn-block custom-heading" data-toggle="collapse" data-parent="#farm-seleccion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-align:left" id="headingOne">
+              <h4 class="panel-title">
+                Buscar una Unidad de Producción
+              </h4>
+            </button>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body" style="">
+                <div class="page-wrap">
+                  <div class="col-xs-12 col-md-7 left-cont">
+                    <div class="row no-gutter">
                       <form method='POST' action='index.html' class='form-horizontal mt0' id='vakuno_yes_form' role='form'>
                         <div class="input-group center-block" style="width: 60%;margin-top:10px;display:table">
                           <input type="text" class="form-control" placeholder="Buscar...">
@@ -128,26 +121,28 @@ if(!isset($_SESSION['UserID'])){
                         </div>
                       </form>
                     </div>
+                    <div class="row" style="margin-top:160px">
+                    </div>
                   </div>
-                  <div class="col-xs-12 col-sm-6 right-cont" style="margin-top:15px">
+                  <div class="visible-md-block visible-lg-block col-md-5 right-cont">
                     <img id="landscape_no" src="../img/new/landscape/vk_landscape_yes.svg" alt="left_farm_img" class="center-block">
                   </div>
                 </div>
-
               </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="vakuno_no">
-              <div class="panel-body" style="padding: 0px">
-
+          </div>
+          <div class="panel panel-default">
+            <button type="button" class="btn btn-primary btn-lg btn-block custom-heading" data-toggle="collapse" data-parent="#farm-seleccion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="text-align:left" id="headingTwo">
+              <h4 class="panel-title">
+                Crear una Unidad de Producción
+              </h4>
+            </button>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <div class="panel-body" style="padding: 15px 0 0 0;border-bottom: 10px solid #714430;">
                 <div class="page-wrap">
-                  <div class="col-xs-12 col-sm-6 left-cont">
-                    <img id="landscape_no" src="../img/new/landscape/vk_landscape_no.svg" alt="right_farm_img" class="center-block">
-                  </div>
-                  <div class="col-xs-12 col-sm-6 right-cont">
+                  <div class="col-xs-12 col-md-8 left-cont">
                     <form method="POST" action="index.html" class="form-horizontal mt0 custom-form-sm" id="vakuno_no_form" role="form">
-
                       <div class="row">
-
                         <div class="col-xs-12 col-sm-4 col-md-4">
                           <div class="form-group">
                             <div class="col-lg-12">
@@ -230,7 +225,6 @@ if(!isset($_SESSION['UserID'])){
                           </div>
                         </div>
                       </div>
-
                       <div class="row">
                         <div class="col-xs-12 col-sm-4 col-sm-offset-8 col-md-4">
                           <!-- <div class="form-group">
@@ -253,13 +247,15 @@ if(!isset($_SESSION['UserID'])){
                           </div> -->
                           <div class="form-group">
                             <div class="col-lg-12">
-                              <button type="submit" class="btn btn-primary btn-block vk-btn-validation" style="margin: 10px 0px" name="btn-submit-farminfo" id="btn-submit-farminfo">Siguiente</button>
+                              <button type="submit" class="btn btn-primary btn-block vk-btn-validation" name="btn-submit-farminfo" id="btn-submit-farminfo">Siguiente</button>
                             </div>
                           </div>
                         </div>
                       </div>
-
                     </form>
+                  </div>
+                  <div class="visible-md-block visible-lg-block col-md-4 right-cont">
+                    <img id="landscape_no" src="../img/new/landscape/vk_landscape_no.svg" alt="right_farm_img" class="center-block">
                   </div>
                 </div>
               </div>
@@ -417,7 +413,7 @@ if(!isset($_SESSION['UserID'])){
   <!-- Google maps API -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5oF3OYLqtvauGt9syhf29RHJJyls7KxE&callback=initMap" async defer></script>
   <script>
-    function getTimezone(location,milliseconds){
+    /*function getTimezone(location,milliseconds){
       var link = "https://maps.googleapis.com/maps/api/timezone/json?location="+location.lat()+","+location.lng()+"&timestamp="+milliseconds+"&key=AIzaSyB5oF3OYLqtvauGt9syhf29RHJJyls7KxE";
       $.get(link, function( data ) {
         var sec_num = parseInt(data.rawOffset+data.dstOffset, 10),
@@ -430,8 +426,8 @@ if(!isset($_SESSION['UserID'])){
         if (minutes < 10) {minutes = "0"+minutes;}
         $( "#input_timezone" ).val("["+symbol+""+hours+':'+minutes+"] "+data.timeZoneId);
       });
-    }
-    function initMap() {
+    }*/
+    /*function initMap() {
       var myLatLng = {lat: 6.42375, lng: -66.58973000000003},
           map = new google.maps.Map(document.getElementById('map'), {
             zoom: 4,
@@ -448,13 +444,13 @@ if(!isset($_SESSION['UserID'])){
         currCenter = map.getCenter();
         google.maps.event.trigger(map, 'resize');
         map.setCenter(currCenter);
-      });
+      });*/
       $("#state_selector").change(function() {
         var selectedCountryID = $("#country_selector").siblings("button").attr("country-id"),
           selectedCountry= $("#country_selector").siblings("button").attr("country-name"),
           selectedStateID = $(this).val(),
           selectedState = stateJsonList[selectedCountryID][selectedStateID-1].state;
-        geocodeAddress(marker,geocoder, map,selectedCountry+","+selectedState,7);
+        /* geocodeAddress(marker,geocoder, map,selectedCountry+","+selectedState,7); */
 
       });
       $("#country_selector").change(function() {
@@ -467,10 +463,10 @@ if(!isset($_SESSION['UserID'])){
         }
         $("#state_selector").html(StateListItems);
         $("#state_selector").selectpicker('refresh');
-        geocodeAddress(marker,geocoder, map, selectedCountry,4);
+        /* geocodeAddress(marker,geocoder, map, selectedCountry,4); */
       });
-    }
-    function geocodeAddress(marker, geocoder, resultsMap, address, zooming) {
+    /*}*/
+    /*function geocodeAddress(marker, geocoder, resultsMap, address, zooming) {
       geocoder.geocode({'address': address}, function(results, status) {
         if (status === 'OK') {
           resultsMap.setCenter(results[0].geometry.location);
@@ -482,10 +478,11 @@ if(!isset($_SESSION['UserID'])){
           alert('Geocode was not successful for the following reason: ' + status);
         }
       });
-    }
+    }*/
     $(function() {
       var CountryListItems= "";
       for (var i = 0; i < countryJsonList.countryTable.length; i++){
+        //selected=(countryJsonList.countryTable[i].countryID == 242)?"selected":"";
         CountryListItems+= "<option value='" + countryJsonList.countryTable[i].countryID + "'>" + countryJsonList.countryTable[i].country + "</option>";
       }
       $("#country_selector").html(CountryListItems);
@@ -507,6 +504,18 @@ if(!isset($_SESSION['UserID'])){
         else
           $("#textarea_farm_comment").attr("placeholder","Hablanos de tu Unidad de Producción");
       });
+      $(".custom-heading").click(function(e){
+        if($(this).siblings("div").hasClass("in")){
+          e.stopPropagation();
+        }
+      });
+      $('.panel-collapse').on('hidden.bs.collapse', function () {
+        $("#"+$(this).attr("aria-labelledby")).css("border-radius","4px");
+      });
+      $('.panel-collapse').on('show.bs.collapse', function () {
+        $("#"+$(this).attr("aria-labelledby")).css("border-radius","4px 4px 0 0");
+      });
+      //$("#collapseOne").collapse('show');
     });
   </script>
 </body>
