@@ -3,12 +3,33 @@
   src: url('../fonts/Decalotype-Regular.otf');
 }
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
   body {}
   body .login-container {
     width: 350px !important;
   }
-}
+}*/
+
+/* gutter spacing */
+/*@media (max-width: 767px) {
+/*  body{font-size: 11px;}
+  /*#right-img > img, #left-img > img {margin-top: 75px}*/
+/*}
+/* Small devices (tablets, 768px and up) */
+/*@media (min-width: 768px) {
+/*  body{font-size: 12px;}
+  /*#right-img > img, #left-img > img {margin-top: 75px}*/
+/*}
+/* Medium devices (desktops, 992px and up) */
+/*@media (min-width: 992px) {
+/*  body{font-size: 14px;}
+  /*#right-img > img, #left-img > img {margin-top: 45px}*/
+/*}
+/* Large devices (large desktops, 1200px and up) */
+/*@media (min-width: 1200px){
+  /*body{font-size: 14px;}
+  /*#right-img > img, #left-img > img {margin-top: 20px}*/
+/*}*/
 
 body > .container-fluid, body > .container {
   padding-top: 50px;
@@ -261,7 +282,10 @@ brand-font {
 }*/
 
 #headingOne {
-  border-radius: 4px 4px 0 0;
+  border-radius: 3px 3px 0 0;
+}
+#headingTwo {
+  border-radius: 3px;
 }
 
 .custom-modal-header {
@@ -274,13 +298,30 @@ brand-font {
 .custom-modal-footer {
   background-color: #f8f8f8;
 }
-
+.custom-watermark {
+  cursor: pointer;
+  text-decoration:none;
+}
 .custom-watermark span{
   position: absolute;
   right: 25px;
   top: 11px;
   font-size: 20px;
   color: lightgrey;
+}
+.custom-watermark + a{
+  cursor: pointer;
+  text-decoration: none;
+  position: absolute;
+  top: 8px;
+  font-size: 20px;
+  right: 50px;
+  color: lightgray;
+  width: 20px;
+  height: 20px;
+}
+.custom-watermark + a:hover{
+  color: grey;
 }
 .custom-watermark:hover span{
   color: grey;

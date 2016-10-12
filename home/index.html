@@ -92,8 +92,8 @@ if(!isset($_SESSION['UserID'])){
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
-            <h2>Hola, <?php echo $_SESSION['UserName']?>!</h2>
-            <p style="font-size:15px;">Te damos la Bienvenida a Vakuno, tú Sistema de Gestión Ganadera Online de fácil uso!.<br>Para empezar debes asignar tu cuenta a una <strong>Unidad de Producción</strong>, o crear una desde cero. Para ello completa los siguientes campos:</p>
+            <h2 style="margin-bottom:0;">Hola, <?php echo $_SESSION['UserName']?>!</h2>
+            <p style="font-size:16px;">Te damos la Bienvenida a Vakuno!<br></p>
             <!--<?php echo_session_val();?>-->
           </div>
         </div>
@@ -112,14 +112,16 @@ if(!isset($_SESSION['UserID'])){
                 <div class="page-wrap">
                   <div class="col-xs-12 col-md-7 left-cont">
                     <div class="row no-gutter">
-                      <form method='POST' action='index.html' class='form-horizontal mt0' id='vakuno_yes_form' role='form'>
-                        <div class="input-group center-block" style="width: 60%;margin-top:10px;display:table">
-                          <input type="text" class="form-control" placeholder="Buscar...">
-                          <span class="input-group-btn">
-                            <button class="btn btn-default" type="input"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                          </span>
-                        </div>
-                      </form>
+                      <div class="col-xs-10 col-sm-8 col-xs-offset-1 col-sm-offset-2">
+                        <form method='POST' action='index.html' class='form-horizontal mt0' id='vakuno_yes_form' role='form'>
+                          <div class="input-group" style="margin-top:10px">
+                            <input type="text" class="form-control" placeholder="Buscar...">
+                            <span class="input-group-btn">
+                              <button class="btn btn-default" type="input"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                            </span>
+                          </div>
+                        </form>
+                      </div>
                     </div>
                     <div class="row" style="margin-top:160px">
                     </div>
@@ -148,11 +150,14 @@ if(!isset($_SESSION['UserID'])){
                             <div class="col-lg-12">
                               <div class="thumbnail" style="margin-bottom:0px;">
                                 <div style="height: 157.7px;background-color:#f2f2f2">
-                                  <a style="cursor: pointer;text-decoration:none" class="custom-watermark" id="file_selector">
-                                    <img src="../img/new/profile/vk_default.svg" alt="Default Profile" style="padding: 20px;height: 100%" class="img-responsive center-block">
-                                    <span class="glyphicon glyphicon-edit"></span>
+                                  <a class="custom-watermark">
+                                    <img src="../img/new/profile/vk_default.svg" alt="Default Profile" style="padding: 20px;height: 100%" class="img-responsive center-block" id="file_selector_img">
+                                    <span class="glyphicon glyphicon-edit" data-toggle="tooltip" id="file_selector" data-placement="top" title="Seleccionar"></span>
                                   </a>
-                                  <input type="file" id="file_selector_input" class="hidden" accept="image/*">
+                                  <a id="remove_set_default">
+                                    <span class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Reiniciar"></span>
+                                  </a>
+                                  <input type="file" onchange="readURL(this);" id="file_selector_input" class="hidden" accept="image/*">
                                 </div>
                               </div>
                             </div>
@@ -485,6 +490,7 @@ if(!isset($_SESSION['UserID'])){
         //selected=(countryJsonList.countryTable[i].countryID == 242)?"selected":"";
         CountryListItems+= "<option value='" + countryJsonList.countryTable[i].countryID + "'>" + countryJsonList.countryTable[i].country + "</option>";
       }
+      $('[data-toggle="tooltip"]').tooltip();
       $("#country_selector").html(CountryListItems);
       $('#farm_estdate')
         .datepicker({
@@ -498,6 +504,9 @@ if(!isset($_SESSION['UserID'])){
       $("#file_selector").click(function(){
         $("#file_selector_input").click();
       });
+      $("#remove_set_default").click(function(){
+        $('#file_selector_img').attr('src', "../img/new/profile/vk_default.svg");
+      });
       $("#input_farm_name").blur(function (event) {
         if (!isEmpty(this))
           $("#textarea_farm_comment").attr("placeholder","Hablanos de "+$(this).val());
@@ -505,18 +514,26 @@ if(!isset($_SESSION['UserID'])){
           $("#textarea_farm_comment").attr("placeholder","Hablanos de tu Unidad de Producción");
       });
       $(".custom-heading").click(function(e){
-        if($(this).siblings("div").hasClass("in")){
+        if($(this).siblings("div").hasClass("in"))
           e.stopPropagation();
-        }
       });
       $('.panel-collapse').on('hidden.bs.collapse', function () {
-        $("#"+$(this).attr("aria-labelledby")).css("border-radius","4px");
+        $("#"+$(this).attr("aria-labelledby")).css("border-radius","3px");
       });
       $('.panel-collapse').on('show.bs.collapse', function () {
-        $("#"+$(this).attr("aria-labelledby")).css("border-radius","4px 4px 0 0");
+        $("#"+$(this).attr("aria-labelledby")).css("border-radius","3px 3px 0 0");
       });
-      //$("#collapseOne").collapse('show');
+      $('#headingOne').popover('show');
     });
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#file_selector_img').attr('src', e.target.result);//.width(150).height(200);
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
   </script>
 </body>
 
