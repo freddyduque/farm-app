@@ -100,175 +100,262 @@ if(!isset($_SESSION['UserID'])){
       </div>
 
       <div class="container">
-        <div class="panel-group" id="farm-seleccion" role="tablist" aria-multiselectable="true">
-          <div class="panel panel-default">
-            <button type="button" class="btn btn-primary btn-lg btn-block custom-heading" data-toggle="collapse" data-parent="#farm-seleccion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-align:left" id="headingOne">
-              <h4 class="panel-title">
-                Buscar una Unidad de Producción
-              </h4>
-            </button>
-            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body" style="">
-                <div class="page-wrap">
-                  <div class="col-xs-12 col-md-7 left-cont">
-                    <div class="row no-gutter">
-                      <div class="col-xs-10 col-sm-8 col-xs-offset-1 col-sm-offset-2">
-                        <form method='POST' action='index.html' class='form-horizontal mt0' id='vakuno_yes_form' role='form'>
-                          <div class="input-group" style="margin-top:10px">
-                            <input type="text" class="form-control" placeholder="Buscar...">
-                            <span class="input-group-btn">
-                              <button class="btn btn-default" type="input"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                            </span>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                    <div class="row" style="margin-top:160px">
-                    </div>
-                  </div>
-                  <div class="visible-md-block visible-lg-block col-md-5 right-cont">
-                    <img id="landscape_no" src="../img/new/landscape/vk_landscape_yes.svg" alt="left_farm_img" class="center-block">
-                  </div>
-                </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="wizard">
+              <div class="wizard-inner">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs" role="tablist">
+                  <li role="presentation" class="active">
+                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Completar Usuario">
+                      <span class="round-tab">
+                        <i class="glyphicon glyphicon-user"></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li role="presentation" class="disabled">
+                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Unidad de Producción">
+                      <span class="round-tab">
+                        <i class="glyphicon glyphicon-home"></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li role="presentation" class="disabled">
+                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Crear Plantilla">
+                      <span class="round-tab">
+                        <i class="glyphicon glyphicon-list-alt"></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li role="presentation" class="disabled">
+                    <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Finalizar">
+                      <span class="round-tab">
+                        <i class="glyphicon glyphicon-ok"></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li role="presentation" class="disabled">
+                    <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Finalizar">
+                      <span class="round-tab">
+                        <i class="glyphicon glyphicon-ok"></i>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
               </div>
-            </div>
-          </div>
-          <div class="panel panel-default">
-            <button type="button" class="btn btn-primary btn-lg btn-block custom-heading" data-toggle="collapse" data-parent="#farm-seleccion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="text-align:left" id="headingTwo">
-              <h4 class="panel-title">
-                Crear una Unidad de Producción
-              </h4>
-            </button>
-            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-              <div class="panel-body" style="padding: 15px 0 0 0;border-bottom: 10px solid #714430;">
-                <div class="page-wrap">
-                  <div class="col-xs-12 col-md-8 left-cont">
-                    <form method="POST" action="index.html" class="form-horizontal mt0 custom-form-sm" id="vakuno_no_form" role="form">
-                      <div class="row">
-                        <div class="col-xs-12 col-sm-4 col-md-4">
-                          <div class="form-group">
-                            <div class="col-lg-12">
-                              <div class="thumbnail" style="margin-bottom:0px;">
-                                <div style="height: 157.7px;background-color:#f2f2f2">
-                                  <a class="custom-watermark">
-                                    <img src="../img/new/profile/vk_default.svg" alt="Default Profile" style="padding: 20px;height: 100%" class="img-responsive center-block" id="file_selector_img">
-                                    <span class="glyphicon glyphicon-edit" data-toggle="tooltip" id="file_selector" data-placement="top" title="Seleccionar"></span>
-                                  </a>
-                                  <a id="remove_set_default">
-                                    <span class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Reiniciar"></span>
-                                  </a>
-                                  <input type="file" onchange="readURL(this);" id="file_selector_input" class="hidden" accept="image/*">
+              <form role="form">
+                <div class="tab-content">
+                  <div class="tab-pane active" role="tabpanel" id="step1">
+                    <h3>Step 1</h3>
+                    <p>This is step 1</p>
+                    <div class="btn-group pull-right" role="group" aria-label="...">
+                      <button type="button" class="btn btn-primary next-step">Guardar y Continuar</button>
+                    </div>
+                  </div>
+                  <div class="tab-pane" role="tabpanel" id="step2">
+                    <h3>Step 2</h3>
+                    <p>This is step 2</p>
+                    <div class="panel-group" id="farm-seleccion" role="tablist" aria-multiselectable="true">
+                      <div class="panel panel-default">
+                        <button type="button" class="btn btn-primary btn-lg btn-block custom-heading" data-toggle="collapse" data-parent="#farm-seleccion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-align:left" id="headingOne">
+                          <h4 class="panel-title">
+                            Buscar una Unidad de Producción
+                          </h4>
+                        </button>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body" style="">
+                            <div class="page-wrap">
+                              <div class="col-xs-12 col-md-7 left-cont">
+                                <div class="row no-gutter">
+                                  <div class="col-xs-10 col-sm-8 col-xs-offset-1 col-sm-offset-2">
+                                    <form method='POST' action='index.html' class='form-horizontal mt0' id='vakuno_yes_form' role='form'>
+                                      <div class="input-group" style="margin-top:10px">
+                                        <input type="text" class="form-control" placeholder="Buscar...">
+                                        <span class="input-group-btn">
+                                          <button class="btn btn-default" type="input"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                        </span>
+                                      </div>
+                                    </form>
+                                  </div>
+                                </div>
+                                <div class="row" style="margin-top:160px">
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-md-4">
-                          <div class="form-group">
-                            <div class="col-lg-12">
-                              <label for="input_farm_name" id="farm_name_label">Nombre</label>
-                            </div>
-                            <div class="col-lg-12">
-                              <div class="input-group input-group-sm">
-                                <input type="text" class="form-control input_val" name="input_farm_name" id="input_farm_name" aria-required="true" aria-invalid="true" placeholder="Tu Finca" linked-label="farm_name_label" val-lvl="1" maxlength="60" required>
-                                <span class="input-group-addon custom-glyphicon">
-                                  <span class="glyphicon glyphicon-home"></span>
-                                </span>
+                              <div class="visible-md-block visible-lg-block col-md-5 right-cont">
+                                <img id="landscape_no" src="../img/new/landscape/vk_landscape_yes.svg" alt="left_farm_img" class="center-block">
                               </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <div class="col-lg-12">
-                              <label for="farm_estdate_input">Establecida en</label>
-                            </div>
-                            <div class="col-lg-12">
-                              <div class="input-group input-append date input-group-sm" id="farm_estdate" data-date="10/01/1987">
-                                <input type="text" class="form-control" id="farm_estdate_input" name="farm_estdate_input">
-                                <span class="input-group-addon custom-glyphicon">
-                                  <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <div class="col-lg-12">
-                              <label for="farm_type_selector">Propositos</label>
-                            </div>
-                            <div class="col-lg-12">
-                              <select class="selectpicker form-control custom-dropdown-sm" data-size="6" data-live-search="true" title="Tipo" id="farm_type_selector" name="farm_type_selector" multiple>
-                                <option value="1">Lechera</option>
-                                <option value="2">Ganadera</option>
-                                <option value="3">Piscicola</option>
-                                <option value="4">Equina</option>
-                                <option value="5">Apicola</option>
-                                <option value="6">Avicola</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-md-4">
-                          <div class="form-group">
-                            <div class="col-lg-12">
-                              <label for="country_selector" id="country_name_label">Localidad</label>
-                            </div>
-                            <div class="col-lg-12">
-                              <select class="selectpicker form-control custom-dropdown-sm" data-size="6" data-live-search="true" title="País" id="country_selector" name="country_selector"></select>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <div class="col-lg-12">
-                              <select class="selectpicker form-control custom-dropdown-sm" data-size="6" data-live-search="true" title="Estado" id="state_selector" name="state_selector"></select>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <div class="col-lg-12">
-                              <label for="textarea_farm_comment" id="farm_name_label">Comentarios</label>
-                            </div>
-                            <div class="col-lg-12">
-                              <textarea id="textarea_farm_comment" class="form-control" rows="3" style="height: 50.567px;font-size: 10px;resize: none" placeholder="Hablanos de tu Unidad de Producción"></textarea>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-xs-12 col-sm-4 col-sm-offset-8 col-md-4">
-                          <!-- <div class="form-group">
-                            <div class="col-lg-12">
-                              <label for="input_timezone" id="farm_name_label">Mapa</label>
-                            </div>
-                            <div class="col-lg-12">
-                              <div class="thumbnail" style="margin-bottom:0px;display:none">
-                                <div id="map" style="height: 169.133px;"></div>
+                      <div class="panel panel-default">
+                        <button type="button" class="btn btn-primary btn-lg btn-block custom-heading" data-toggle="collapse" data-parent="#farm-seleccion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="text-align:left" id="headingTwo">
+                          <h4 class="panel-title">
+                            Crear una Unidad de Producción
+                          </h4>
+                        </button>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                          <div class="panel-body" style="padding: 15px 0 0 0;border-bottom: 10px solid #714430;">
+                            <div class="page-wrap">
+                              <div class="col-xs-12 col-md-8 left-cont">
+                                <form method="POST" action="index.html" class="form-horizontal mt0 custom-form-sm" id="vakuno_no_form" role="form">
+                                  <div class="row">
+                                    <div class="col-xs-12 col-sm-4 col-md-4">
+                                      <div class="form-group">
+                                        <div class="col-lg-12">
+                                          <div class="thumbnail" style="margin-bottom:0px;">
+                                            <div style="height: 157.7px;background-color:#f2f2f2">
+                                              <a class="custom-watermark">
+                                                <img src="../img/new/profile/vk_default.svg" alt="Default Profile" style="padding: 20px;height: 100%" class="img-responsive center-block" id="file_selector_img">
+                                                <span class="glyphicon glyphicon-edit" data-toggle="tooltip" id="file_selector" data-placement="top" title="Seleccionar"></span>
+                                              </a>
+                                              <a id="remove_set_default">
+                                                <span class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Reiniciar"></span>
+                                              </a>
+                                              <input type="file" onchange="readURL(this);" id="file_selector_input" class="hidden" accept="image/*">
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4 col-md-4">
+                                      <div class="form-group">
+                                        <div class="col-lg-12">
+                                          <label for="input_farm_name" id="farm_name_label">Nombre</label>
+                                        </div>
+                                        <div class="col-lg-12">
+                                          <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control input_val" name="input_farm_name" id="input_farm_name" aria-required="true" aria-invalid="true" placeholder="Tu Finca" linked-label="farm_name_label" val-lvl="1" maxlength="60" required>
+                                            <span class="input-group-addon custom-glyphicon">
+                                              <span class="glyphicon glyphicon-home"></span>
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <div class="col-lg-12">
+                                          <label for="farm_estdate_input">Establecida en</label>
+                                        </div>
+                                        <div class="col-lg-12">
+                                          <div class="input-group input-append date input-group-sm" id="farm_estdate" data-date="10/01/1987">
+                                            <input type="text" class="form-control" id="farm_estdate_input" name="farm_estdate_input">
+                                            <span class="input-group-addon custom-glyphicon">
+                                              <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <div class="col-lg-12">
+                                          <label for="farm_type_selector">Propositos</label>
+                                        </div>
+                                        <div class="col-lg-12">
+                                          <select class="selectpicker form-control custom-dropdown-sm" data-size="6" data-live-search="true" title="Tipo" id="farm_type_selector" name="farm_type_selector" multiple>
+                                            <option value="1">Lechera</option>
+                                            <option value="2">Ganadera</option>
+                                            <option value="3">Piscicola</option>
+                                            <option value="4">Equina</option>
+                                            <option value="5">Apicola</option>
+                                            <option value="6">Avicola</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4 col-md-4">
+                                      <div class="form-group">
+                                        <div class="col-lg-12">
+                                          <label for="country_selector" id="country_name_label">Localidad</label>
+                                        </div>
+                                        <div class="col-lg-12">
+                                          <select class="selectpicker form-control custom-dropdown-sm" data-size="6" data-live-search="true" title="País" id="country_selector" name="country_selector"></select>
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <div class="col-lg-12">
+                                          <select class="selectpicker form-control custom-dropdown-sm" data-size="6" data-live-search="true" title="Estado" id="state_selector" name="state_selector"></select>
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <div class="col-lg-12">
+                                          <label for="textarea_farm_comment" id="farm_name_label">Comentarios</label>
+                                        </div>
+                                        <div class="col-lg-12">
+                                          <textarea id="textarea_farm_comment" class="form-control" rows="3" style="height: 50.567px;font-size: 10px;resize: none" placeholder="Hablanos de tu Unidad de Producción"></textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-xs-12 col-sm-4 col-sm-offset-8 col-md-4">
+                                      <!-- <div class="form-group">
+                                        <div class="col-lg-12">
+                                          <label for="input_timezone" id="farm_name_label">Mapa</label>
+                                        </div>
+                                        <div class="col-lg-12">
+                                          <div class="thumbnail" style="margin-bottom:0px;display:none">
+                                            <div id="map" style="height: 169.133px;"></div>
+                                          </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                          <div class="input-group">
+                                            <input type="text" class="form-control" name="input_timezone" id="input_timezone" readonly>
+                                            <span class="input-group-addon">
+                                              <span class="glyphicon glyphicon-globe"></span>
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </div> -->
+                                      <div class="form-group">
+                                        <div class="col-lg-12">
+                                          <button type="submit" class="btn btn-primary btn-block vk-btn-validation" name="btn-submit-farminfo" id="btn-submit-farminfo">Siguiente</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </form>
                               </div>
-                            </div>
-                            <div class="col-lg-12">
-                              <div class="input-group">
-                                <input type="text" class="form-control" name="input_timezone" id="input_timezone" readonly>
-                                <span class="input-group-addon">
-                                  <span class="glyphicon glyphicon-globe"></span>
-                                </span>
+                              <div class="visible-md-block visible-lg-block col-md-4 right-cont">
+                                <img id="landscape_no" src="../img/new/landscape/vk_landscape_no.svg" alt="right_farm_img" class="center-block">
                               </div>
-                            </div>
-                          </div> -->
-                          <div class="form-group">
-                            <div class="col-lg-12">
-                              <button type="submit" class="btn btn-primary btn-block vk-btn-validation" name="btn-submit-farminfo" id="btn-submit-farminfo">Siguiente</button>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </form>
+                    </div>
+                    <div class="btn-group pull-right" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default prev-step">Anterior</button>
+                      <button type="button" class="btn btn-primary next-step">Guardar y Continuar</button>
+                    </div>
                   </div>
-                  <div class="visible-md-block visible-lg-block col-md-4 right-cont">
-                    <img id="landscape_no" src="../img/new/landscape/vk_landscape_no.svg" alt="right_farm_img" class="center-block">
+                  <div class="tab-pane" role="tabpanel" id="step3">
+                    <h3>Step 3</h3>
+                    <p>This is step 3</p>
+                    <div class="btn-group pull-right" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default prev-step">Anterior</button>
+                      <button type="button" class="btn btn-default next-step">Saltar</button>
+                      <button type="button" class="btn btn-primary btn-info-full next-step">Guardar y Continuar</button>
+                    </div>
                   </div>
+                  <div class="tab-pane" role="tabpanel" id="step4">
+                    <h3>Step 4</h3>
+                    <p>This is step 4</p>
+                    <div class="btn-group pull-right" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default prev-step">Anterior</button>
+                      <button type="button" class="btn btn-default next-step">Saltar</button>
+                      <button type="button" class="btn btn-primary btn-info-full next-step">Guardar y Continuar</button>
+                    </div>
+                  </div>
+                  <div class="tab-pane" role="tabpanel" id="complete">
+                    <h3>Complete</h3>
+                    <p>You have successfully completed all steps.</p>
+                  </div>
+                  <div class="clearfix"></div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-
     </div>
     <div class="row">
       <div class="container no-gutter">
@@ -524,6 +611,22 @@ if(!isset($_SESSION['UserID'])){
         $("#"+$(this).attr("aria-labelledby")).css("border-radius","3px 3px 0 0");
       });
       $('#headingOne').popover('show');
+      $('.nav-tabs > li a[title]').tooltip();
+      //Wizard
+      $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+        var $target = $(e.target);
+        if ($target.parent().hasClass('disabled'))
+          return false;
+      });
+      $(".next-step").click(function (e) {
+        var $active = $('.wizard .nav-tabs li.active');
+        $active.next().removeClass('disabled');
+        nextTab($active);
+      });
+      $(".prev-step").click(function (e) {
+        var $active = $('.wizard .nav-tabs li.active');
+        prevTab($active);
+      });
     });
     function readURL(input) {
       if (input.files && input.files[0]) {
@@ -533,6 +636,12 @@ if(!isset($_SESSION['UserID'])){
         };
         reader.readAsDataURL(input.files[0]);
       }
+    }
+    function nextTab(elem) {
+      $(elem).next().find('a[data-toggle="tab"]').click();
+    }
+    function prevTab(elem) {
+      $(elem).prev().find('a[data-toggle="tab"]').click();
     }
   </script>
 </body>
