@@ -187,8 +187,31 @@ brand-font {
 /* labels and spacing */
 .custom-form-sm .form-group{
   margin-bottom: 8px;
-  margin-left: -15px;
-  margin-right: 0;
+}
+
+@media (max-width: 767px) {
+  .custom-form-sm > [class*='col-'] > .form-group {
+    padding-right: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .custom-form-sm > [class*='col-'] > .form-group {
+    padding-right: 10px;
+  }
+  .custom-form-sm > [class*='col-']:nth-child(2) > .form-group,.custom-form-sm > [class*='col-']:nth-child(3) > .form-group {
+    padding-right: 0;
+  }
+}
+@media (min-width: 992px) {
+  .custom-form-sm > [class*='col-'] > .form-group {
+    padding-right: 10px;
+  }
+  .custom-form-sm > [class*='col-']:last-child > .form-group {
+    padding-right: 0;
+  }
+  #textarea_farm_comment{
+
+  }
 }
 .custom-form-sm label {
   margin-bottom: 2px;
