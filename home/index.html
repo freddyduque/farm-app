@@ -145,7 +145,7 @@ if(!isset($_SESSION['UserID'])){
               </div>
               <div class="tab-content">
                 <div class="tab-pane active" role="tabpanel" id="step1">
-                  <h4>Usuario<div class="clearfix visible-xs-block"></div><small> Completa tu información personal.</small></h4>
+                  <h4>Usuario<small><br>Completa tu información personal.</small></h4>
                   <div class="well">...</div>
                   <div class="col-sm-offset-7 col-sm-5 col-md-offset-8 col-md-4" style="padding: 0;">
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -156,16 +156,16 @@ if(!isset($_SESSION['UserID'])){
                   </div>
                 </div>
                 <div class="tab-pane" role="tabpanel" id="step2">
-                  <h4>Unidad de Producción<div class="clearfix visible-xs-block"></div><small> Si ya cuentas con una unidad de producción en Vakuno, solo debes solicitar autorización para unirte a ella completando el siguiente formulario. Si por otro lado deseas crear una desde cero, seleccióna la opcion mas abajo.</small></h4>
+                  <h4>Unidad de Producción<small><br>Si ya cuentas con una unidad de producción en Vakuno, solo debes solicitar autorización para unirte a ella completando el siguiente formulario. Si por otro lado deseas crear una desde cero, seleccióna la opcion mas abajo.</small></h4>
                   <div class="col-xs-12 well well-sm no-gutter">
-                    <div class="col-sm-12" style="padding:5px">
-                      <div id="create_panel" div-bro="search_panel" class="panel panel-default" style="margin-bottom:5px">
+                    <div class="col-xs-12 col-md-8" style="padding:5px">
+                      <div id="create_panel" class="panel panel-default" style="margin-bottom:5px">
                         <div class="panel-heading">
                           <h3 class="panel-title">Crear</h3>
                         </div>
                         <div class="panel-body">
                           <form method="POST" action="index.html" class="form-horizontal mt0 custom-form-sm" id="vakuno_no_form" role="form">
-                            <div class="col-xs-12 col-sm-5 col-md-3">
+                            <div class="col-xs-12 col-sm-5">
                               <div class="form-group">
                                 <div class="thumbnail" style="box-shadow: unset;margin-bottom:0px;">
                                   <div style="height: 157.7px;background-color:#f2f2f2">
@@ -181,7 +181,7 @@ if(!isset($_SESSION['UserID'])){
                                 </div>
                               </div>
                             </div>
-                            <div class="col-xs-12 col-sm-7 col-md-3">
+                            <div class="col-xs-12 col-sm-7">
                               <div class="form-group">
                                 <label for="input_farm_name" id="farm_name_label">Nombre</label>
                                 <div class="input-group input-group-sm">
@@ -212,7 +212,7 @@ if(!isset($_SESSION['UserID'])){
                                 </select>
                               </div>
                             </div>
-                            <div class="col-xs-12 col-sm-7 col-sm-push-5 col-md-3 col-md-push-0">
+                            <div class="col-xs-12 col-sm-7 col-sm-push-5">
                               <div class="form-group">
                                 <label for="country_selector" id="country_name_label">Localidad</label>
                                 <select class="selectpicker form-control custom-dropdown-sm" data-size="6" data-live-search="true" title="País" id="country_selector" name="country_selector"></select>
@@ -222,14 +222,14 @@ if(!isset($_SESSION['UserID'])){
                               </div>
                               <div class="form-group">
                                 <label for="textarea_farm_comment" id="farm_name_label">Comentarios</label>
-                                <textarea id="textarea_farm_comment" class="form-control" rows="4" style="font-size: 10px;resize: none" placeholder="Hablanos de tu Unidad de Producción"></textarea>
+                                <textarea id="textarea_farm_comment" class="form-control" rows="2" style="font-size: 10px;resize: none" placeholder="Hablanos de tu Unidad de Producción"></textarea>
                               </div>
                             </div>
-                            <div class="col-xs-12 col-sm-5 col-sm-pull-7 col-md-3 col-md-pull-0">
+                            <div class="col-xs-12 col-sm-5 col-sm-pull-7">
                               <div class="form-group">
                                 <label for="input_timezone" id="farm_name_label">Mapa</label>
-                                <div class="thumbnail" style="margin-bottom:0px">
-                                  <div id="map" style="height: 169.133px;"></div>
+                                <div class="thumbnail" style="box-shadow: unset;margin-bottom:0px" id="map_modal">
+                                  <div id="map"></div>
                                 </div>
                                 <!-- <div class="input-group">
                                   <input type="text" class="form-control" name="input_timezone" id="input_timezone">
@@ -243,8 +243,26 @@ if(!isset($_SESSION['UserID'])){
                         </div>
                       </div>
                     </div>
+                    <div class="col-md-4 hidden-xs hidden-sm" style="padding:5px">
+                      <div class="panel panel-default" style="margin-bottom:5px">
+                        <div class="panel-body">
+                          <dl>
+                            <dt>Nombre</dt>
+                            <dd>Nombre de tu Unidad de Producción, Finca, Hacienda, Hato, Granja, etc.</dd>
+                            <dt>Establecida en</dt>
+                            <dd>Fecha en que tu Unidad de Producción fué Establecida o creada. Cuando fué fundada tu Unidad de Producción.</dd>
+                            <dt>Propositos</dt>
+                            <dd>Selecciona las diferentes areas que tu Unidad de Producción cubre o cuales son sus propósitos. Puedes seleccionar mas de 1 proposito.</dd>
+                            <dt>Localidad</dt>
+                            <dd>Selecciona en que país y estado se encuntra geograficamente localizada tu Unidad de Producción.</dd>
+                            <dt>Comentarios</dt>
+                            <dd>Cuentanos un poco sobre tu Unidad de Producción.</dd>
+                          </dl>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-sm-offset-7 col-sm-5 col-md-offset-8 col-md-4" style="padding: 0;">
+                  <div class="col-xs-12 col-sm-offset-7 col-sm-5 col-md-offset-8 col-md-4" style="padding: 0;">
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
                       <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default prev-step">Anterior</button>
@@ -256,8 +274,8 @@ if(!isset($_SESSION['UserID'])){
                   </div>
                 </div>
                 <div class="tab-pane" role="tabpanel" id="step3">
-                  <h4>Crear Plantilla<div class="clearfix visible-xs-block"></div><small> Usa el siguiente formulario para crear una plantilla de tu ganado. Esta plantilla te ayudará a poblar mas rapidamente tu Unidad de Producción en Vakuno.</small></h4>
-                  <div class="col-sm-offset-7 col-sm-5 col-md-offset-8 col-md-4" style="padding: 0;">
+                  <h4>Crear Plantilla<small><br>Usa el siguiente formulario para crear una plantilla de tu ganado. Esta plantilla te ayudará a poblar mas rapidamente tu Unidad de Producción en Vakuno.</small></h4>
+                  <div class="col-xs-12 col-sm-offset-7 col-sm-5 col-md-offset-8 col-md-4" style="padding: 0;">
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
                       <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default prev-step">Anterior</button>
@@ -272,8 +290,8 @@ if(!isset($_SESSION['UserID'])){
                   </div>
                 </div>
                 <div class="tab-pane" role="tabpanel" id="step4">
-                  <h4>Crear Plantilla<div class="clearfix visible-xs-block"></div><small> Usa el siguiente formulario para crear una plantilla de tu ganado. Esta plantilla te ayudará a poblar mas rapidamente tu Unidad de Producción en Vakuno.</small></h4>
-                  <div class="col-sm-offset-7 col-sm-5 col-md-offset-8 col-md-4" style="padding: 0;">
+                  <h4>Crear Plantilla<small><br>Usa el siguiente formulario para crear una plantilla de tu ganado. Esta plantilla te ayudará a poblar mas rapidamente tu Unidad de Producción en Vakuno.</small></h4>
+                  <div class="col-xs-12 col-sm-offset-7 col-sm-5 col-md-offset-8 col-md-4" style="padding: 0;">
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
                       <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default prev-step">Anterior</button>
@@ -288,7 +306,7 @@ if(!isset($_SESSION['UserID'])){
                   </div>
                 </div>
                 <div class="tab-pane" role="tabpanel" id="complete">
-                  <h4>Unidad de Producción<div class="clearfix visible-xs-block"></div><small> Si ya cuentas con una unidad de producción en Vakuno, solo debes solicitar autorización para unirte a ella completando el siguiente formulario. Si por otro lado deseas crear una desde cero, seleccióna la opcion mas abajo.</small></h4>
+                  <h4>Unidad de Producción<small><br>Si ya cuentas con una unidad de producción en Vakuno, solo debes solicitar autorización para unirte a ella completando el siguiente formulario. Si por otro lado deseas crear una desde cero, seleccióna la opcion mas abajo.</small></h4>
                 </div>
                 <div class="clearfix"></div>
               </div>
@@ -443,9 +461,9 @@ if(!isset($_SESSION['UserID'])){
   <script src="../locales/bootstrap-datepicker.es.min.js"></script>
   <!--<script src="../js/vk_geolocation.js"></script>-->
   <!-- Google maps API -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5oF3OYLqtvauGt9syhf29RHJJyls7KxE&callback=initMap" async defer></script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5oF3OYLqtvauGt9syhf29RHJJyls7KxE&callback=initMap"></script>
   <script>
-
     function getTimezone(location,milliseconds){
       var link = "https://maps.googleapis.com/maps/api/timezone/json?location="+location.lat()+","+location.lng()+"&timestamp="+milliseconds+"&key=AIzaSyB5oF3OYLqtvauGt9syhf29RHJJyls7KxE";
       $.get(link, function( data ) {
@@ -458,6 +476,19 @@ if(!isset($_SESSION['UserID'])){
         if (hours   < 10) {hours   = "0"+hours;}
         if (minutes < 10) {minutes = "0"+minutes;}
         $( "#input_timezone" ).val("["+symbol+""+hours+':'+minutes+"] "+data.timeZoneId);
+      });
+    }
+    function geocodeAddress(marker, geocoder, resultsMap, address, zooming) {
+      geocoder.geocode({'address': address}, function(results, status) {
+        if (status === 'OK') {
+          resultsMap.setCenter(results[0].geometry.location);
+          resultsMap.setZoom(zooming);
+          marker.setMap(resultsMap);
+          marker.setPosition(results[0].geometry.location);
+          //getTimezone(results[0].geometry.location,Math.floor((new Date).getTime()/1000));
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
       });
     }
     function initMap() {
@@ -497,19 +528,28 @@ if(!isset($_SESSION['UserID'])){
         $("#state_selector").selectpicker('refresh');
         geocodeAddress(marker,geocoder, map, selectedCountry,4);
       });
-    }
-    function geocodeAddress(marker, geocoder, resultsMap, address, zooming) {
-      geocoder.geocode({'address': address}, function(results, status) {
-        if (status === 'OK') {
-          resultsMap.setCenter(results[0].geometry.location);
-          resultsMap.setZoom(zooming);
-          marker.setMap(resultsMap);
-          marker.setPosition(results[0].geometry.location);
-          getTimezone(results[0].geometry.location,Math.floor((new Date).getTime()/1000));
-        } else {
-          alert('Geocode was not successful for the following reason: ' + status);
+      $('a[data-toggle="tab"').on('shown.bs.tab', function (e) {
+        if($(this).attr("href")=="#step2"){
+          currCenter = map.getCenter();
+          google.maps.event.trigger(map, 'resize');
+          map.setCenter(currCenter);
         }
       });
+    }
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#file_selector_img').attr('src', e.target.result);//.width(150).height(200);
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    function nextTab(elem) {
+      $(elem).next().find('a[data-toggle="tab"]').click();
+    }
+    function prevTab(elem) {
+      $(elem).prev().find('a[data-toggle="tab"]').click();
     }
     $(function() {
       var CountryListItems= "";
@@ -518,8 +558,7 @@ if(!isset($_SESSION['UserID'])){
       }
       $('[data-toggle="tooltip"]').tooltip();
       $("#country_selector").html(CountryListItems);
-      $('#farm_estdate')
-        .datepicker({
+      $('#farm_estdate').datepicker({
         autoclose: true,
         startView: 'year',
         //format: 'mm/dd/yyyy',
@@ -540,6 +579,7 @@ if(!isset($_SESSION['UserID'])){
           $("#textarea_farm_comment").attr("placeholder","Hablanos de tu Unidad de Producción");
       });
       $('.nav-tabs > li a[title]').tooltip();
+
       //Wizard
       $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
         var $target = $(e.target);
@@ -556,21 +596,6 @@ if(!isset($_SESSION['UserID'])){
         prevTab($active);
       });
     });
-    function readURL(input) {
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-          $('#file_selector_img').attr('src', e.target.result);//.width(150).height(200);
-        };
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-    function nextTab(elem) {
-      $(elem).next().find('a[data-toggle="tab"]').click();
-    }
-    function prevTab(elem) {
-      $(elem).prev().find('a[data-toggle="tab"]').click();
-    }
   </script>
 </body>
 

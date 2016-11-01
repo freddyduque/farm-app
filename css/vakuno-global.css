@@ -35,6 +35,11 @@ body > .container-fluid, body > .container {
   padding-top: 50px;
 }
 
+dd {
+  padding-bottom: 5px;
+  color: grey;
+}
+
 .custom-navbar-brand {
   margin-left: auto !important;
   padding: 7px 15px;
@@ -188,74 +193,28 @@ brand-font {
 .custom-form-sm .form-group{
   margin-bottom: 8px;
 }
+#map{
+  height: 169.133px;
+}
 
 @media (max-width: 767px) {
   .custom-form-sm > [class*='col-'] > .form-group {
     padding-right: 0;
   }
 }
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) {
   .custom-form-sm > [class*='col-'] > .form-group {
     padding-right: 10px;
   }
   .custom-form-sm > [class*='col-']:nth-child(2) > .form-group,.custom-form-sm > [class*='col-']:nth-child(3) > .form-group {
     padding-right: 0;
   }
-}
-@media (min-width: 992px) {
-  .custom-form-sm > [class*='col-'] > .form-group {
-    padding-right: 10px;
-  }
-  .custom-form-sm > [class*='col-']:last-child > .form-group {
-    padding-right: 0;
-  }
   #textarea_farm_comment{
-
+    height: 82.57px;
   }
 }
 .custom-form-sm label {
   margin-bottom: 2px;
-}
-
-/* gutter spacing */
-/* Small devices (tablets, 768px and up) */
-/*@media (min-width: 768px) {
-/*  .custom-form-sm .form-group div[class^="col"]{padding-left:5px; padding-right:5px;}
-  /*#right-img > img, #left-img > img {margin-top: 75px}*/
-/*}
-/* Medium devices (desktops, 992px and up) */
-/*@media (min-width: 992px) {
-/*  .custom-form-sm .form-group div[class^="col"]{padding-left:8px; padding-right:8px;}
-  /*#right-img > img, #left-img > img {margin-top: 45px}*/
-/*}
-/* Large devices (large desktops, 1200px and up) */
-/*@media (min-width: 1200px){
-/*  .custom-form-sm .form-group div[class^="col"]{padding-left:11px; padding-right:11px;}
-  /*#right-img > img, #left-img > img {margin-top: 20px}*/
-/*}*/
-
-#left-img > img{
-/*  position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  background: url(../img/new/landscape/vk_landscape_yes.svg) left no-repeat;
-
-  position: absolute;*/
-}
-
-#right-img > img {
-/*  position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  background: url(../img/new/landscape/vk_landscape_no.svg) right no-repeat;
-
-  position: absolute;*/
 }
 
 .page-wrap {
@@ -299,13 +258,6 @@ brand-font {
   padding: 15px 0 0 0;
   border-bottom: 10px solid #714430;
 }
-
-/*#collapseOne + #headingOne .custom-panel-clear panel-collapse.collapse.in + .custom-panel-clear .custom-heading{
-  border-radius: 4px 4px 0 0;
-}/*
-/*.custom-panel-clear .custom-heading{
-  border-radius: 4px;
-}*/
 
 #headingOne {
   border-radius: 3px 3px 0 0;
@@ -378,6 +330,7 @@ brand-font {
 .wizard {
   margin: 10px auto;
   background: #fff;
+  height: auto !important;
 }
 .wizard .nav-tabs {
   position: relative;
@@ -400,9 +353,6 @@ brand-font {
   z-index: 1;
 }
 span.round-tab {
-  width: 70px;
-  height: 70px;
-  line-height: 70px;
   display: inline-block;
   border-radius: 0 0 50% 50%;
   background: #fff;
@@ -411,7 +361,10 @@ span.round-tab {
   position: absolute;
   left: 0;
   text-align: center;
-  font-size: 25px;
+  font-size: 16px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
 }
 span.round-tab i{
   color:#555555;
@@ -432,33 +385,34 @@ span.round-tab:hover {
   width: 20%;
 }
 .wizard .nav-tabs > li a:after {
-  content: " ";
-  position: absolute;
-  left: 31px;
   opacity: 0;
   margin: 0 auto;
   bottom: -16px;
   border: 5px solid transparent;
   border-bottom-color: #28618c;
   transition: 0.1s ease-in-out;
+  content: " ";
+  position: absolute;
+  left: 21px;
 }
 .wizard .nav-tabs > li.active a:after {
   content: " ";
   position: absolute;
-  left: 25px;
   opacity: 1;
   margin: 0 auto;
   bottom: -15px;
   border: 10px solid transparent;
   border-bottom-color: #28618c;
+  left: 15px;
 }
 .wizard .nav-tabs > li a {
-  width: 70px;
-  height: 70px;
   margin: 5px auto 15px auto;
   border-radius: 0 0 50% 50%;
   padding: 0;
   outline: none;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
 }
 .wizard .nav-tabs > li a:hover {
   background: transparent;
@@ -469,34 +423,6 @@ span.round-tab:hover {
 }
 .wizard h3,.wizard h4 {
   margin-top: 0;
-}
-@media (max-width: 767px) {
-  .wizard {
-    height: auto !important;
-  }
-  span.round-tab {
-    font-size: 16px;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-  }
-  .wizard .nav-tabs > li a {
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    outline: none;
-  }
-  .wizard .nav-tabs > li a:after {
-    content: " ";
-    position: absolute;
-    left: 21px;
-    bottom: -16px;
-  }
-  .wizard .nav-tabs > li.active a:after {
-    content: " ";
-    position: absolute;
-    left: 15px;
-  }
 }
 .tooltip {
   z-index: 0;
