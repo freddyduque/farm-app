@@ -312,24 +312,9 @@ brand-font {
     z-index: 999 !important;
 }
 
-/*.scrollable-menu {
-  height: auto;
-  max-height: 200px;
-  overflow-x: hidden;
-}
-
-.dropdown-menu {
-  width: 100%;
-}
-
-.custom-dropdown-menu li a {
-  cursor: pointer;
-}*/
-
 /* Panel Tabs - Steps */
 .wizard {
-  margin: 10px auto;
-  background: #fff;
+  margin: 5px auto;
   height: auto !important;
 }
 .wizard .nav-tabs {
@@ -337,6 +322,7 @@ brand-font {
   margin: 0 auto;
   margin-bottom: 0;
   border-bottom-color: #e0e0e0;
+  border-bottom: 0;
 }
 .wizard > div.wizard-inner {
   position: relative;
@@ -349,7 +335,7 @@ brand-font {
   margin: 0 auto;
   left: 0;
   right: 0;
-  top: 45%;
+  top: 50%;
   z-index: 1;
 }
 span.round-tab {
@@ -384,29 +370,8 @@ span.round-tab:hover {
 .wizard .nav-tabs > li {
   width: 20%;
 }
-.wizard .nav-tabs > li a:after {
-  opacity: 0;
-  margin: 0 auto;
-  bottom: -16px;
-  border: 5px solid transparent;
-  border-bottom-color: #28618c;
-  transition: 0.1s ease-in-out;
-  content: " ";
-  position: absolute;
-  left: 21px;
-}
-.wizard .nav-tabs > li.active a:after {
-  content: " ";
-  position: absolute;
-  opacity: 1;
-  margin: 0 auto;
-  bottom: -15px;
-  border: 10px solid transparent;
-  border-bottom-color: #28618c;
-  left: 15px;
-}
 .wizard .nav-tabs > li a {
-  margin: 5px auto 15px auto;
+  margin: 5px auto;
   border-radius: 0 0 50% 50%;
   padding: 0;
   outline: none;
@@ -419,7 +384,7 @@ span.round-tab:hover {
 }
 .wizard .tab-pane {
   position: relative;
-  padding-top: 20px;
+  padding-top: 5px;
 }
 .wizard h3,.wizard h4 {
   margin-top: 0;
