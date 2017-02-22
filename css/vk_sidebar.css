@@ -1,0 +1,119 @@
+.navbar-fixed-left {
+  width: 160px;
+  position: fixed;
+  border-radius: 0;
+  height: 100%;
+  padding-top: 50px;
+  background: #1a1a1a;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  border: none;
+}
+
+/* Wrappers */
+
+#wrapper.toggled {
+  padding-left: 40px;
+}
+
+/* Sidebar nav styles */
+
+.navbar-fixed-left li {
+  position: relative;
+  line-height: 20px;
+  display: inline-block;
+  width: 100%;
+}
+
+.navbar-fixed-left li a:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  background-color: #1c1c1c;
+  -webkit-transition: width .2s ease-in;
+  -moz-transition: width .2s ease-in;
+  -ms-transition: width .2s ease-in;
+  transition: width .2s ease-in;
+}
+
+.navbar-nav {
+    float: left;
+    margin: 0;
+}
+
+.navbar-fixed-left .navbar-nav > li > a:before  {
+  background-color: #314190;
+}
+
+.navbar-fixed-left .navbar-nav > li.open > ul.dropdown-menu > li a:before {
+  background-color: #279636;
+}
+
+.navbar-fixed-left li:hover > a:before,
+.navbar-fixed-left li.open:hover > a:before {
+  width: 40px;
+  -webkit-transition: width .2s ease-in;
+  -moz-transition: width .2s ease-in;
+  -ms-transition: width .2s ease-in;
+  transition: width .2s ease-in;
+}
+
+.navbar-fixed-left li a {
+  display: block;
+  color: #ddd;
+  text-decoration: none;
+  padding: 10px 15px 10px 15px !important;
+}
+
+.navbar-fixed-left li > a span:before {
+  margin-right: 5px;
+  -webkit-transition: margin-right .2s ease-in;
+  -moz-transition: margin-right .2s ease-in;
+  -ms-transition: margin-right .2s ease-in;
+  transition: margin-right .2s ease-in;
+}
+
+.navbar-fixed-left li:hover > a span:before {
+  margin-right: 15px;
+  -webkit-transition: margin-right .2s ease-in;
+  -moz-transition: margin-right .2s ease-in;
+  -ms-transition: margin-right .2s ease-in;
+  transition: margin-right .2s ease-in;
+}
+
+.navbar-fixed-left li a:hover,
+.navbar-fixed-left li a:active,
+.navbar-fixed-left li a:focus,
+.navbar-fixed-left li.open a:hover,
+.navbar-fixed-left li.open a:active,
+.navbar-fixed-left li.open a:focus {
+  color: #fff;
+  text-decoration: none;
+  background-color: transparent;
+  background-image: none;
+}
+
+.navbar-fixed-left .sidebar-brand {
+  height: 65px;
+  font-size: 20px;
+  line-height: 44px;
+}
+
+.navbar-fixed-left .dropdown-menu,
+.navbar-fixed-left .open .dropdown-menu {
+  position: relative;
+  width: 100%;
+  min-width: inherit;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  background-color: #222;
+  box-shadow: none;
+  font-size: 13px;
+}
