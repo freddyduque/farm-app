@@ -245,4 +245,13 @@ $(function () {
     });
     return val_flag;
   });
+  $( "[custom-data-toggle='tooltip']" ).hover( function() {
+      $(this).tooltip('show');
+    }, function() {
+      $(this).tooltip('hide');
+    }
+  );
+  $(".navbar-fixed-left").find("a").each(function(index) {
+    $(this).attr("title",$(this).text());
+  });
 });
